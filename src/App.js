@@ -5,7 +5,7 @@ function App() {
     <div>
       <Button variant="contained" color="primary">
         Hello World
-        </Button>
+      </Button>
     </div>
   )
 }
