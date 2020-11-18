@@ -2,7 +2,6 @@ import React from 'react'
 import { NavLink } from "react-router-dom"
 
 const Notfound = () => {
-
   return (
     <div className="container text-center p-5">
       <h1 className="text-danger my-5">OOPS!</h1>
