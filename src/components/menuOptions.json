@@ -1,0 +1,34 @@
+[
+  {
+    "label": "Ajustes",
+    "url": "/ajustes"
+  },
+  {
+    "label": "Clientes",
+    "url": "/clientes"
+  },
+  {
+    "label": "Conceptos",
+    "url": "/conceptos"
+  },
+  {
+    "label": "Facturas",
+    "url": "/facturas"
+  },
+  {
+    "label": "Pagos",
+    "url": "/pagos"
+  },
+  {
+    "label": "Productos",
+    "url": "/productos"
+  },
+  {
+    "label": "Transportes",
+    "url": "/transportes"
+  },
+  {
+    "label": "Vendedores",
+    "url": "/vendedores"
+  }
+]

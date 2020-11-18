@@ -1,5 +1,6 @@
 import React from "react"
 import { NavLink } from "react-router-dom"
+import menuOptions from './menuOptions.json'
 
 const Header = props => {
   return (
@@ -28,79 +29,15 @@ const Header = props => {
             </NavLink>
           </li>
           <React.Fragment>
-            <li
-              className="nav-item"
-              data-toggle="collapse"
-              data-target=".navbar-collapse.show"
-            >
-              <NavLink className="nav-link" to="/ajustes">
-                Ajustes
-                </NavLink>
-            </li>
-            <li
-              className="nav-item"
-              data-toggle="collapse"
-              data-target=".navbar-collapse.show"
-            >
-              <NavLink className="nav-link" to="/clientes">
-                Clientes
-                </NavLink>
-            </li>
-            <li
-              className="nav-item"
-              data-toggle="collapse"
-              data-target=".navbar-collapse.show"
-            >
-              <NavLink className="nav-link" to="/conceptos">
-                Conceptos
-                </NavLink>
-            </li>
-            <li
-              className="nav-item"
-              data-toggle="collapse"
-              data-target=".navbar-collapse.show"
-            >
-              <NavLink className="nav-link" to="/facturas">
-                Facturas
-                </NavLink>
-            </li>
-            <li
-              className="nav-item"
-              data-toggle="collapse"
-              data-target=".navbar-collapse.show"
-            >
-              <NavLink className="nav-link" to="/pagos">
-                Pagos
-                </NavLink>
-            </li>
-            <li
-              className="nav-item"
-              data-toggle="collapse"
-              data-target=".navbar-collapse.show"
-            >
-              <NavLink className="nav-link" to="/productos">
-                Productos
-                </NavLink>
-            </li>
-            <li
-              className="nav-item"
-              data-toggle="collapse"
-              data-target=".navbar-collapse.show"
-            >
-              <NavLink className="nav-link" to="/transportes">
-                Transportes
-                </NavLink>
-            </li>
-            <li
-              className="nav-item"
-              data-toggle="collapse"
-              data-target=".navbar-collapse.show"
-            >
-              <NavLink className="nav-link" to="/vendedores">
-                Vendedores
-                </NavLink>
-            </li>
-
+            {
+              menuOptions.map(option =>
+                <li className="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show" >
+                  <NavLink className="nav-link" to={option.url}>
+                    {option.label}
+                  </NavLink>
+                </li>
+              )
+            }
           </React.Fragment>
         </ul>
 
