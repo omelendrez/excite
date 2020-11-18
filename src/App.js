@@ -1,11 +1,11 @@
-import Button from '@material-ui/core/Button'
+import React from 'react'
+import Routes from './Routes'
+import './app.scss'
 
-function App() {
+const App = () => {
   return (
     <div>
-      <Button variant="contained" color="primary">
-        Hello World
-      </Button>
+      <Routes />
     </div>
   )
 }
