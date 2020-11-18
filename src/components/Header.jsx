@@ -3,7 +3,6 @@ import { NavLink } from "react-router-dom"
 // Acá vamos a usar los estilos de bootstrap para crear la barra de navegación
 // Usamos 'Link' para crear los links (equivale a: <a href='/'>Home</a>)
 const Header = props => {
-  const { fullName } = props
   return (
     <nav className="navbar navbar-expand-sm navbar-dark">
       <button
@@ -29,60 +28,146 @@ const Header = props => {
               Home
             </NavLink>
           </li>
-          {fullName && (
-            <React.Fragment>
-              <li
-                className="nav-item"
-                data-toggle="collapse"
-                data-target=".navbar-collapse.show"
-              >
-                <NavLink className="nav-link" to="/donaciones">
-                  Donaciones
+          <React.Fragment>
+            <li
+              className="nav-item"
+              data-toggle="collapse"
+              data-target=".navbar-collapse.show"
+            >
+              <NavLink className="nav-link" to="/ajustes">
+                Ajustes
                 </NavLink>
-              </li>
-              <li
-                className="nav-item"
-                data-toggle="collapse"
-                data-target=".navbar-collapse.show"
-              >
-                <NavLink className="nav-link" to="/donar">
-                  Donar
+            </li>
+            <li
+              className="nav-item"
+              data-toggle="collapse"
+              data-target=".navbar-collapse.show"
+            >
+              <NavLink className="nav-link" to="/clientes">
+                Clientes
                 </NavLink>
-              </li>
-            </React.Fragment>
-          )}
+            </li>
+            <li
+              className="nav-item"
+              data-toggle="collapse"
+              data-target=".navbar-collapse.show"
+            >
+              <NavLink className="nav-link" to="/conceptos">
+                Conceptos
+                </NavLink>
+            </li>
+            <li
+              className="nav-item"
+              data-toggle="collapse"
+              data-target=".navbar-collapse.show"
+            >
+              <NavLink className="nav-link" to="/estados">
+                Estados
+                </NavLink>
+            </li>
+            <li
+              className="nav-item"
+              data-toggle="collapse"
+              data-target=".navbar-collapse.show"
+            >
+              <NavLink className="nav-link" to="/facturas">
+                Facturas
+                </NavLink>
+            </li>
+            <li
+              className="nav-item"
+              data-toggle="collapse"
+              data-target=".navbar-collapse.show"
+            >
+              <NavLink className="nav-link" to="/tipos-iva">
+                Tipo contribuyente
+                </NavLink>
+            </li>
+            <li
+              className="nav-item"
+              data-toggle="collapse"
+              data-target=".navbar-collapse.show"
+            >
+              <NavLink className="nav-link" to="/numeros">
+                Números
+                </NavLink>
+            </li>
+            <li
+              className="nav-item"
+              data-toggle="collapse"
+              data-target=".navbar-collapse.show"
+            >
+              <NavLink className="nav-link" to="/pagos">
+                Pagos
+                </NavLink>
+            </li>
+            <li
+              className="nav-item"
+              data-toggle="collapse"
+              data-target=".navbar-collapse.show"
+            >
+              <NavLink className="nav-link" to="/iva">
+                Porcentaje IVA
+                </NavLink>
+            </li>
+            <li
+              className="nav-item"
+              data-toggle="collapse"
+              data-target=".navbar-collapse.show"
+            >
+              <NavLink className="nav-link" to="/productos">
+                Productos
+                </NavLink>
+            </li>
+            <li
+              className="nav-item"
+              data-toggle="collapse"
+              data-target=".navbar-collapse.show"
+            >
+              <NavLink className="nav-link" to="/provincias">
+                Provincias
+                </NavLink>
+            </li>
+            <li
+              className="nav-item"
+              data-toggle="collapse"
+              data-target=".navbar-collapse.show"
+            >
+              <NavLink className="nav-link" to="/tipos">
+                Tipos
+                </NavLink>
+            </li>
+            <li
+              className="nav-item"
+              data-toggle="collapse"
+              data-target=".navbar-collapse.show"
+            >
+              <NavLink className="nav-link" to="/subtipos">
+                Subtipos
+                </NavLink>
+            </li>
+            <li
+              className="nav-item"
+              data-toggle="collapse"
+              data-target=".navbar-collapse.show"
+            >
+              <NavLink className="nav-link" to="/transportes">
+                Transportes
+                </NavLink>
+            </li>
+            <li
+              className="nav-item"
+              data-toggle="collapse"
+              data-target=".navbar-collapse.show"
+            >
+              <NavLink className="nav-link" to="/vendedores">
+                Vendedores
+                </NavLink>
+            </li>
+
+          </React.Fragment>
         </ul>
 
-        {fullName && (
-          <React.Fragment>
-            <span className="mr-4">{fullName}</span>
-            <NavLink to="/login" title="Logout">
-              <i className="fas fa-sign-out-alt"></i>
-            </NavLink>
-          </React.Fragment>
-        )}
-        {!fullName && (
-          <ul className="nav navbar-nav navbar-right">
-            <li
-              className="nav-item"
-              data-toggle="collapse"
-              data-target=".navbar-collapse.show"
-            >
-              <NavLink className="nav-link" to="/registrarse">
-                Registrarse
-              </NavLink>
-            </li>
-            <li
-              className="nav-item"
-              data-toggle="collapse"
-              data-target=".navbar-collapse.show"
-            >
-              <NavLink className="nav-link" to="/login">
-                Login
-              </NavLink>
-            </li>
-          </ul>
-        )}
       </div>
     </nav>
   )
