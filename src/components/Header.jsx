@@ -1,7 +1,6 @@
 import React from "react"
 import { NavLink } from "react-router-dom"
-// Acá vamos a usar los estilos de bootstrap para crear la barra de navegación
-// Usamos 'Link' para crear los links (equivale a: <a href='/'>Home</a>)
+
 const Header = props => {
   return (
     <nav className="navbar navbar-expand-sm navbar-dark">
