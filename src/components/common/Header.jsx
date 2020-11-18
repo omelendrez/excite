@@ -19,15 +19,6 @@ const Header = props => {
 
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav mr-auto">
-          <li
-            className="nav-item active"
-            data-toggle="collapse"
-            data-target=".navbar-collapse.show"
-          >
-            <NavLink className="nav-link" to="/">
-              Home
-            </NavLink>
-          </li>
           <React.Fragment>
             {
               menuOptions.map((option, key) =>
