@@ -61,35 +61,8 @@ const Header = props => {
               data-toggle="collapse"
               data-target=".navbar-collapse.show"
             >
-              <NavLink className="nav-link" to="/estados">
-                Estados
-                </NavLink>
-            </li>
-            <li
-              className="nav-item"
-              data-toggle="collapse"
-              data-target=".navbar-collapse.show"
-            >
               <NavLink className="nav-link" to="/facturas">
                 Facturas
-                </NavLink>
-            </li>
-            <li
-              className="nav-item"
-              data-toggle="collapse"
-              data-target=".navbar-collapse.show"
-            >
-              <NavLink className="nav-link" to="/tipos-iva">
-                Tipo contribuyente
-                </NavLink>
-            </li>
-            <li
-              className="nav-item"
-              data-toggle="collapse"
-              data-target=".navbar-collapse.show"
-            >
-              <NavLink className="nav-link" to="/numeros">
-                Números
                 </NavLink>
             </li>
             <li
@@ -106,44 +79,8 @@ const Header = props => {
               data-toggle="collapse"
               data-target=".navbar-collapse.show"
             >
-              <NavLink className="nav-link" to="/iva">
-                Porcentaje IVA
-                </NavLink>
-            </li>
-            <li
-              className="nav-item"
-              data-toggle="collapse"
-              data-target=".navbar-collapse.show"
-            >
               <NavLink className="nav-link" to="/productos">
                 Productos
-                </NavLink>
-            </li>
-            <li
-              className="nav-item"
-              data-toggle="collapse"
-              data-target=".navbar-collapse.show"
-            >
-              <NavLink className="nav-link" to="/provincias">
-                Provincias
-                </NavLink>
-            </li>
-            <li
-              className="nav-item"
-              data-toggle="collapse"
-              data-target=".navbar-collapse.show"
-            >
-              <NavLink className="nav-link" to="/tipos">
-                Tipos
-                </NavLink>
-            </li>
-            <li
-              className="nav-item"
-              data-toggle="collapse"
-              data-target=".navbar-collapse.show"
-            >
-              <NavLink className="nav-link" to="/subtipos">
-                Subtipos
                 </NavLink>
             </li>
             <li
