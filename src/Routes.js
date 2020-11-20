@@ -7,6 +7,8 @@ import NotFound from './components/common/NotFound'
 
 import Home from './components/common/Home'
 
+import Clientes from './components/clientes/Clientes'
+
 const Routes = () => {
 
   return (
@@ -15,6 +17,7 @@ const Routes = () => {
       <div className="main">
         <Switch>
           <Route path="/" exact component={Home} />
+          <Route path="/clientes" exact component={Clientes} />
           <Route component={NotFound} />
         </Switch>
       </div>
