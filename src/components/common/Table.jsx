@@ -22,6 +22,8 @@ import DeleteIcon from '@material-ui/icons/Delete'
 import EditIcon from '@material-ui/icons/Edit'
 import FilterListIcon from '@material-ui/icons/FilterList'
 
+const ROWS_PER_PAGE = [5, 10, 15, 20, 25]
+
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
     return -1
@@ -321,7 +323,7 @@ export default function EnhancedTable({ title, columns, rows, fieldId }) {
           </Table>
         </TableContainer>
         <TablePagination
-          rowsPerPageOptions={[5, 10, 15, 25]}
+          rowsPerPageOptions={ROWS_PER_PAGE}
           component="div"
           count={rows.length}
           rowsPerPage={rowsPerPage}

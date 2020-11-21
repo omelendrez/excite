@@ -1,8 +1,53 @@
 body {
   background-color: #eceff1 !important;
+  font-family: Roboto;
+  .MuiTable-root {
+    width: auto;
+    margin: 0 auto;
+  }
 }
 .navbar,
 .fixed-bottom {
   background-color: #37474f !important;
   color: #eceff1 !important;
+}
+
+.navbar {
+  .navbar-menu {
+    @media (max-width: 640px) { 
+      display: none;
+     }
+  }
+  .btn-group {
+
+    .btn {
+      color: #ccc;
+      &.active {
+        color: white;
+      }
+    }
+
+    .dropdown-menu {
+      .btn {
+        color: black;
+      }
+    }
+
+    &.show {
+      .btn {
+        color: white;
+      }
+      .dropdown-menu {
+        .btn {
+          color: #37474f;
+          &.active {
+            background-color: #37474f;
+            color: #eceff1;
+          }
+        }
+      }
+   
+    }
+  }
+
 }

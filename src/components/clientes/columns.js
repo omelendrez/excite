@@ -1,4 +1,6 @@
-exports.columns = [
+import { formatAmount } from '../../helpers'
+
+export const columns = [
   {
     id: "CLICOD",
     label: "Código",
@@ -56,7 +58,7 @@ exports.columns = [
     minWidth: 60,
     align: "right",
     numeric: true,
-    format: (value) => value.toLocaleString('es-AR')
+    format: (value) => formatAmount(value)
   },
   {
     id: "CLISALHAB",
@@ -64,7 +66,7 @@ exports.columns = [
     minWidth: 60,
     align: "right",
     numeric: true,
-    format: (value) => value.toLocaleString('es-AR')
+    format: (value) => formatAmount(value)
   },
   {
     id: "CLISALIMP",
@@ -72,7 +74,7 @@ exports.columns = [
     minWidth: 60,
     align: "right",
     numeric: true,
-    format: (value) => value.toLocaleString('es-AR')
+    format: (value) => formatAmount(value)
   },
   {
     id: "CLITIPO",

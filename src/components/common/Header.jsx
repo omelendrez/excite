@@ -16,26 +16,28 @@ const Header = props => {
       >
         <span className="navbar-toggler-icon"></span>
       </button>
+      <div className='navbar-menu' aria-label='menu' aria-expanded='false' >
 
-      {menuOptions.map((option, key) =>
-        <div key={key} className="btn-group">
-          {option.options ?
-            <button type="button" className="nav-item btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              {option.label}
-            </button>
-            :
-            <NavLink type="button" className="nav-link btn" to={option.url}>
-              {option.label}
-            </NavLink>
-          }
-          <div className="dropdown-menu">
-            {option.options && option.options.map((option, key) =>
-              option.divider ? <div className="dropdown-divider"></div> :
-                <NavLink key={key} className="dropdown-item nav-item btn" to={option.url}>{option.label}</NavLink>
-            )}
+        {menuOptions.map((option, index) =>
+          <div key={index} className="btn-group">
+            {option.options ?
+              <button type="button" className="nav-item btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {option.label}
+              </button>
+              :
+              <NavLink type="button" className="nav-link btn" to={option.url}>
+                {option.label}
+              </NavLink>
+            }
+            <div key={index} className="dropdown-menu">
+              {option.options && option.options.map((option, index) =>
+                option.divider ? <div key={index} className="dropdown-divider"></div> :
+                  <NavLink key={index} className="dropdown-item nav-item btn" to={option.url}>{option.label}</NavLink>
+              )}
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </nav>
   )
 }

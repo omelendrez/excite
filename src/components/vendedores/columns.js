@@ -1,4 +1,4 @@
-import { formatDate } from '../../helpers'
+import { formatDate, formatAmount } from '../../helpers'
 
 export const columns = [
   {
@@ -66,7 +66,7 @@ export const columns = [
     minWidth: 60,
     align: "right",
     numeric: true,
-    format: value => value.toLocaleString('es-AR')
+    format: value => formatAmount(value)
   },
   {
     id: "VENSALHAB",
@@ -74,7 +74,7 @@ export const columns = [
     minWidth: 60,
     align: "right",
     numeric: true,
-    format: value => value.toLocaleString('es-AR')
+    format: value => formatAmount(value)
   },
   {
     id: "VENSALIMP",
@@ -82,6 +82,6 @@ export const columns = [
     minWidth: 60,
     align: "right",
     numeric: true,
-    format: value => value.toLocaleString('es-AR')
+    format: value => formatAmount(value)
   }
 ]
