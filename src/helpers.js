@@ -14,6 +14,6 @@ export const handleError = error => {
   return ({ message: 'Error interno del servidor' })
 }
 
-export const formatDate = date => date.substring(8, 10) + date.substring(4, 8) + date.substring(0, 4)
+export const formatDate = date => date ? date.substring(8, 10) + date.substring(4, 8) + date.substring(0, 4) : ''
 
-export const formatAmount = amount => amount.toLocaleString('es-AR', { style: 'currency', currency: 'ARS', minimumFractionDigits: 2, maximumFractionDigits: 2 })
+export const formatAmount = amount => amount.toLocaleString('es-AR', { style: 'currency', currency: 'ARS', minimumFractionDigits: 2, maximumFractionDigits: 2 }) 

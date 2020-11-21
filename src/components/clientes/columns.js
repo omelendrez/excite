@@ -10,75 +10,48 @@ export const columns = [
   {
     id: "CLINOM",
     label: "Nombre",
-    numeric: false
+    numeric: false,
+    minWidth: 300
   },
   {
     id: "CLIDOM",
     label: "Domicilio",
-    numeric: false
+    numeric: false,
+    minWidth: 300
   },
   {
     id: "CLILOC",
     label: "Localidad",
-    numeric: false
+    numeric: false,
+    minWidth: 260
   },
   {
     id: "CLICP",
     label: "C.P.",
-    numeric: false
+    numeric: false,
+    minWidth: 100
   },
   {
     id: "CLITEL",
     label: "Teléfono",
-    numeric: false
+    numeric: false,
+    minWidth: 180
   },
   {
     id: "CLICEL",
     label: "Celular",
-    numeric: false
+    numeric: false,
+    minWidth: 300
   },
   {
     id: "CLICUIT",
     label: "CUIT",
-    numeric: false
-  },
-  {
-    id: "CLIINT",
-    label: "Región",
-    numeric: false
+    numeric: false,
+    minWidth: 180
   },
   {
     id: "IVACOD",
     label: "IVA",
-    numeric: false
-  },
-  {
-    id: "CLISALDEB",
-    label: "Débito",
-    minWidth: 60,
-    align: "right",
-    numeric: true,
-    format: (value) => formatAmount(value)
-  },
-  {
-    id: "CLISALHAB",
-    label: "Crédito",
-    minWidth: 60,
-    align: "right",
-    numeric: true,
-    format: (value) => formatAmount(value)
-  },
-  {
-    id: "CLISALIMP",
-    label: "Saldo",
-    minWidth: 60,
-    align: "right",
-    numeric: true,
-    format: (value) => formatAmount(value)
-  },
-  {
-    id: "CLITIPO",
-    label: "Tipo",
     numeric: false
   }
 ]

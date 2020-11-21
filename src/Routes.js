@@ -14,7 +14,7 @@ import Vendedores from './components/vendedores/Vendedores'
 const Routes = () => {
 
   return (
-    <React.Fragment>
+    <>
       <Header />
       <div className="main">
         <Switch>
@@ -26,7 +26,7 @@ const Routes = () => {
         </Switch>
       </div>
       <Footer />
-    </React.Fragment>
+    </>
   )
 }
 

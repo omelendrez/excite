@@ -306,7 +306,7 @@ export default function EnhancedTable({ title, columns, rows, fieldId }) {
                       {columns.map((column) => {
                         const value = row[column.id]
                         return (
-                          <TableCell key={column.id} align={column.align}>
+                          <TableCell key={column.id} align={column.align} style={{ minWidth: column.minWidth }}>
                             {column.format ? column.format(value) : value}
                           </TableCell>
                         )
@@ -337,6 +337,6 @@ export default function EnhancedTable({ title, columns, rows, fieldId }) {
         control={<Switch checked={dense} onChange={handleChangeDense} />}
         label="Formato Compacto"
       />
-    </div>
+    </div >
   )
 }

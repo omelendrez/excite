@@ -4,9 +4,7 @@ import './app.scss'
 
 const App = () => {
   return (
-    <div>
-      <Routes />
-    </div>
+    <Routes />
   )
 }
 

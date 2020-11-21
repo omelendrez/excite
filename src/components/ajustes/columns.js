@@ -1,4 +1,4 @@
-import { formatDate, formatAmount } from '../../helpers'
+import { formatDate } from '../../helpers'
 
 export const columns = [
   {
@@ -22,17 +22,16 @@ export const columns = [
   },
   {
     id: "PRODDES",
-    label: "Prroducto",
+    label: "Producto",
     numeric: false,
-    disablePadding: false
+    disablePadding: false,
+    minWidth: 300
   },
   {
     id: "AJUCAN",
     label: "Ajuste",
-    minWidth: 60,
     align: "right",
     numeric: true,
-    disablePadding: false,
-    format: (value) => formatAmount(value)
+    disablePadding: false
   }
 ]
