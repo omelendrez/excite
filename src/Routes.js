@@ -9,6 +9,7 @@ import Home from './components/common/Home'
 
 import Ajustes from './components/ajustes/Ajustes'
 import Clientes from './components/clientes/Clientes'
+import Vendedores from './components/vendedores/Vendedores'
 
 const Routes = () => {
 
@@ -20,6 +21,7 @@ const Routes = () => {
           <Route path="/" exact component={Home} />
           <Route path="/ajustes" exact component={Ajustes} />
           <Route path="/clientes" exact component={Clientes} />
+          <Route path="/vendedores" exact component={Vendedores} />
           <Route component={NotFound} />
         </Switch>
       </div>
