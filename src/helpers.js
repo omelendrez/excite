@@ -13,3 +13,7 @@ export const handleError = error => {
   }
   return ({ message: 'Error interno del servidor' })
 }
+
+export const formatDate = date => {
+  return date.substring(8, 10) + date.substring(4, 8) + date.substring(0, 4)
+}

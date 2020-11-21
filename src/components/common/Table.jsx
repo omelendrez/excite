@@ -133,7 +133,7 @@ const EnhancedTableToolbar = (props) => {
     >
       {numSelected > 0 ? (
         <Typography className={classes.title} color="inherit" variant="subtitle1" component="div">
-          {numSelected} selected
+          {numSelected} registro(s) seleccionado
         </Typography>
       ) : (
           <Typography className={classes.title} variant="h6" id="tableTitle" component="div">
@@ -143,12 +143,13 @@ const EnhancedTableToolbar = (props) => {
 
       {numSelected > 0 ? (
         <React.Fragment>
-
-          <Tooltip title="Edit">
-            <IconButton aria-label="edit">
-              <EditIcon />
-            </IconButton>
-          </Tooltip>
+          {numSelected === 1 && (
+            <Tooltip title="Edit">
+              <IconButton aria-label="edit">
+                <EditIcon />
+              </IconButton>
+            </Tooltip>
+          )}
           <Tooltip title="Delete">
             <IconButton aria-label="delete">
               <DeleteIcon />
@@ -304,7 +305,7 @@ export default function EnhancedTable({ title, columns, rows, fieldId }) {
                         const value = row[column.id]
                         return (
                           <TableCell key={column.id} align={column.align}>
-                            {column.format && typeof value === 'number' ? column.format(value) : value}
+                            {column.format ? column.format(value) : value}
                           </TableCell>
                         )
                       })}

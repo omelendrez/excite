@@ -13,14 +13,12 @@ const Clientes = () => {
   }, [])
 
   return (
-    <div className="clientes">
-      <Table
-        title="Clientes"
-        columns={columns}
-        rows={clientes}
-        fieldId="ID"
-      />
-    </div>
+    <Table
+      title="Clientes"
+      columns={columns}
+      rows={clientes}
+      fieldId="ID"
+    />
   )
 }
 

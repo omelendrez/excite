@@ -1,6 +1,6 @@
 import React from "react"
 import { NavLink } from "react-router-dom"
-import menuOptions from './menuOptions.json'
+const menuOptions = require('./menuOptions.json')
 
 const Header = props => {
   return (
@@ -17,22 +17,25 @@ const Header = props => {
         <span className="navbar-toggler-icon"></span>
       </button>
 
-      <div className="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul className="navbar-nav mr-auto">
-          <React.Fragment>
-            {
-              menuOptions.map((option, key) =>
-                <li key={key} className="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show" >
-                  <NavLink className="nav-link" to={option.url}>
-                    {option.label}
-                  </NavLink>
-                </li>
-              )
-            }
-          </React.Fragment>
-        </ul>
-
-      </div>
+      {menuOptions.map((option, key) =>
+        <div key={key} className="btn-group">
+          {option.options ?
+            <button type="button" className="nav-item btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {option.label}
+            </button>
+            :
+            <NavLink type="button" className="nav-link btn" to={option.url}>
+              {option.label}
+            </NavLink>
+          }
+          <div className="dropdown-menu">
+            {option.options && option.options.map((option, key) =>
+              option.divider ? <div className="dropdown-divider"></div> :
+                <NavLink key={key} className="dropdown-item nav-item btn" to={option.url}>{option.label}</NavLink>
+            )}
+          </div>
+        </div>
+      )}
     </nav>
   )
 }

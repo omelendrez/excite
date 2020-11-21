@@ -4,35 +4,62 @@
     "url": "/"
   },
   {
-    "label": "Ajustes",
-    "url": "/ajustes"
+    "label": "Transportes",
+    "options": [
+      {
+        "label": "ABM Transportes",
+        "url": "/transportes"
+      }
+    ]
   },
   {
     "label": "Clientes",
-    "url": "/clientes"
-  },
-  {
-    "label": "Conceptos",
-    "url": "/conceptos"
-  },
-  {
-    "label": "Facturas",
-    "url": "/facturas"
-  },
-  {
-    "label": "Pagos",
-    "url": "/pagos"
-  },
-  {
-    "label": "Productos",
-    "url": "/productos"
-  },
-  {
-    "label": "Transportes",
-    "url": "/transportes"
+    "options": [
+      {
+        "label": "ABM Clientes",
+        "url": "/clientes"
+      },
+      {
+        "label": "Condición IVA",
+        "url": "/iva"
+      },
+      {
+        "label": "Porcentaje IVA",
+        "url": "/porc-iva"
+      },
+      {
+        "label": "Pagos de Facturas",
+        "url": "/facturas"
+      }
+    ]
   },
   {
     "label": "Vendedores",
-    "url": "/vendedores"
+    "options": [
+      {
+        "label": "ABM Vendedores",
+        "url": "/vendedores"
+      }
+    ]
+  },
+  {
+    "label": "Productos",
+    "options": [
+      {
+        "label": "ABM Tipos",
+        "url": "/tipos"
+      },
+      {
+        "divider": true
+      },
+      {
+        "label": "ABM Productos",
+        "url": "/productos"
+      },
+      {
+        "label": "Ajustes de Stock",
+        "url": "/ajustes"
+      }
+    ]
   }
 ]
