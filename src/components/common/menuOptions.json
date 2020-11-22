@@ -61,5 +61,14 @@
         "url": "/ajustes"
       }
     ]
+  },
+  {
+    "label": "Documentos",
+    "options": [
+      {
+        "label": "Conceptos",
+        "url": "/conceptos"
+      }
+    ]
   }
 ]
