@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
 import { lighten, makeStyles } from '@material-ui/core/styles'
+import Button from '@material-ui/core/Button'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
 import TableCell from '@material-ui/core/TableCell'
@@ -18,6 +19,7 @@ import IconButton from '@material-ui/core/IconButton'
 import Tooltip from '@material-ui/core/Tooltip'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Switch from '@material-ui/core/Switch'
+import AddIcon from '@material-ui/icons/AddCircleOutlined'
 import DeleteIcon from '@material-ui/icons/Delete'
 import EditIcon from '@material-ui/icons/Edit'
 import FilterListIcon from '@material-ui/icons/FilterList'
@@ -111,12 +113,12 @@ const useToolbarStyles = makeStyles((theme) => ({
   highlight:
     theme.palette.type === 'light'
       ? {
-        color: theme.palette.secondary.main,
-        backgroundColor: lighten(theme.palette.secondary.light, 0.85),
+        color: theme.palette.primary.main,
+        backgroundColor: lighten(theme.palette.primary.light, 0.85),
       }
       : {
         color: theme.palette.text.primary,
-        backgroundColor: theme.palette.secondary.dark,
+        backgroundColor: theme.palette.primary.dark,
       },
   title: {
     flex: '1 1 100%',
@@ -142,28 +144,34 @@ const EnhancedTableToolbar = (props) => {
             {title}
           </Typography>
         )}
-
       {numSelected > 0 ? (
         <React.Fragment>
           {numSelected === 1 && (
-            <Tooltip title="Edit">
-              <IconButton aria-label="edit">
+            <Tooltip title="Editar">
+              <IconButton aria-label="edit" color="primary">
                 <EditIcon />
               </IconButton>
             </Tooltip>
           )}
-          <Tooltip title="Delete">
-            <IconButton aria-label="delete">
+          <Tooltip title="Eliminar">
+            <IconButton aria-label="delete" color="primary">
               <DeleteIcon />
             </IconButton>
           </Tooltip>
         </React.Fragment>
       ) : (
-          <Tooltip title="Filter list">
-            <IconButton aria-label="filter list">
-              <FilterListIcon />
-            </IconButton>
-          </Tooltip>
+          <>
+            <Tooltip title="Filtros">
+              <IconButton aria-label="filter list" color="primary">
+                <FilterListIcon />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="Agregar">
+              <IconButton aria-label="add record" color="primary">
+                <AddIcon />
+              </IconButton>
+            </Tooltip>
+          </>
         )}
     </Toolbar>
   )
@@ -298,15 +306,20 @@ export default function EnhancedTable({ title, columns, rows, fieldId }) {
                     >
                       <TableCell padding="checkbox">
                         <Checkbox
-                          onClick={(event) => handleClick(event, row[fieldId])}
                           checked={isItemSelected}
                           inputProps={{ 'aria-labelledby': labelId }}
+                          onClick={(event) => handleClick(event, row[fieldId])}
                         />
                       </TableCell>
                       {columns.map((column) => {
                         const value = row[column.id]
                         return (
-                          <TableCell key={column.id} align={column.align} style={{ minWidth: column.minWidth }}>
+                          <TableCell
+                            key={column.id}
+                            align={column.align}
+                            style={{ minWidth: column.minWidth }}
+                            onClick={(event) => handleClick(event, row[fieldId])}
+                          >
                             {column.format ? column.format(value) : value}
                           </TableCell>
                         )

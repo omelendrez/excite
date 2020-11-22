@@ -1,5 +1,3 @@
-import { formatAmount } from '../../helpers'
-
 export const columns = [
   {
     id: "CLICOD",
