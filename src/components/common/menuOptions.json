@@ -50,6 +50,10 @@
         "url": "/tipos"
       },
       {
+        "label": "ABM Subtipos",
+        "url": "/subtipos"
+      },
+      {
         "divider": true
       },
       {
@@ -66,8 +70,21 @@
     "label": "Documentos",
     "options": [
       {
+        "label": "Presupuestos y Facturas",
+        "url": "/remitos"
+      },
+      {
         "label": "Conceptos",
         "url": "/conceptos"
+      }
+    ]
+  },
+  {
+    "label": "Mantenimiento",
+    "options": [
+      {
+        "label": "Últimos Números",
+        "url": "/numeros"
       }
     ]
   }
