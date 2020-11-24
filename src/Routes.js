@@ -10,6 +10,10 @@ import Home from './components/common/Home'
 import Ajustes from './components/ajustes/Ajustes'
 import Clientes from './components/clientes/Clientes'
 import Vendedores from './components/vendedores/Vendedores'
+import Conceptos from './components/conceptos/Conceptos'
+import Numeros from './components/numeros/Numeros'
+import Pagos from './components/pagos/Pagos'
+
 
 const Routes = () => {
 
@@ -22,6 +26,9 @@ const Routes = () => {
           <Route path="/ajustes" exact component={Ajustes} />
           <Route path="/clientes" exact component={Clientes} />
           <Route path="/vendedores" exact component={Vendedores} />
+          <Route path="/conceptos" exact component={Conceptos} />
+          <Route path="/numeros" exact component={Numeros} />
+          <Route path="/pagos" exact component={Pagos} />
           <Route component={NotFound} />
         </Switch>
       </div>

@@ -29,7 +29,7 @@
       },
       {
         "label": "Pagos de Facturas",
-        "url": "/facturas"
+        "url": "/pagos"
       }
     ]
   },
