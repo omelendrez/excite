@@ -12,6 +12,9 @@ import Clientes from './components/clientes/Clientes'
 import Iva from './components/iva/Iva'
 import Remitos from './components/remitos/Remitos'
 import Vendedores from './components/vendedores/Vendedores'
+import Tipos from './components/tipos/Tipos'
+import Subtipos from './components/subtipos/Subtipos'
+import Transportes from './components/transportes/Transportes'
 
 const Routes = () => {
 
@@ -26,6 +29,9 @@ const Routes = () => {
           <Route path="/iva" exact component={Iva} />
           <Route path="/remitos" exact component={Remitos} />
           <Route path="/vendedores" exact component={Vendedores} />
+          <Route path="/tipos" exact component={Tipos} />
+          <Route path="/subtipos" exact component={Subtipos} />
+          <Route path="/transportes" exact component={Transportes} />
           <Route component={NotFound} />
         </Switch>
       </div>
