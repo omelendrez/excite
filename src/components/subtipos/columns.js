@@ -1,7 +1,7 @@
 export const columns = [
   {
     id: "TIPCOD",
-    label: "Código",
+    label: "Tipo",
     numeric: false,
     disablePadding: true
   },
@@ -12,13 +12,7 @@ export const columns = [
   },
   {
     id: "SUBTIPDES",
-    label: "SubDescripcion",
+    label: "Descripción",
     numeric: false,
-  },
-  {
-    id: "VENLOC",
-    label: "Localidad",
-    numeric: false,
-    minWidth: 200
   }
 ]

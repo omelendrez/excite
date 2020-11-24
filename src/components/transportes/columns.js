@@ -30,10 +30,5 @@ export const columns = [
     id: "TRAOBS",
     label: "Observaciones",
     numeric: false,
-  },
-  {
-    id: "VENOBS",
-    label: "Observaciones",
-    numeric: false
   }
 ]

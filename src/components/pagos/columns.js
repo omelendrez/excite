@@ -22,7 +22,7 @@ export const columns = [
   },
   {
     id: "CLINOM",
-    label: "Nombre",
+    label: "Cliente",
     numeric: false,
     minWidth: 260
   },
