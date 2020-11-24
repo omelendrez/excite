@@ -14,11 +14,11 @@ import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import Paper from '@material-ui/core/Paper'
 import Checkbox from '@material-ui/core/Checkbox'
-import IconButton from '@material-ui/core/IconButton'
+import Fab from '@material-ui/core/Fab'
 import Tooltip from '@material-ui/core/Tooltip'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Switch from '@material-ui/core/Switch'
-import AddIcon from '@material-ui/icons/AddCircleOutlined'
+import AddIcon from '@material-ui/icons/Add'
 import DeleteIcon from '@material-ui/icons/Delete'
 import EditIcon from '@material-ui/icons/Edit'
 import FilterListIcon from '@material-ui/icons/FilterList'
@@ -112,16 +112,19 @@ const useToolbarStyles = makeStyles((theme) => ({
   highlight:
     theme.palette.type === 'light'
       ? {
-        color: theme.palette.primary.main,
-        backgroundColor: lighten(theme.palette.primary.light, 0.85),
+        color: theme.palette.secondary.main,
+        backgroundColor: lighten(theme.palette.secondary.light, 0.85),
       }
       : {
-        color: theme.palette.text.primary,
-        backgroundColor: theme.palette.primary.dark,
+        color: theme.palette.text.secondary,
+        backgroundColor: theme.palette.secondary.dark,
       },
   title: {
     flex: '1 1 100%',
   },
+  fabButton: {
+    marginLeft: theme.spacing(1)
+  }
 }))
 
 const EnhancedTableToolbar = (props) => {
@@ -130,9 +133,7 @@ const EnhancedTableToolbar = (props) => {
 
   return (
     <Toolbar
-      className={clsx(classes.root, {
-        [classes.highlight]: numSelected > 0,
-      })}
+      className={clsx(classes.root, { [classes.highlight]: numSelected > 0 })}
     >
       {numSelected > 0 ? (
         <Typography className={classes.title} color="inherit" variant="subtitle1" component="div">
@@ -146,29 +147,29 @@ const EnhancedTableToolbar = (props) => {
       {numSelected > 0 ? (
         <React.Fragment>
           {numSelected === 1 && (
-            <Tooltip title="Editar">
-              <IconButton aria-label="edit" color="primary">
+            <Tooltip title="Editar" className={classes.fabButton}>
+              <Fab color="secondary" aria-label="add">
                 <EditIcon />
-              </IconButton>
+              </Fab>
             </Tooltip>
           )}
-          <Tooltip title="Eliminar">
-            <IconButton aria-label="delete" color="primary">
+          <Tooltip title="Eliminar" className={classes.fabButton}>
+            <Fab aria-label="delete" color="secondary">
               <DeleteIcon />
-            </IconButton>
+            </Fab>
           </Tooltip>
         </React.Fragment>
       ) : (
           <>
-            <Tooltip title="Filtros">
-              <IconButton aria-label="filter list" color="primary">
+            <Tooltip title="Filtros" className={classes.fabButton}>
+              <Fab aria-label="filter list" color="primary">
                 <FilterListIcon />
-              </IconButton>
+              </Fab>
             </Tooltip>
-            <Tooltip title="Agregar">
-              <IconButton aria-label="add record" color="primary">
+            <Tooltip title="Agregar" className={classes.fabButton}>
+              <Fab aria-label="add record" color="primary">
                 <AddIcon />
-              </IconButton>
+              </Fab>
             </Tooltip>
           </>
         )}
