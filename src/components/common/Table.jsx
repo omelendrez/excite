@@ -1,5 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+
+import FullScreen from './FullScreen'
+
 import clsx from 'clsx'
 import { lighten, makeStyles } from '@material-ui/core/styles'
 import Table from '@material-ui/core/Table'
@@ -14,6 +17,7 @@ import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import Paper from '@material-ui/core/Paper'
 import Checkbox from '@material-ui/core/Checkbox'
+//import NavigationIcon from '@material-ui/icons/Navigation'
 import Fab from '@material-ui/core/Fab'
 import Tooltip from '@material-ui/core/Tooltip'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
@@ -112,12 +116,12 @@ const useToolbarStyles = makeStyles((theme) => ({
   highlight:
     theme.palette.type === 'light'
       ? {
-        color: theme.palette.secondary.main,
-        backgroundColor: lighten(theme.palette.secondary.light, 0.85),
+        color: theme.palette.info.main,
+        backgroundColor: lighten(theme.palette.info.light, 0.85),
       }
       : {
-        color: theme.palette.text.secondary,
-        backgroundColor: theme.palette.secondary.dark,
+        color: theme.palette.text.info,
+        backgroundColor: theme.palette.info.dark,
       },
   title: {
     flex: '1 1 100%',
@@ -129,7 +133,7 @@ const useToolbarStyles = makeStyles((theme) => ({
 
 const EnhancedTableToolbar = (props) => {
   const classes = useToolbarStyles()
-  const { numSelected, title } = props
+  const { numSelected, title, openForm, setOpenForm } = props
 
   return (
     <Toolbar
@@ -148,7 +152,7 @@ const EnhancedTableToolbar = (props) => {
         <React.Fragment>
           {numSelected === 1 && (
             <Tooltip title="Editar" className={classes.fabButton}>
-              <Fab color="secondary" aria-label="add">
+              <Fab aria-label="add" color="secondary" onClick={() => setOpenForm(!openForm)}>
                 <EditIcon />
               </Fab>
             </Tooltip>
@@ -167,7 +171,7 @@ const EnhancedTableToolbar = (props) => {
               </Fab>
             </Tooltip>
             <Tooltip title="Agregar" className={classes.fabButton}>
-              <Fab aria-label="add record" color="primary">
+              <Fab aria-label="add record" color="primary" onClick={() => setOpenForm(!openForm)}>
                 <AddIcon />
               </Fab>
             </Tooltip>
@@ -205,7 +209,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export default function EnhancedTable({ title, columns, rows, fieldId }) {
+export default function EnhancedTable({ title, columns, rows, fieldId, fields }) {
   const classes = useStyles()
   const [order, setOrder] = React.useState('asc')
   const [orderBy, setOrderBy] = React.useState('calories')
@@ -213,6 +217,8 @@ export default function EnhancedTable({ title, columns, rows, fieldId }) {
   const [page, setPage] = React.useState(0)
   const [dense, setDense] = React.useState(false)
   const [rowsPerPage, setRowsPerPage] = React.useState(10)
+  const [recordSelected, setRecordSelected] = React.useState({})
+  const [openForm, setOpenForm] = React.useState(false)
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc'
@@ -230,6 +236,8 @@ export default function EnhancedTable({ title, columns, rows, fieldId }) {
   }
 
   const handleClick = (event, name) => {
+    const record = rows.find(item => item.ID === name)
+    setRecordSelected(record)
     const selectedIndex = selected.indexOf(name)
     let newSelected = []
 
@@ -268,8 +276,9 @@ export default function EnhancedTable({ title, columns, rows, fieldId }) {
 
   return (
     <div className={classes.root}>
+      <FullScreen activate={openForm} title={title} fields={fields} record={recordSelected} />
       <Paper className={classes.paper}>
-        <EnhancedTableToolbar numSelected={selected.length} title={title} />
+        <EnhancedTableToolbar numSelected={selected.length} setOpenForm={setOpenForm} openForm={openForm} title={title} />
         <TableContainer>
           <Table
             className={classes.table}
