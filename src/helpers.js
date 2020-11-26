@@ -1,3 +1,5 @@
+const appLocale = 'es-AR'
+
 export const handleError = error => {
   window.navigator.vibrate(200)
   if (error.response && error.response.data && error.response.data.error && error.response.data.error.code === 'ER_DUP_ENTRY') {
@@ -16,4 +18,31 @@ export const handleError = error => {
 
 export const formatDate = date => date ? date.substring(8, 10) + date.substring(4, 8) + date.substring(0, 4) : ''
 
-export const formatAmount = amount => amount.toLocaleString('es-AR', { style: 'currency', currency: 'ARS', minimumFractionDigits: 2, maximumFractionDigits: 2 }) 
+export const formatAmount = amount => amount.toLocaleString(appLocale, { style: 'currency', currency: 'ARS', minimumFractionDigits: 2, maximumFractionDigits: 2 })
+
+export const objectChanged = (obj1, obj2) => {
+  const keys = Object.keys(obj1)
+  for (const key of keys) {
+    if (obj1[key] !== obj2[key]) {
+      return true
+    }
+  }
+  return false
+}
+
+export const padLeft = (value, size, char) => {
+  if (value) {
+    while (value.toLocaleString().length < size) {
+      value = char + value
+    }
+    return value
+  }
+}
+
+export const getFormatedDate = (date) => {
+  if (date) {
+    let [d, m, y] = new Date(date).toLocaleDateString(appLocale).split("/")
+    return `${padLeft(y, 4, '0')}-${padLeft(m, 2, '0')}-${padLeft(d, 2, '0')}`
+  }
+  return null
+}

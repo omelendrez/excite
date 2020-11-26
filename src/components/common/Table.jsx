@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import FullScreen from './FullScreen'
+import Form from './Form'
 
 import clsx from 'clsx'
 import { lighten, makeStyles } from '@material-ui/core/styles'
@@ -276,7 +276,7 @@ export default function EnhancedTable({ title, columns, rows, fieldId, fields })
 
   return (
     <div className={classes.root}>
-      <FullScreen activate={openForm} title={title} fields={fields} record={recordSelected} />
+      <Form open={openForm} setOpen={setOpenForm} title={title} fields={fields} record={recordSelected} />
       <Paper className={classes.paper}>
         <EnhancedTableToolbar numSelected={selected.length} setOpenForm={setOpenForm} openForm={openForm} title={title} />
         <TableContainer>
