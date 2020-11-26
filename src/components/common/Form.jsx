@@ -10,7 +10,7 @@ import CloseIcon from '@material-ui/icons/Close'
 import DateFnsUtils from '@date-io/date-fns'
 import locale from "date-fns/locale/es"
 import { KeyboardDatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers"
-import { objectChanged, getFormatedDate } from '../../helpers'
+import { objectChanged, inputFormatDate } from '../../helpers'
 
 import TextField from '@material-ui/core/TextField'
 
@@ -64,12 +64,19 @@ const DateTypeField = ({ field, record, handleDateChange, classes }) =>
     <KeyboardDatePicker
       inputVariant="outlined"
       onChange={d => handleDateChange(field.name, d)}
+      disableFuture
       clearable
       className={classes.field}
       label={field.label}
-      value={record[field.name] || '01/01/1980'}
+      value={record[field.name]}
       animateYearScrolling
       format="dd/MM/yyyy"
+      invalidDateMessage="Fecha no válida"
+      maxDateMessage="Fecha no puede ser posterior a hoy"
+      cancelLabel="Salir"
+      clearLabel="Limpiar"
+      showTodayButton
+      todayLabel="Hoy"
     />
   </MuiPickersUtilsProvider>
 
@@ -103,7 +110,7 @@ const FullScreenDialog = ({ open, setOpen, title, fields, record }) => {
   }
 
   const handleDateChange = (fieldName, date) => {
-    const newDate = getFormatedDate(date)
+    const newDate = inputFormatDate(date)
     const updatedRecord = { ...newRecord, [fieldName]: newDate }
     setNewRecord(updatedRecord)
     if (objectChanged(record, updatedRecord)) {

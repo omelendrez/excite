@@ -39,10 +39,10 @@ export const padLeft = (value, size, char) => {
   }
 }
 
-export const getFormatedDate = (date) => {
+export const inputFormatDate = (date) => {
   if (date) {
     let [d, m, y] = new Date(date).toLocaleDateString(appLocale).split("/")
-    return `${padLeft(y, 4, '0')}-${padLeft(m, 2, '0')}-${padLeft(d, 2, '0')}`
+    return `${padLeft(y, 4, '0')}-${padLeft(m, 2, '0')}-${padLeft(d, 2, '0')} 03:00`
   }
   return null
 }
