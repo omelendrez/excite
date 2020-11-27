@@ -100,7 +100,7 @@ const FullScreenDialog = ({ open, setOpen, title, fields, record }) => {
     const message = []
     const keys = Object.keys(newRecord)
     keys.map(key => message.push([key] + ':' + newRecord[key]))
-    setAlert({ title: 'Datos a insertar', message: message.join(', '), open: true })
+    setAlert({ title: 'Prueba de alerta 👍', message: message.join(', '), open: true })
   }
 
   const handleCloseAlert = () => {

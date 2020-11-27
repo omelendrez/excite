@@ -23,7 +23,10 @@ export default function AlertDialogSlide({ title, message, open, handleClose, ha
       aria-describedby="alert-dialog-slide-description"
       disableBackdropClick
     >
-      <DialogTitle id="alert-dialog-slide-title">{title}</DialogTitle>
+      <DialogTitle id="alert-dialog-slide-title"
+        style={{ backgroundColor: "#2196f3", color: "#ffffff" }}
+
+      >{title}</DialogTitle>
       <DialogContent dividers>
         <DialogContentText id="alert-dialog-slide-description">
           {message}
