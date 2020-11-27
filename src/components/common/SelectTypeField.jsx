@@ -52,7 +52,8 @@ export default function ComboBox({ field, record, classes, handleChange }) {
 
   const onChange = value => {
     setValue(value)
-    handleChange({ target: { id: field.name, value: value.id } })
+    console.log(value)
+    handleChange({ target: { id: field.name, value: value ? value.id : value } })
   }
 
   const onInputChange = value => {
