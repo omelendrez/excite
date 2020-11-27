@@ -134,12 +134,14 @@ const FullScreenDialog = ({ open, setOpen, title, fields, record }) => {
           switch (field.type) {
             case 'text':
               return <div key={index}><TextTypeField field={field} record={newRecord} handleChange={handleChange} classes={classes} /></div>
+            case 'number':
+              return <div key={index}><TextTypeField field={field} record={newRecord} handleChange={handleChange} classes={classes} /></div>
             case 'select':
               return <div key={index}><SelectTypeField field={field} record={newRecord} handleChange={handleChange} classes={classes} /></div>
             case 'date':
               return <div key={index}><DateTypeField field={field} record={newRecord} handleDateChange={handleDateChange} classes={classes} /></div>
             default:
-              return <div key={index}><TextTypeField field={field} record={newRecord} handleChange={handleChange} classes={classes} /></div>
+              return <div key={index}>Field <b>{field.name}</b> tiene un tipo de datos incorrecto 🤷‍♂️</div>
           }
         })
         }
