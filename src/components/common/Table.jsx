@@ -127,7 +127,10 @@ const useToolbarStyles = makeStyles((theme) => ({
     flex: '1 1 100%',
   },
   fabButton: {
-    marginLeft: theme.spacing(1)
+    marginLeft: theme.spacing(1),
+    '&:focus': {
+      outline: 'none'
+    }
   }
 }))
 

@@ -25,6 +25,21 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'space-between'
   },
+  button: {
+    background: 'green',
+    color: 'white',
+    '&:hover': {
+      background: 'darkgreen',
+      boxShadow: '0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12)'
+    },
+    '&:active': {
+      background: 'darkgreen',
+      boxShadow: '0px 5px 5px -3px rgba(0,0,0,0.2), 0px 8px 10px 1px rgba(0,0,0,0.14), 0px 3px 14px 2px rgba(0,0,0,0.12)'
+    },
+    '&:focus': {
+      outline: 'none'
+    }
+  },
   field: {
     width: '80ch',
     margin: theme.spacing(1)
@@ -50,7 +65,7 @@ const FullScreenDialog = ({ open, setOpen, title, fields, record }) => {
 
   useEffect(() => {
     const object = { ...record }
-    if (!Object.keys(object).length) {
+    if (!Object.keys(object).length && fields) {
       fields.map(field => object[field.name] = '')
     }
     setNewRecord(object)
@@ -123,14 +138,14 @@ const FullScreenDialog = ({ open, setOpen, title, fields, record }) => {
         })
         }
         <div className={classes.buttons}>
-          <Button color="primary" variant="contained" disabled={submitDisabled} onClick={handleSubmit}>
-            Guardar
+          <Button color="green" variant="contained" disabled={submitDisabled} onClick={handleSubmit} className={classes.button}>
+            Guardar cambios
             </Button>
           <Button color="default" variant="contained" disabled={submitDisabled} onClick={handleReset}>
-            Reset
+            Deshacer cambios
             </Button>
-          <Button color="secondary" variant="contained" onClick={handleClose}>
-            Salir
+          <Button color="secondary" variant="outlined" onClick={handleClose}>
+            Cancelar
             </Button>
         </div>
       </form>
