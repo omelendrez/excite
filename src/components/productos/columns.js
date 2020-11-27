@@ -53,5 +53,11 @@ export const columns = [
     id: "PRODCOM",
     label: "PRODCOM",
     numeric: false
+  },
+  {
+    id: "PRODEST",
+    label: "Estado",
+    numeric: false,
+    filter: true
   }
 ]

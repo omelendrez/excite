@@ -22,6 +22,10 @@ export const formatAmount = amount => amount.toLocaleString(appLocale, { style: 
 
 export const objectChanged = (obj1, obj2) => {
   const keys = Object.keys(obj1)
+  const keys2 = Object.keys(obj2)
+  if (keys.length !== keys2.length) {
+    return true
+  }
   for (const key of keys) {
     if (obj1[key] !== obj2[key]) {
       return true
@@ -43,6 +47,14 @@ export const inputFormatDate = (date) => {
   if (date) {
     let [d, m, y] = new Date(date).toLocaleDateString(appLocale).split("/")
     return `${padLeft(y, 4, '0')}-${padLeft(m, 2, '0')}-${padLeft(d, 2, '0')} 03:00`
+  }
+  return null
+}
+
+export const submitFormatDate = (date) => {
+  if (date) {
+    let [d, m, y] = new Date(date).toLocaleDateString(appLocale).split("/")
+    return `${padLeft(y, 4, '0')}-${padLeft(m, 2, '0')}-${padLeft(d, 2, '0')}`
   }
   return null
 }

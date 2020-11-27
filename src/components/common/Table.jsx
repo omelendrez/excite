@@ -133,7 +133,7 @@ const useToolbarStyles = makeStyles((theme) => ({
 
 const EnhancedTableToolbar = (props) => {
   const classes = useToolbarStyles()
-  const { numSelected, title, openForm, setOpenForm } = props
+  const { numSelected, title, openForm, setOpenForm, handleAdd } = props
 
   return (
     <Toolbar
@@ -171,7 +171,7 @@ const EnhancedTableToolbar = (props) => {
               </Fab>
             </Tooltip>
             <Tooltip title="Agregar" className={classes.fabButton}>
-              <Fab aria-label="add record" color="primary" onClick={() => setOpenForm(!openForm)}>
+              <Fab aria-label="add record" color="primary" onClick={() => handleAdd()}>
                 <AddIcon />
               </Fab>
             </Tooltip>
@@ -219,6 +219,11 @@ export default function EnhancedTable({ title, columns, rows, fieldId, fields })
   const [rowsPerPage, setRowsPerPage] = React.useState(10)
   const [recordSelected, setRecordSelected] = React.useState({})
   const [openForm, setOpenForm] = React.useState(false)
+
+  const handleAdd = () => {
+    setRecordSelected({})
+    setOpenForm(!openForm)
+  }
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc'
@@ -278,7 +283,7 @@ export default function EnhancedTable({ title, columns, rows, fieldId, fields })
     <div className={classes.root}>
       <Form open={openForm} setOpen={setOpenForm} title={title} fields={fields} record={recordSelected} />
       <Paper className={classes.paper}>
-        <EnhancedTableToolbar numSelected={selected.length} setOpenForm={setOpenForm} openForm={openForm} title={title} />
+        <EnhancedTableToolbar numSelected={selected.length} setOpenForm={setOpenForm} openForm={openForm} title={title} handleAdd={handleAdd} />
         <TableContainer>
           <Table
             className={classes.table}

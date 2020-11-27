@@ -1,4 +1,7 @@
 import React, { useState, useEffect, forwardRef } from 'react'
+import TextTypeField from './TextTypeField'
+import DateTypeField from './DateTypeField'
+import SelectTypeField from './SelectTypeField'
 import { makeStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
 import Dialog from '@material-ui/core/Dialog'
@@ -7,12 +10,7 @@ import Toolbar from '@material-ui/core/Toolbar'
 import IconButton from '@material-ui/core/IconButton'
 import Typography from '@material-ui/core/Typography'
 import CloseIcon from '@material-ui/icons/Close'
-import DateFnsUtils from '@date-io/date-fns'
-import locale from "date-fns/locale/es"
-import { KeyboardDatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers"
 import { objectChanged, inputFormatDate } from '../../helpers'
-
-import TextField from '@material-ui/core/TextField'
 
 import Slide from '@material-ui/core/Slide'
 
@@ -43,42 +41,6 @@ const useStyles = makeStyles((theme) => ({
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />
 })
-
-const TextTypeField = ({ field, record, handleChange, classes }) =>
-  <TextField
-    id={field.name}
-    label={field.label}
-    type={field.type}
-    className={classes.field}
-    variant="outlined"
-    helperText={field.helperText}
-    InputLabelProps={field.type === 'date' ? {
-      shrink: true,
-    } : {}}
-    value={record[field.name] || ''}
-    onChange={e => handleChange(e)}
-  />
-
-const DateTypeField = ({ field, record, handleDateChange, classes }) =>
-  <MuiPickersUtilsProvider utils={DateFnsUtils} locale={locale}>
-    <KeyboardDatePicker
-      inputVariant="outlined"
-      onChange={d => handleDateChange(field.name, d)}
-      disableFuture
-      clearable
-      className={classes.field}
-      label={field.label}
-      value={record[field.name]}
-      animateYearScrolling
-      format="dd/MM/yyyy"
-      invalidDateMessage="Fecha no válida"
-      maxDateMessage="Fecha no puede ser posterior a hoy"
-      cancelLabel="Salir"
-      clearLabel="Limpiar"
-      showTodayButton
-      todayLabel="Hoy"
-    />
-  </MuiPickersUtilsProvider>
 
 
 const FullScreenDialog = ({ open, setOpen, title, fields, record }) => {
@@ -140,6 +102,8 @@ const FullScreenDialog = ({ open, setOpen, title, fields, record }) => {
           switch (field.type) {
             case 'text':
               return <div key={index}><TextTypeField field={field} record={newRecord} handleChange={handleChange} classes={classes} /></div>
+            case 'select':
+              return <div key={index}><SelectTypeField field={field} record={newRecord} handleChange={handleChange} classes={classes} /></div>
             case 'date':
               return <div key={index}><DateTypeField field={field} record={newRecord} handleDateChange={handleDateChange} classes={classes} /></div>
             default:

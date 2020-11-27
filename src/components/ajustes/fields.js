@@ -6,8 +6,8 @@ export const fields = [
   },
   {
     name: 'PRODCOD',
-    label: 'Código de producto',
-    type: 'text'
+    label: 'Producto',
+    type: 'select'
   },
   {
     name: 'AJUCAN',
