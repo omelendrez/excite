@@ -54,7 +54,7 @@ const FullScreenDialog = ({ open, setOpen, title, fields, record }) => {
       fields.map(field => object[field.name] = '')
     }
     setNewRecord(object)
-  }, [record])
+  }, [record, fields])
 
   const handleClose = () => {
     setOpen(false)
@@ -90,7 +90,7 @@ const FullScreenDialog = ({ open, setOpen, title, fields, record }) => {
   }
 
   const handleSubmit = () => {
-    console.log(newRecord)
+    console.table(newRecord)
   }
 
   return (
