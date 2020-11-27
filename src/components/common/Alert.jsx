@@ -1,4 +1,4 @@
-import React, { useState, forwardRef, useEffect } from 'react'
+import React, { forwardRef } from 'react'
 import Button from '@material-ui/core/Button'
 import Dialog from '@material-ui/core/Dialog'
 import DialogActions from '@material-ui/core/DialogActions'
@@ -11,15 +11,7 @@ const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />
 })
 
-export default function AlertDialogSlide({ message, visible }) {
-  const [open, setOpen] = useState(false)
-
-  useEffect(() => {
-    if (message.length) {
-      setOpen(true)
-    }
-  }, [visible, message])
-
+export default function AlertDialogSlide({ message, open, setOpen }) {
 
   const handleClose = () => {
     setOpen(false)

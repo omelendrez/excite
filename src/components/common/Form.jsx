@@ -26,16 +26,6 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between'
   },
   button: {
-    background: 'green',
-    color: 'white',
-    '&:hover': {
-      background: 'darkgreen',
-      boxShadow: '0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12)'
-    },
-    '&:active': {
-      background: 'darkgreen',
-      boxShadow: '0px 5px 5px -3px rgba(0,0,0,0.2), 0px 8px 10px 1px rgba(0,0,0,0.14), 0px 3px 14px 2px rgba(0,0,0,0.12)'
-    },
     '&:focus': {
       outline: 'none'
     }
@@ -138,7 +128,7 @@ const FullScreenDialog = ({ open, setOpen, title, fields, record }) => {
         })
         }
         <div className={classes.buttons}>
-          <Button color="green" variant="contained" disabled={submitDisabled} onClick={handleSubmit} className={classes.button}>
+          <Button color="primary" variant="contained" disabled={submitDisabled} onClick={handleSubmit} className={classes.button}>
             Guardar cambios
             </Button>
           <Button color="default" variant="contained" disabled={submitDisabled} onClick={handleReset}>

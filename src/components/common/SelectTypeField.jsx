@@ -2,9 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import TextField from '@material-ui/core/TextField'
 import Autocomplete from '@material-ui/lab/Autocomplete'
-import { getProductos } from '../../services/productos'
-import { getClientes } from '../../services/clientes'
-import { getIva } from '../../services/iva'
+import { getProductos, getClientes, getIva, getSubtipos, getTipos } from '../../services'
 
 export default function ComboBox({ field, record, classes, handleChange }) {
   const [options, setOptions] = useState([])
@@ -22,6 +20,7 @@ export default function ComboBox({ field, record, classes, handleChange }) {
           })
         break
       case 'CONCLI':
+      case 'CLICOD':
         getClientes()
           .then(clientes => {
             clientes.map(cliente => records.push({ title: `${cliente['CLICOD']} - ${cliente['CLINOM']}`, id: cliente['CLICOD'] }))
@@ -32,6 +31,20 @@ export default function ComboBox({ field, record, classes, handleChange }) {
         getIva()
           .then(ivas => {
             ivas.map(iva => records.push({ title: `${iva['IVACOD']} - ${iva['IVADES']}`, id: iva['IVACOD'] }))
+            setOptions(records)
+          })
+        break
+      case 'TIPCOD':
+        getTipos()
+          .then(ivas => {
+            ivas.map(iva => records.push({ title: `${iva['TIPCOD']} - ${iva['TIPDES']}`, id: iva['TIPCOD'] }))
+            setOptions(records)
+          })
+        break
+      case 'SUBTIPCOD':
+        getSubtipos()
+          .then(ivas => {
+            ivas.map(iva => records.push({ title: `${iva['SUBTIPCOD']} - ${iva['SUBTIPDES']}`, id: iva['SUBTIPCOD'] }))
             setOptions(records)
           })
         break
