@@ -49,7 +49,11 @@ const FullScreenDialog = ({ open, setOpen, title, fields, record }) => {
   const [submitDisabled, setSubmitDisabled] = useState(true)
 
   useEffect(() => {
-    setNewRecord(record)
+    const object = { ...record }
+    if (!Object.keys(object).length) {
+      fields.map(field => object[field.name] = '')
+    }
+    setNewRecord(object)
   }, [record])
 
   const handleClose = () => {
@@ -67,7 +71,11 @@ const FullScreenDialog = ({ open, setOpen, title, fields, record }) => {
   }
 
   const handleReset = e => {
-    setNewRecord(record)
+    const object = { ...record }
+    if (!Object.keys(object).length) {
+      fields.map(field => object[field.name] = '')
+    }
+    setNewRecord(object)
     setSubmitDisabled(true)
   }
 

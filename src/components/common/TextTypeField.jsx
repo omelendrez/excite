@@ -1,7 +1,8 @@
 import TextField from '@material-ui/core/TextField'
 
-const TextTypeField = ({ field, record, handleChange, classes }) =>
-  <TextField
+const TextTypeField = ({ field, record, handleChange, classes }) => {
+  console.log(record)
+  return <TextField
     id={field.name}
     label={field.label}
     type={field.type}
@@ -11,5 +12,6 @@ const TextTypeField = ({ field, record, handleChange, classes }) =>
     value={record[field.name]}
     onChange={e => field.readOnly ? {} : handleChange(e)}
   />
+}
 
 export default TextTypeField
