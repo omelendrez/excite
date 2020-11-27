@@ -99,6 +99,9 @@ const FullScreenDialog = ({ open, setOpen, title, fields, record }) => {
       </AppBar>
       <form className={classes.root} noValidate autoComplete="off">
         {fields && fields.map((field, index) => {
+          if (field.readOnly && JSON.stringify(newRecord) === JSON.stringify({})) {
+            return null
+          }
           switch (field.type) {
             case 'text':
               return <div key={index}><TextTypeField field={field} record={newRecord} handleChange={handleChange} classes={classes} /></div>
