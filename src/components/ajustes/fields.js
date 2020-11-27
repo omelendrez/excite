@@ -1,5 +1,11 @@
 export const fields = [
   {
+    name: 'AJUNUM',
+    label: 'Número de ajuste',
+    type: 'number',
+    readOnly: true
+  },
+  {
     name: 'AJUFEC',
     label: 'Fecha de ajuste',
     type: 'date'
