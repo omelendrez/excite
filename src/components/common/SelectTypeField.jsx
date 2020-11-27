@@ -36,15 +36,15 @@ export default function ComboBox({ field, record, classes, handleChange }) {
         break
       case 'TIPCOD':
         getTipos()
-          .then(ivas => {
-            ivas.map(iva => records.push({ title: `${iva['TIPCOD']} - ${iva['TIPDES']}`, id: iva['TIPCOD'] }))
+          .then(tipos => {
+            tipos.map(tipo => records.push({ title: `${tipo['TIPCOD']} - ${tipo['TIPDES']}`, id: tipo['TIPCOD'] }))
             setOptions(records)
           })
         break
       case 'SUBTIPCOD':
         getSubtipos()
-          .then(ivas => {
-            ivas.map(iva => records.push({ title: `${iva['SUBTIPCOD']} - ${iva['SUBTIPDES']}`, id: iva['SUBTIPCOD'] }))
+          .then(subTipos => {
+            subTipos.map(subTipo => records.push({ title: `${subTipo['SUBTIPCOD']} - ${subTipo['SUBTIPDES']}`, id: subTipo['SUBTIPCOD'] }))
             setOptions(records)
           })
         break
