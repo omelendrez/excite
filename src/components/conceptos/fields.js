@@ -22,12 +22,12 @@ export const fields = [
   },
   {
     name: 'CONCANDEB',
-    label: 'Import al Debe',
+    label: 'Importe al Debe',
     type: 'number'
   },
   {
     name: 'CONCANHAB',
-    label: 'Import al Haber',
+    label: 'Importe al Haber',
     type: 'number'
   }
 ]
