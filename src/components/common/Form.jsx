@@ -2,6 +2,7 @@ import React, { useState, useEffect, forwardRef } from 'react'
 import TextTypeField from './TextTypeField'
 import DateTypeField from './DateTypeField'
 import SelectTypeField from './SelectTypeField'
+import Alert from './Alert'
 import { makeStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
 import Dialog from '@material-ui/core/Dialog'
@@ -52,6 +53,7 @@ const FullScreenDialog = ({ open, setOpen, title, fields, record }) => {
   const classes = useStyles()
   const [newRecord, setNewRecord] = useState(record)
   const [submitDisabled, setSubmitDisabled] = useState(true)
+  const [alert, setAlert] = useState({ open: false, title: '', message: '' })
 
   useEffect(() => {
     const object = { ...record }
@@ -95,11 +97,25 @@ const FullScreenDialog = ({ open, setOpen, title, fields, record }) => {
   }
 
   const handleSubmit = () => {
-    console.table(newRecord)
+    const message = []
+    const keys = Object.keys(newRecord)
+    keys.map(key => message.push([key] + ':' + newRecord[key]))
+    setAlert({ title: 'Datos a insertar', message: message.join(', '), open: true })
+  }
+
+  const handleCloseAlert = () => {
+    setAlert({ open: false })
+  }
+
+  const handleConfirmation = () => {
+    console.log('confirmed')
+    handleCloseAlert()
+    handleClose()
   }
 
   return (
     <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
+      <Alert title={alert.title} message={alert.message} open={alert.open} handleClose={() => handleCloseAlert()} handleConfirmation={() => handleConfirmation()} />
       <AppBar className={classes.appBar}>
         <Toolbar>
           <IconButton edge="start" color="inherit" onClick={() => handleClose()} aria-label="close">
@@ -139,7 +155,7 @@ const FullScreenDialog = ({ open, setOpen, title, fields, record }) => {
             </Button>
         </div>
       </form>
-    </Dialog>
+    </Dialog >
   )
 }
 

@@ -7,38 +7,36 @@ import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import Slide from '@material-ui/core/Slide'
 
-const Transition = forwardRef(function Transition(props, ref) {
+const Transition = forwardRef((props, ref) => {
   return <Slide direction="up" ref={ref} {...props} />
 })
 
-export default function AlertDialogSlide({ message, open, setOpen }) {
-
-  const handleClose = () => {
-    setOpen(false)
-  }
+export default function AlertDialogSlide({ title, message, open, handleClose, handleConfirmation }) {
 
   return (
-    <div>
-      <Dialog
-        open={open}
-        TransitionComponent={Transition}
-        keepMounted
-        onClose={handleClose}
-        aria-labelledby="alert-dialog-slide-title"
-        aria-describedby="alert-dialog-slide-description"
-      >
-        <DialogTitle id="alert-dialog-slide-title">{"Use Google's location service?"}</DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-slide-description">
-            {message}
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Cerrar
+    <Dialog
+      open={open}
+      TransitionComponent={Transition}
+      keepMounted
+      onClose={handleClose}
+      aria-labelledby="alert-dialog-slide-title"
+      aria-describedby="alert-dialog-slide-description"
+      disableBackdropClick
+    >
+      <DialogTitle id="alert-dialog-slide-title">{title}</DialogTitle>
+      <DialogContent dividers>
+        <DialogContentText id="alert-dialog-slide-description">
+          {message}
+        </DialogContentText>
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={handleConfirmation} color="primary" variant="contained">
+          Confirmar
           </Button>
-        </DialogActions>
-      </Dialog>
-    </div>
+        <Button onClick={handleClose} color="secondary" variant="outlined">
+          Cancelar
+          </Button>
+      </DialogActions>
+    </Dialog>
   )
 }
