@@ -5,11 +5,16 @@ import { columns } from './columns'
 
 const Remitos = () => {
   const [remitos, setRemitos] = useState([])
+  const [update, setUpdate] = useState(false)
+
+  const updateData = () => {
+    setUpdate(!update)
+  }
 
   useEffect(() => {
     getRecords('remitos')
       .then(remitos => setRemitos(remitos))
-  }, [])
+  }, [update])
 
   return (
     <Table
@@ -18,6 +23,7 @@ const Remitos = () => {
       columns={columns}
       rows={remitos}
       fieldId="ID"
+      setUpdate={updateData}
     />
   )
 }

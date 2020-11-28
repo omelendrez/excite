@@ -214,7 +214,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export default function EnhancedTable({ title, model, columns, rows, fieldId, fields }) {
+export default function EnhancedTable({ title, model, columns, rows, fieldId, fields, setUpdate }) {
   const classes = useStyles()
   const [order, setOrder] = useState('asc')
   const [orderBy, setOrderBy] = useState('calories')
@@ -292,7 +292,7 @@ export default function EnhancedTable({ title, model, columns, rows, fieldId, fi
 
   return (
     <div className={classes.root}>
-      <Form open={openForm} setOpen={setOpenForm} title={title} fields={fields} record={recordSelected} />
+      <Form open={openForm} setOpen={setOpenForm} title={title} fields={fields} record={recordSelected} model={model} setUpdate={setUpdate} />
       <Paper className={classes.paper}>
         <EnhancedTableToolbar numSelected={selected.length} setOpenForm={setOpenForm} openForm={openForm} title={title} handleAdd={handleAdd} />
         <TableContainer>

@@ -6,11 +6,16 @@ import { fields } from './fields'
 
 const Productos = () => {
   const [productos, setProductos] = useState([])
+  const [update, setUpdate] = useState(false)
+
+  const updateData = () => {
+    setUpdate(!update)
+  }
 
   useEffect(() => {
     getRecords('productos')
       .then(productos => setProductos(productos))
-  }, [])
+  }, [update])
 
   return (
     <Table
@@ -20,6 +25,7 @@ const Productos = () => {
       fields={fields}
       rows={productos}
       fieldId="ID"
+      setUpdate={updateData}
     />
   )
 }

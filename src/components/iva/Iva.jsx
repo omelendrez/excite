@@ -6,11 +6,16 @@ import { fields } from './fields'
 
 const Iva = () => {
   const [iva, setIva] = useState([])
+  const [update, setUpdate] = useState(false)
+
+  const updateData = () => {
+    setUpdate(!update)
+  }
 
   useEffect(() => {
     getRecords('iva')
       .then(iva => setIva(iva))
-  }, [])
+  }, [update])
 
   return (
     <Table
@@ -20,6 +25,7 @@ const Iva = () => {
       fields={fields}
       rows={iva}
       fieldId="ID"
+      setUpdate={updateData}
     />
   )
 }

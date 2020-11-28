@@ -6,11 +6,16 @@ import { columns } from './columns'
 
 const Tipos = () => {
   const [tipos, setTipos] = useState([])
+  const [update, setUpdate] = useState(false)
+
+  const updateData = () => {
+    setUpdate(!update)
+  }
 
   useEffect(() => {
     getRecords('tipos')
       .then(tipos => setTipos(tipos))
-  }, [])
+  }, [update])
 
   return (
     <Table
@@ -20,6 +25,7 @@ const Tipos = () => {
       fields={fields}
       rows={tipos}
       fieldId="ID"
+      setUpdate={updateData}
     />
   )
 }

@@ -6,11 +6,16 @@ import { fields } from './fields'
 
 const Subtipos = () => {
   const [subtipos, setSubtipos] = useState([])
+  const [update, setUpdate] = useState(false)
+
+  const updateData = () => {
+    setUpdate(!update)
+  }
 
   useEffect(() => {
     getRecords('subtipos')
       .then(subtipos => setSubtipos(subtipos))
-  }, [])
+  }, [update])
 
   return (
     <Table
@@ -20,6 +25,7 @@ const Subtipos = () => {
       fields={fields}
       rows={subtipos}
       fieldId="ID"
+      setUpdate={updateData}
     />
   )
 }

@@ -5,11 +5,16 @@ import { columns } from './columns'
 
 const Vendedores = () => {
   const [vendedores, setVendedores] = useState([])
+  const [update, setUpdate] = useState(false)
+
+  const updateData = () => {
+    setUpdate(!update)
+  }
 
   useEffect(() => {
     getRecords('vendedores')
       .then(vendedores => setVendedores(vendedores))
-  }, [])
+  }, [update])
 
   return (
     <Table
@@ -18,6 +23,7 @@ const Vendedores = () => {
       columns={columns}
       rows={vendedores}
       fieldId="ID"
+      setUpdate={updateData}
     />
   )
 }

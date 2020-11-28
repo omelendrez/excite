@@ -6,11 +6,16 @@ import { fields } from './fields'
 
 const PorcIva = () => {
   const [porcIva, setPorcIva] = useState([])
+  const [update, setUpdate] = useState(false)
+
+  const updateData = () => {
+    setUpdate(!update)
+  }
 
   useEffect(() => {
     getRecords('porciva')
       .then(porcIva => setPorcIva(porcIva))
-  }, [])
+  }, [update])
 
   return (
     <Table
@@ -20,6 +25,7 @@ const PorcIva = () => {
       fields={fields}
       rows={porcIva}
       fieldId="ID"
+      setUpdate={updateData}
     />
   )
 }

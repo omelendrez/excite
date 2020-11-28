@@ -2,7 +2,6 @@ import React, { useState, useEffect, forwardRef } from 'react'
 import TextTypeField from './TextTypeField'
 import DateTypeField from './DateTypeField'
 import SelectTypeField from './SelectTypeField'
-import Alert from './Alert'
 import { makeStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
 import Dialog from '@material-ui/core/Dialog'
@@ -12,6 +11,7 @@ import IconButton from '@material-ui/core/IconButton'
 import Typography from '@material-ui/core/Typography'
 import CloseIcon from '@material-ui/icons/Close'
 import { objectChanged, inputFormatDate } from '../../helpers'
+import { addRecord, updateRecord } from '../../services'
 
 import Slide from '@material-ui/core/Slide'
 
@@ -49,11 +49,10 @@ const Transition = forwardRef(function Transition(props, ref) {
 })
 
 
-const FullScreenDialog = ({ open, setOpen, title, fields, record }) => {
+const FullScreenDialog = ({ open, setOpen, title, fields, record, model, setUpdate }) => {
   const classes = useStyles()
   const [newRecord, setNewRecord] = useState(record)
   const [submitDisabled, setSubmitDisabled] = useState(true)
-  const [alert, setAlert] = useState({ open: false, title: '', message: '' })
 
   useEffect(() => {
     const object = { ...record }
@@ -97,25 +96,23 @@ const FullScreenDialog = ({ open, setOpen, title, fields, record }) => {
   }
 
   const handleSubmit = () => {
-    const message = []
-    const keys = Object.keys(newRecord)
-    keys.map(key => message.push([key] + ':' + newRecord[key]))
-    setAlert({ title: 'Prueba de alerta 👍', message: message.join(', '), open: true })
-  }
-
-  const handleCloseAlert = () => {
-    setAlert({ open: false })
-  }
-
-  const handleConfirmation = () => {
-    console.log('confirmed')
-    handleCloseAlert()
-    handleClose()
+    if (!newRecord.ID) {
+      addRecord(model, newRecord)
+        .then(() => {
+          setUpdate()
+          handleClose()
+        })
+    } else {
+      updateRecord(model, newRecord)
+        .then(() => {
+          setUpdate()
+          handleClose()
+        })
+    }
   }
 
   return (
     <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
-      <Alert title={alert.title} message={alert.message} open={alert.open} handleClose={() => handleCloseAlert()} handleConfirmation={() => handleConfirmation()} />
       <AppBar className={classes.appBar}>
         <Toolbar>
           <IconButton edge="start" color="inherit" onClick={() => handleClose()} aria-label="close">

@@ -28,10 +28,10 @@ export const addRecord = (endpoint, record) => {
   })
 }
 
-export const saveRecord = (endpoint, record) => {
+export const updateRecord = (endpoint, record) => {
   return new Promise((resolve, reject) => {
     api
-      .put(`${endpoint}/${record.id}`, record)
+      .put(`${endpoint}/${record.ID}`, record)
       .then((response) => resolve(response.data))
       .catch((error) => reject(handleError(error)))
   })
@@ -40,7 +40,7 @@ export const saveRecord = (endpoint, record) => {
 export const deleteRecord = (endpoint, record) => {
   return new Promise((resolve, reject) => {
     api
-      .delete(`${endpoint}/${record.id}`)
+      .delete(`${endpoint}/${record.ID}`)
       .then((response) => resolve(response.data))
       .catch((error) => reject(handleError(error)))
   })
