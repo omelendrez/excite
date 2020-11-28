@@ -14,7 +14,8 @@ const PorcIva = () => {
 
   return (
     <Table
-      title="PorcIva"
+      title="IVA"
+      model="porciva"
       columns={columns}
       fields={fields}
       rows={porcIva}

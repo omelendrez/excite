@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
 import Form from './Form'
@@ -26,6 +26,8 @@ import AddIcon from '@material-ui/icons/Add'
 import DeleteIcon from '@material-ui/icons/Delete'
 import EditIcon from '@material-ui/icons/Edit'
 import FilterListIcon from '@material-ui/icons/FilterList'
+
+import { getRecordById } from '../../services/services'
 
 const ROWS_PER_PAGE = [5, 10, 15, 20, 25]
 
@@ -152,7 +154,7 @@ const EnhancedTableToolbar = (props) => {
           </Typography>
         )}
       {numSelected > 0 ? (
-        <React.Fragment>
+        <>
           {numSelected === 1 && (
             <Tooltip title="Editar" className={classes.fabButton}>
               <Fab aria-label="add" color="secondary" onClick={() => setOpenForm(!openForm)}>
@@ -165,7 +167,7 @@ const EnhancedTableToolbar = (props) => {
               <DeleteIcon />
             </Fab>
           </Tooltip>
-        </React.Fragment>
+        </>
       ) : (
           <>
             <Tooltip title="Filtros" className={classes.fabButton}>
@@ -212,16 +214,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export default function EnhancedTable({ title, columns, rows, fieldId, fields }) {
+export default function EnhancedTable({ title, model, columns, rows, fieldId, fields }) {
   const classes = useStyles()
-  const [order, setOrder] = React.useState('asc')
-  const [orderBy, setOrderBy] = React.useState('calories')
-  const [selected, setSelected] = React.useState([])
-  const [page, setPage] = React.useState(0)
-  const [dense, setDense] = React.useState(false)
-  const [rowsPerPage, setRowsPerPage] = React.useState(10)
-  const [recordSelected, setRecordSelected] = React.useState({})
-  const [openForm, setOpenForm] = React.useState(false)
+  const [order, setOrder] = useState('asc')
+  const [orderBy, setOrderBy] = useState('calories')
+  const [selected, setSelected] = useState([])
+  const [page, setPage] = useState(0)
+  const [dense, setDense] = useState(false)
+  const [rowsPerPage, setRowsPerPage] = useState(10)
+  const [recordSelected, setRecordSelected] = useState({})
+  const [openForm, setOpenForm] = useState(false)
 
   const handleAdd = () => {
     setRecordSelected({})
@@ -244,10 +246,9 @@ export default function EnhancedTable({ title, columns, rows, fieldId, fields })
   }
 
   const handleClick = (event, name) => {
-    const record = rows.find(item => item.ID === name)
-    setRecordSelected(record)
     const selectedIndex = selected.indexOf(name)
     let newSelected = []
+    let recordId = null
 
     if (selectedIndex === -1) {
       newSelected = newSelected.concat(selected, name)
@@ -260,6 +261,13 @@ export default function EnhancedTable({ title, columns, rows, fieldId, fields })
         selected.slice(0, selectedIndex),
         selected.slice(selectedIndex + 1),
       )
+    }
+    if (newSelected.length === 1) {
+      recordId = newSelected[0]
+    }
+    if (recordId) {
+      getRecordById(model, recordId)
+        .then(record => setRecordSelected(record))
     }
 
     setSelected(newSelected)

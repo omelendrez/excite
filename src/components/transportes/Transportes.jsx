@@ -16,6 +16,7 @@ const Transportes = () => {
   return (
     <Table
       title="Transportes"
+      model="transportes"
       columns={columns}
       fields={fields}
       rows={transportes}

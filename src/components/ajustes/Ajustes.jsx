@@ -16,6 +16,7 @@ const Ajustes = () => {
   return (
     <Table
       title="Ajustes"
+      model="ajustes"
       columns={columns}
       fields={fields}
       rows={ajustes}

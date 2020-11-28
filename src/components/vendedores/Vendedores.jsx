@@ -15,6 +15,7 @@ const Vendedores = () => {
   return (
     <Table
       title="Vendedores"
+      model="vendedores"
       columns={columns}
       rows={vendedores}
       fieldId="ID"

@@ -16,6 +16,7 @@ const Conceptos = () => {
   return (
     <Table
       title="Conceptos"
+      model="conceptos"
       columns={columns}
       fields={fields}
       rows={conceptos}

@@ -16,6 +16,7 @@ const Iva = () => {
   return (
     <Table
       title="Iva"
+      model="iva"
       columns={columns}
       fields={fields}
       rows={iva}

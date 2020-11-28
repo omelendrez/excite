@@ -16,6 +16,7 @@ const Tipos = () => {
   return (
     <Table
       title="Tipos"
+      model="tipos"
       columns={columns}
       fields={fields}
       rows={tipos}

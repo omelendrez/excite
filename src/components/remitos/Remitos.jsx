@@ -15,6 +15,7 @@ const Remitos = () => {
   return (
     <Table
       title="Remitos"
+      model="remitos"
       columns={columns}
       rows={remitos}
       fieldId="ID"
