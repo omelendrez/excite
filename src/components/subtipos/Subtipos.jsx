@@ -3,6 +3,7 @@ import Table from '../common/Table'
 import { getSubtipos } from '../../services/subtipos'
 
 import { columns } from './columns'
+import { fields } from './fields'
 
 const Subtipos = () => {
   const [subtipos, setSubtipos] = useState([])
@@ -16,6 +17,7 @@ const Subtipos = () => {
     <Table
       title="Subtipos"
       columns={columns}
+      fields={fields}
       rows={subtipos}
       fieldId="ID"
     />
