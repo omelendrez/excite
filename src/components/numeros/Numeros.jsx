@@ -12,7 +12,6 @@ const Numeros = () => {
     setUpdate(!update)
   }
 
-
   useEffect(() => {
     getRecords('numeros')
       .then(numeros => setNumeros(numeros))
