@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Table from '../common/Table'
-import { getProductos } from '../../services/productos'
-
+import { getRecords } from '../../services'
 import { columns } from './columns'
 import { fields } from './fields'
 
@@ -9,7 +8,7 @@ const Productos = () => {
   const [productos, setProductos] = useState([])
 
   useEffect(() => {
-    getProductos()
+    getRecords('productos')
       .then(productos => setProductos(productos))
   }, [])
 

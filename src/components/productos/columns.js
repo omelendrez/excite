@@ -60,11 +60,6 @@ export const columns = [
     minWidth: 60
   },
   {
-    id: "PRODCOM",
-    label: "PRODCOM",
-    numeric: false
-  },
-  {
     id: "PRODEST",
     label: "Estado",
     numeric: false,

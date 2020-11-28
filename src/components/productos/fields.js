@@ -46,7 +46,7 @@ export const fields = [
   },
   {
     name: 'PRODCOM',
-    label: '',
+    label: 'PRODCOM',
     type: 'text'
   }
 ]

@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import TextField from '@material-ui/core/TextField'
 import Autocomplete from '@material-ui/lab/Autocomplete'
-import { getProductos, getClientes, getIva, getSubtipos, getTipos } from '../../services'
+import { getRecords } from '../../services'
 
 export default function ComboBox({ field, record, classes, handleChange }) {
   const [options, setOptions] = useState([])
@@ -13,7 +13,7 @@ export default function ComboBox({ field, record, classes, handleChange }) {
     const records = []
     switch (field.name) {
       case 'PRODCOD':
-        getProductos()
+        getRecords('productos')
           .then(productos => {
             productos.map(producto => records.push({ title: `${producto['PRODCOD']} - ${producto['PRODDES']}`, id: producto[field.name] }))
             setOptions(records)
@@ -21,28 +21,28 @@ export default function ComboBox({ field, record, classes, handleChange }) {
         break
       case 'CONCLI':
       case 'CLICOD':
-        getClientes()
+        getRecords('clientes')
           .then(clientes => {
             clientes.map(cliente => records.push({ title: `${cliente['CLICOD']} - ${cliente['CLINOM']}`, id: cliente['CLICOD'] }))
             setOptions(records)
           })
         break
       case 'IVACOD':
-        getIva()
+        getRecords('iva')
           .then(ivas => {
             ivas.map(iva => records.push({ title: `${iva['IVACOD']} - ${iva['IVADES']}`, id: iva['IVACOD'] }))
             setOptions(records)
           })
         break
       case 'TIPCOD':
-        getTipos()
+        getRecords('tipos')
           .then(tipos => {
             tipos.map(tipo => records.push({ title: `${tipo['TIPCOD']} - ${tipo['TIPDES']}`, id: tipo['TIPCOD'] }))
             setOptions(records)
           })
         break
       case 'SUBTIPCOD':
-        getSubtipos()
+        getRecords('subtipos')
           .then(subTipos => {
             subTipos.map(subTipo => records.push({ title: `${subTipo['SUBTIPCOD']} - ${subTipo['SUBTIPDES']}`, id: subTipo['SUBTIPCOD'] }))
             setOptions(records)
@@ -65,7 +65,6 @@ export default function ComboBox({ field, record, classes, handleChange }) {
 
   const onChange = value => {
     setValue(value)
-    console.log(value)
     handleChange({ target: { id: field.name, value: value ? value.id : value } })
   }
 

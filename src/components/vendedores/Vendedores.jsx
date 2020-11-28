@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import Table from '../common/Table'
-import { getVendedores } from '../../services/vendedores'
-
+import { getRecords } from '../../services'
 import { columns } from './columns'
 
 const Vendedores = () => {
   const [vendedores, setVendedores] = useState([])
 
   useEffect(() => {
-    getVendedores()
+    getRecords('vendedores')
       .then(vendedores => setVendedores(vendedores))
   }, [])
 

@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import Table from '../common/Table'
-import { getRemitos } from '../../services/remitos'
-
+import { getRecords } from '../../services'
 import { columns } from './columns'
 
 const Remitos = () => {
   const [remitos, setRemitos] = useState([])
 
   useEffect(() => {
-    getRemitos()
+    getRecords('remitos')
       .then(remitos => setRemitos(remitos))
   }, [])
 

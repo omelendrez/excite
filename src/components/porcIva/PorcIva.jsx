@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Table from '../common/Table'
-import { getPorcIva } from '../../services/porcIva'
+import { getRecords } from '../../services'
 import { columns } from './columns'
 import { fields } from './fields'
 
@@ -8,7 +8,7 @@ const PorcIva = () => {
   const [porcIva, setPorcIva] = useState([])
 
   useEffect(() => {
-    getPorcIva()
+    getRecords('porciva')
       .then(porcIva => setPorcIva(porcIva))
   }, [])
 

@@ -27,7 +27,7 @@ import DeleteIcon from '@material-ui/icons/Delete'
 import EditIcon from '@material-ui/icons/Edit'
 import FilterListIcon from '@material-ui/icons/FilterList'
 
-import { getRecordById } from '../../services/services'
+import { getRecordById } from '../../services'
 
 const ROWS_PER_PAGE = [5, 10, 15, 20, 25]
 
