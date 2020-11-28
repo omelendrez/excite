@@ -23,3 +23,4 @@ yarn-debug.log*
 yarn-error.log*
 /excite/$sistemaNuevo
 /package-lock.json
+debug.log

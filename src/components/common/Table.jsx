@@ -1,5 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+
+import Form from './Form'
+
 import clsx from 'clsx'
 import { lighten, makeStyles } from '@material-ui/core/styles'
 import Table from '@material-ui/core/Table'
@@ -14,11 +17,12 @@ import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import Paper from '@material-ui/core/Paper'
 import Checkbox from '@material-ui/core/Checkbox'
-import IconButton from '@material-ui/core/IconButton'
+//import NavigationIcon from '@material-ui/icons/Navigation'
+import Fab from '@material-ui/core/Fab'
 import Tooltip from '@material-ui/core/Tooltip'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Switch from '@material-ui/core/Switch'
-import AddIcon from '@material-ui/icons/AddCircleOutlined'
+import AddIcon from '@material-ui/icons/Add'
 import DeleteIcon from '@material-ui/icons/Delete'
 import EditIcon from '@material-ui/icons/Edit'
 import FilterListIcon from '@material-ui/icons/FilterList'
@@ -112,27 +116,31 @@ const useToolbarStyles = makeStyles((theme) => ({
   highlight:
     theme.palette.type === 'light'
       ? {
-        color: theme.palette.primary.main,
-        backgroundColor: lighten(theme.palette.primary.light, 0.85),
+        color: theme.palette.info.main,
+        backgroundColor: lighten(theme.palette.info.light, 0.85),
       }
       : {
-        color: theme.palette.text.primary,
-        backgroundColor: theme.palette.primary.dark,
+        color: theme.palette.text.info,
+        backgroundColor: theme.palette.info.dark,
       },
   title: {
     flex: '1 1 100%',
   },
+  fabButton: {
+    marginLeft: theme.spacing(1),
+    '&:focus': {
+      outline: 'none'
+    }
+  }
 }))
 
 const EnhancedTableToolbar = (props) => {
   const classes = useToolbarStyles()
-  const { numSelected, title } = props
+  const { numSelected, title, openForm, setOpenForm, handleAdd } = props
 
   return (
     <Toolbar
-      className={clsx(classes.root, {
-        [classes.highlight]: numSelected > 0,
-      })}
+      className={clsx(classes.root, { [classes.highlight]: numSelected > 0 })}
     >
       {numSelected > 0 ? (
         <Typography className={classes.title} color="inherit" variant="subtitle1" component="div">
@@ -146,29 +154,29 @@ const EnhancedTableToolbar = (props) => {
       {numSelected > 0 ? (
         <React.Fragment>
           {numSelected === 1 && (
-            <Tooltip title="Editar">
-              <IconButton aria-label="edit" color="primary">
+            <Tooltip title="Editar" className={classes.fabButton}>
+              <Fab aria-label="add" color="secondary" onClick={() => setOpenForm(!openForm)}>
                 <EditIcon />
-              </IconButton>
+              </Fab>
             </Tooltip>
           )}
-          <Tooltip title="Eliminar">
-            <IconButton aria-label="delete" color="primary">
+          <Tooltip title="Eliminar" className={classes.fabButton}>
+            <Fab aria-label="delete" color="secondary">
               <DeleteIcon />
-            </IconButton>
+            </Fab>
           </Tooltip>
         </React.Fragment>
       ) : (
           <>
-            <Tooltip title="Filtros">
-              <IconButton aria-label="filter list" color="primary">
+            <Tooltip title="Filtros" className={classes.fabButton}>
+              <Fab aria-label="filter list" color="primary">
                 <FilterListIcon />
-              </IconButton>
+              </Fab>
             </Tooltip>
-            <Tooltip title="Agregar">
-              <IconButton aria-label="add record" color="primary">
+            <Tooltip title="Agregar" className={classes.fabButton}>
+              <Fab aria-label="add record" color="primary" onClick={() => handleAdd()}>
                 <AddIcon />
-              </IconButton>
+              </Fab>
             </Tooltip>
           </>
         )}
@@ -204,7 +212,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export default function EnhancedTable({ title, columns, rows, fieldId }) {
+export default function EnhancedTable({ title, columns, rows, fieldId, fields }) {
   const classes = useStyles()
   const [order, setOrder] = React.useState('asc')
   const [orderBy, setOrderBy] = React.useState('calories')
@@ -212,6 +220,13 @@ export default function EnhancedTable({ title, columns, rows, fieldId }) {
   const [page, setPage] = React.useState(0)
   const [dense, setDense] = React.useState(false)
   const [rowsPerPage, setRowsPerPage] = React.useState(10)
+  const [recordSelected, setRecordSelected] = React.useState({})
+  const [openForm, setOpenForm] = React.useState(false)
+
+  const handleAdd = () => {
+    setRecordSelected({})
+    setOpenForm(!openForm)
+  }
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc'
@@ -229,6 +244,8 @@ export default function EnhancedTable({ title, columns, rows, fieldId }) {
   }
 
   const handleClick = (event, name) => {
+    const record = rows.find(item => item.ID === name)
+    setRecordSelected(record)
     const selectedIndex = selected.indexOf(name)
     let newSelected = []
 
@@ -267,8 +284,9 @@ export default function EnhancedTable({ title, columns, rows, fieldId }) {
 
   return (
     <div className={classes.root}>
+      <Form open={openForm} setOpen={setOpenForm} title={title} fields={fields} record={recordSelected} />
       <Paper className={classes.paper}>
-        <EnhancedTableToolbar numSelected={selected.length} title={title} />
+        <EnhancedTableToolbar numSelected={selected.length} setOpenForm={setOpenForm} openForm={openForm} title={title} handleAdd={handleAdd} />
         <TableContainer>
           <Table
             className={classes.table}

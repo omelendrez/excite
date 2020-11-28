@@ -1,4 +1,4 @@
-import React, { useState, forwardRef, useEffect } from 'react'
+import React, { forwardRef } from 'react'
 import Button from '@material-ui/core/Button'
 import Dialog from '@material-ui/core/Dialog'
 import DialogActions from '@material-ui/core/DialogActions'
@@ -7,46 +7,39 @@ import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import Slide from '@material-ui/core/Slide'
 
-const Transition = forwardRef(function Transition(props, ref) {
+const Transition = forwardRef((props, ref) => {
   return <Slide direction="up" ref={ref} {...props} />
 })
 
-export default function AlertDialogSlide({ message, visible }) {
-  const [open, setOpen] = useState(false)
-
-  useEffect(() => {
-    if (message.length) {
-      setOpen(true)
-    }
-  }, [visible, message])
-
-
-  const handleClose = () => {
-    setOpen(false)
-  }
+export default function AlertDialogSlide({ title, message, open, handleClose, handleConfirmation }) {
 
   return (
-    <div>
-      <Dialog
-        open={open}
-        TransitionComponent={Transition}
-        keepMounted
-        onClose={handleClose}
-        aria-labelledby="alert-dialog-slide-title"
-        aria-describedby="alert-dialog-slide-description"
-      >
-        <DialogTitle id="alert-dialog-slide-title">{"Use Google's location service?"}</DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-slide-description">
-            {message}
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Cerrar
+    <Dialog
+      open={open}
+      TransitionComponent={Transition}
+      keepMounted
+      onClose={handleClose}
+      aria-labelledby="alert-dialog-slide-title"
+      aria-describedby="alert-dialog-slide-description"
+      disableBackdropClick
+    >
+      <DialogTitle id="alert-dialog-slide-title"
+        style={{ backgroundColor: "#2196f3", color: "#ffffff" }}
+
+      >{title}</DialogTitle>
+      <DialogContent dividers>
+        <DialogContentText id="alert-dialog-slide-description">
+          {message}
+        </DialogContentText>
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={handleConfirmation} color="primary" variant="contained">
+          Confirmar
           </Button>
-        </DialogActions>
-      </Dialog>
-    </div>
+        <Button onClick={handleClose} color="secondary" variant="outlined">
+          Cancelar
+          </Button>
+      </DialogActions>
+    </Dialog>
   )
 }

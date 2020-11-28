@@ -1,13 +1,13 @@
 export const columns = [
   {
     id: "TIPCOD",
-    label: "Código",
+    label: "Tipo",
     numeric: false,
     disablePadding: true,
   },
   {
     id: "TIPDES",
-    label: "Descripcion",
+    label: "Descripción",
     numeric: false,
     minWidth: 300
   }

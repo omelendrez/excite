@@ -3,6 +3,7 @@ import Table from '../common/Table'
 import { getClientes } from '../../services/clientes'
 
 import { columns } from './columns'
+import { fields } from './fields'
 
 const Clientes = () => {
   const [clientes, setClientes] = useState([])
@@ -16,6 +17,7 @@ const Clientes = () => {
     <Table
       title="Clientes"
       columns={columns}
+      fields={fields}
       rows={clientes}
       fieldId="ID"
     />
