@@ -30,5 +30,15 @@ export const columns = [
     id: "TRAOBS",
     label: "Observaciones",
     numeric: false,
+  },
+  {
+    id: "TRAPROCOD",
+    label: "Producto",
+    numeric: false,
+  },
+  {
+    id: "TRACUIT",
+    label: "Cuit",
+    numeric: false,
   }
 ]
