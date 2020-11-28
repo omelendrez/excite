@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Table from '../common/Table'
 import { getPorcIva } from '../../services/porcIva'
 import { columns } from './columns'
+import { fields } from './fields'
 
 const PorcIva = () => {
   const [porcIva, setPorcIva] = useState([])
@@ -15,6 +16,7 @@ const PorcIva = () => {
     <Table
       title="PorcIva"
       columns={columns}
+      fields={fields}
       rows={porcIva}
       fieldId="ID"
     />
