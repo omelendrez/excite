@@ -3,6 +3,7 @@ import Table from '../common/Table'
 import { getIva } from '../../services/iva'
 
 import { columns } from './columns'
+import { fields } from './fields'
 
 const Iva = () => {
   const [iva, setIva] = useState([])
@@ -16,6 +17,7 @@ const Iva = () => {
     <Table
       title="Iva"
       columns={columns}
+      fields={fields}
       rows={iva}
       fieldId="ID"
     />
