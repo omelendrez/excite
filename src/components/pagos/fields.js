@@ -2,7 +2,8 @@ export const fields = [
   {
     name: 'PAGNUM',
     label: 'Número',
-    type: 'number'
+    type: 'number',
+    readOnly: true
   },
   {
     name: 'PAGFEC',

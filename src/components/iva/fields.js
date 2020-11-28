@@ -8,6 +8,7 @@ export const fields = [
   {
     name: 'IVADES',
     label: 'Descripción',
-    type: 'text'
+    type: 'text',
+    readOnly: true
   }
 ]

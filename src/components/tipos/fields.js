@@ -2,11 +2,12 @@ export const fields = [
   {
     name: 'TIPCOD',
     label: 'Tipo',
-    type: 'select'
+    type: 'text',
+    readOnly: true
   },
   {
     name: 'TIPDES',
     label: 'Descripcion',
-    type: 'text',
+    type: 'text'
   }
 ]

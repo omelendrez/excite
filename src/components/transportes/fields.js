@@ -8,7 +8,7 @@ export const fields = [
   {
     name: 'TRANOM',
     label: 'Nombre',
-    type: 'select'
+    type: 'text'
   },
   {
     name: 'TRADOM',
@@ -18,7 +18,7 @@ export const fields = [
   {
     name: 'TRALOC',
     label: 'Localidad',
-    type: 'select',
+    type: 'text',
   },
   {
     name: 'TRATEL',
@@ -28,6 +28,11 @@ export const fields = [
   {
     name: 'TRAOBS',
     label: 'Observacion',
+    type: 'text'
+  },
+  {
+    name: 'TRAPROCOD',
+    label: 'TRAPROCOD',
     type: 'text'
   },
   {

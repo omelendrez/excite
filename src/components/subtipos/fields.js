@@ -8,7 +8,8 @@ export const fields = [
   {
     name: 'SUBTIPCOD',
     label: 'subtipo',
-    type: 'select'
+    type: 'text',
+    readOnly: true
   },
   {
     name: 'SUBTIPDES',
