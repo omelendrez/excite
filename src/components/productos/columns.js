@@ -23,6 +23,16 @@ export const columns = [
     numeric: false
   },
   {
+    id: "SUBTIPCOD",
+    label: "Subtipo",
+    numeric: false
+  },
+  {
+    id: "SUBTIPDES",
+    label: "Desc. Subtipo",
+    numeric: false
+  },
+  {
     id: "PRODPRE",
     label: "Precio",
     numeric: true,
@@ -44,7 +54,7 @@ export const columns = [
   },
   {
     id: "PRODSINI",
-    label: "PRODSINI",
+    label: "Stock inicial",
     numeric: true,
     align: "right",
     minWidth: 60

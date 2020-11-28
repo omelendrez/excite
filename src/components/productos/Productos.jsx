@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import Table from '../common/Table'
 import { getProductos } from '../../services/productos'
 
-import { columns } from '../productos/columns'
+import { columns } from './columns'
+import { fields } from './fields'
 
 const Productos = () => {
   const [productos, setProductos] = useState([])
@@ -16,6 +17,7 @@ const Productos = () => {
     <Table
       title="Productos"
       columns={columns}
+      fields={fields}
       rows={productos}
       fieldId="ID"
     />
