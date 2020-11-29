@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-
 import Form from './Form'
+import Alert from './Alert'
 
 import clsx from 'clsx'
 import { lighten, makeStyles } from '@material-ui/core/styles'
@@ -224,6 +224,7 @@ export default function EnhancedTable({ title, model, columns, rows, fieldId, fi
   const [rowsPerPage, setRowsPerPage] = useState(10)
   const [recordSelected, setRecordSelected] = useState({})
   const [openForm, setOpenForm] = useState(false)
+  const [alert, setAlert] = useState({ title: '', message: '', open: false })
 
   const handleAdd = () => {
     setRecordSelected({})
@@ -286,13 +287,22 @@ export default function EnhancedTable({ title, model, columns, rows, fieldId, fi
     setDense(event.target.checked)
   }
 
+  const notifyUpdated = () => {
+    setAlert({ message: 'Registro guardado satisfactoriamente', color: 'ok', open: true })
+    setTimeout(() => {
+      setUpdate()
+      setAlert({ open: false })
+    }, 2000)
+  }
+
   const isSelected = (name) => selected.indexOf(name) !== -1
 
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage)
 
   return (
     <div className={classes.root}>
-      <Form open={openForm} setOpen={setOpenForm} title={title} fields={fields} record={recordSelected} model={model} setUpdate={setUpdate} />
+      <Alert title={alert.title} open={alert.open} color={alert.color} message={alert.message} />
+      <Form open={openForm} setOpen={setOpenForm} title={title} fields={fields} record={recordSelected} model={model} setUpdate={notifyUpdated} />
       <Paper className={classes.paper}>
         <EnhancedTableToolbar numSelected={selected.length} setOpenForm={setOpenForm} openForm={openForm} title={title} handleAdd={handleAdd} />
         <TableContainer>

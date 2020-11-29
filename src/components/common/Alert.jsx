@@ -11,8 +11,16 @@ const Transition = forwardRef((props, ref) => {
   return <Slide direction="up" ref={ref} {...props} />
 })
 
-export default function AlertDialogSlide({ title, message, open, handleClose, handleConfirmation }) {
-
+export default function AlertDialogSlide({ title, message, color, open, handleClose, handleConfirmation }) {
+  let background = ''
+  switch (color) {
+    case 'ok':
+      background = 'linear-gradient(45deg, #2196f3 30%, #00b0ff 90%)'
+      break
+    case 'error':
+      background = 'linear-gradient(45deg, #f44336 30%, #f50057 90%)'
+      break
+  }
   return (
     <Dialog
       open={open}
@@ -23,25 +31,25 @@ export default function AlertDialogSlide({ title, message, open, handleClose, ha
       aria-describedby="alert-dialog-slide-description"
       disableBackdropClick
     >
-      <DialogTitle id="alert-dialog-slide-title"
-        style={{ backgroundColor: "#FF0000", color: "#ffffff" }}
-
-      >{title}</DialogTitle>
+      {title && <DialogTitle id="alert-dialog-slide-title" style={{ background: background, color: "#ffffff" }} > {title}</DialogTitle>}
       <DialogContent dividers>
         <DialogContentText id="alert-dialog-slide-description">
           {message}
         </DialogContentText>
       </DialogContent>
-      <DialogActions>
+      {(handleConfirmation || handleClose) && <DialogActions>
         {handleConfirmation &&
           <Button onClick={handleConfirmation} color="primary" variant="contained">
             Confirmar
           </Button>
         }
-        <Button onClick={handleClose} color="secondary" variant="outlined">
-          {handleConfirmation ? 'Cancelar' : 'Salir'}
-        </Button>
+        {handleClose &&
+          <Button onClick={handleClose} color="secondary" variant="outlined">
+            {handleConfirmation ? 'Cancelar' : 'Salir'}
+          </Button>
+        }
       </DialogActions>
+      }
     </Dialog>
   )
 }

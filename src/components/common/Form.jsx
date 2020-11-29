@@ -106,7 +106,7 @@ const FullScreenDialog = ({ open, setOpen, title, fields, record, model, setUpda
           handleClose()
         })
         .catch(err => {
-          setAlert({ title: 'Error de servidor', message: err.message, open: true })
+          setAlert({ title: 'Error de servidor', message: err.message, color: 'error', open: true })
         })
     } else {
       updateRecord(model, newRecord)
@@ -116,7 +116,7 @@ const FullScreenDialog = ({ open, setOpen, title, fields, record, model, setUpda
           handleClose()
         })
         .catch(err => {
-          setAlert({ title: 'Error de servidor', message: err.message, open: true })
+          setAlert({ title: 'Error de servidor', message: err.message, color: 'error', open: true })
         })
     }
   }
@@ -127,7 +127,7 @@ const FullScreenDialog = ({ open, setOpen, title, fields, record, model, setUpda
 
   return (
     <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
-      <Alert title={alert.title} open={alert.open} message={alert.message} handleClose={handleAlertClose} />
+      <Alert title={alert.title} open={alert.open} color={alert.color} message={alert.message} handleClose={handleAlertClose} />
       <AppBar className={classes.appBar}>
         <Toolbar>
           <IconButton edge="start" color="inherit" onClick={() => handleClose()} aria-label="close">
