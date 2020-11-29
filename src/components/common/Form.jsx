@@ -2,6 +2,7 @@ import React, { useState, useEffect, forwardRef } from 'react'
 import TextTypeField from './TextTypeField'
 import DateTypeField from './DateTypeField'
 import SelectTypeField from './SelectTypeField'
+import Alert from './Alert'
 import { makeStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
 import Dialog from '@material-ui/core/Dialog'
@@ -53,6 +54,7 @@ const FullScreenDialog = ({ open, setOpen, title, fields, record, model, setUpda
   const classes = useStyles()
   const [newRecord, setNewRecord] = useState(record)
   const [submitDisabled, setSubmitDisabled] = useState(true)
+  const [alert, setAlert] = useState({ title: '', message: '', open: false })
 
   useEffect(() => {
     const object = { ...record }
@@ -98,21 +100,34 @@ const FullScreenDialog = ({ open, setOpen, title, fields, record, model, setUpda
   const handleSubmit = () => {
     if (!newRecord.ID) {
       addRecord(model, newRecord)
-        .then(() => {
+        .then(result => {
+          console.log(result)
           setUpdate()
           handleClose()
         })
+        .catch(err => {
+          setAlert({ title: 'Error de servidor', message: err.message, open: true })
+        })
     } else {
       updateRecord(model, newRecord)
-        .then(() => {
+        .then(result => {
+          console.log(result)
           setUpdate()
           handleClose()
+        })
+        .catch(err => {
+          setAlert({ title: 'Error de servidor', message: err.message, open: true })
         })
     }
   }
 
+  const handleAlertClose = () => {
+    setAlert({ open: false })
+  }
+
   return (
     <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
+      <Alert title={alert.title} open={alert.open} message={alert.message} handleClose={handleAlertClose} />
       <AppBar className={classes.appBar}>
         <Toolbar>
           <IconButton edge="start" color="inherit" onClick={() => handleClose()} aria-label="close">

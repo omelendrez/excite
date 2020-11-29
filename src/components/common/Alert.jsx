@@ -24,7 +24,7 @@ export default function AlertDialogSlide({ title, message, open, handleClose, ha
       disableBackdropClick
     >
       <DialogTitle id="alert-dialog-slide-title"
-        style={{ backgroundColor: "#2196f3", color: "#ffffff" }}
+        style={{ backgroundColor: "#FF0000", color: "#ffffff" }}
 
       >{title}</DialogTitle>
       <DialogContent dividers>
@@ -33,12 +33,14 @@ export default function AlertDialogSlide({ title, message, open, handleClose, ha
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleConfirmation} color="primary" variant="contained">
-          Confirmar
+        {handleConfirmation &&
+          <Button onClick={handleConfirmation} color="primary" variant="contained">
+            Confirmar
           </Button>
+        }
         <Button onClick={handleClose} color="secondary" variant="outlined">
-          Cancelar
-          </Button>
+          {handleConfirmation ? 'Cancelar' : 'Salir'}
+        </Button>
       </DialogActions>
     </Dialog>
   )
