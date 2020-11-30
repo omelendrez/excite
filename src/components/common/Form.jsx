@@ -62,6 +62,11 @@ const FullScreenDialog = ({ open, setOpen, title, fields, record, model, setUpda
       fields.map(field => object[field.name] = '')
     }
     setNewRecord(object)
+    if (objectChanged(record, object)) {
+      setSubmitDisabled(false)
+    } else {
+      setSubmitDisabled(true)
+    }
   }, [record, fields])
 
   const handleClose = () => {
@@ -100,8 +105,7 @@ const FullScreenDialog = ({ open, setOpen, title, fields, record, model, setUpda
   const handleSubmit = () => {
     if (!newRecord.ID) {
       addRecord(model, newRecord)
-        .then(result => {
-          console.log(result)
+        .then(() => {
           setUpdate()
           handleClose()
         })
@@ -110,8 +114,7 @@ const FullScreenDialog = ({ open, setOpen, title, fields, record, model, setUpda
         })
     } else {
       updateRecord(model, newRecord)
-        .then(result => {
-          console.log(result)
+        .then(() => {
           setUpdate()
           handleClose()
         })
