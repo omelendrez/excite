@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Table from '../common/Table'
 import { getRecords } from '../../services'
 import { columns } from './columns'
+import { fields } from './fields'
 
 const Remitos = () => {
   const [remitos, setRemitos] = useState([])
@@ -21,6 +22,7 @@ const Remitos = () => {
       title="Remitos"
       model="remitos"
       columns={columns}
+      fields={fields}
       rows={remitos}
       fieldId="ID"
       setUpdate={updateData}

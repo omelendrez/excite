@@ -49,10 +49,24 @@ export default function ComboBox({ field, record, classes, handleChange }) {
             setOptions(records)
           })
         break
+      case 'ESTCOD':
+        getRecords('estados')
+          .then(estados => {
+            estados.map(estado => records.push({ title: `${estado['ESTCOD']} - ${estado['ESTDES']}`, id: estado['ESTCOD'] }))
+            setOptions(records)
+          })
+        break
       case 'SUBTIPCOD':
         getRecords('subtipos')
           .then(subTipos => {
             subTipos.map(subTipo => records.push({ title: `${subTipo['SUBTIPCOD']} - ${subTipo['SUBTIPDES']}`, id: subTipo['SUBTIPCOD'] }))
+            setOptions(records)
+          })
+        break
+      case 'VENCOD':
+        getRecords('vendedores')
+          .then(vendedores => {
+            vendedores.map(vendedor => records.push({ title: `${vendedor['VENCOD']} - ${vendedor['VENNOM']}`, id: vendedor['VENCOD'] }))
             setOptions(records)
           })
         break

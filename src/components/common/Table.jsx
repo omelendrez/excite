@@ -282,7 +282,14 @@ export default function EnhancedTable({ title, model, columns, rows, fieldId, fi
     if (readonlyTables.includes(model)) {
       return
     }
-    setAlert({ title: 'Eliminando registros', message: `Está seguro que quiere eliminar ${selected.length} registros?`, color: 'info', handleConfimation: confirmDelete, open: true })
+    setAlert({
+      title: 'Eliminando registros',
+      message: `Está seguro que quiere eliminar ${selected.length} registros?`,
+      color: 'info',
+      handleClose: closeAlert,
+      handleConfimation: confirmDelete,
+      open: true
+    })
   }
 
   const confirmDelete = async () => {
@@ -295,7 +302,7 @@ export default function EnhancedTable({ title, model, columns, rows, fieldId, fi
   }
 
   const closeAlert = () => {
-    setAlert({ title: '', message: '', handleConfimation: null, open: false })
+    setAlert({})
   }
 
   const handleChangePage = (event, newPage) => {
@@ -327,7 +334,7 @@ export default function EnhancedTable({ title, model, columns, rows, fieldId, fi
 
   return (
     <div className={classes.root}>
-      <Alert title={alert.title} open={alert.open} color={alert.color} message={alert.message} handleClose={closeAlert} handleConfirmation={confirmDelete} />
+      <Alert title={alert.title} open={alert.open} color={alert.color} message={alert.message} handleClose={alert.handleClose} handleConfirmation={alert.handleConfimation} />
       <Form open={openForm} setOpen={setOpenForm} title={title} fields={fields} record={recordSelected} model={model} setUpdate={notifyUpdated} />
       <Paper className={classes.paper}>
         <EnhancedTableToolbar numSelected={selected.length} setOpenForm={setOpenForm} openForm={openForm} title={title} handleAdd={handleAdd} handleDelete={handleDelete} />
