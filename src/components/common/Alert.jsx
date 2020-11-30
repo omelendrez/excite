@@ -12,6 +12,9 @@ export default function AlertDialogSlide({ title, message, color, open, handleCl
     case 'ok':
       background = 'linear-gradient(45deg, #2196f3 30%, #00b0ff 90%)'
       break
+    case 'info':
+      background = 'linear-gradient(45deg, #2196f3 30%, #00b0ff 90%)'
+      break
     case 'error':
       background = 'linear-gradient(45deg, #f44336 30%, #f50057 90%)'
       break

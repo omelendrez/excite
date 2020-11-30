@@ -37,10 +37,10 @@ export const updateRecord = (endpoint, record) => {
   })
 }
 
-export const deleteRecord = (endpoint, record) => {
+export const deleteRecord = (endpoint, id) => {
   return new Promise((resolve, reject) => {
     api
-      .delete(`${endpoint}/${record.ID}`)
+      .delete(`${endpoint}/${id}`)
       .then((response) => resolve(response.data))
       .catch((error) => reject(handleError(error)))
   })
