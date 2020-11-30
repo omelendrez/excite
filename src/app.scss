@@ -1,3 +1,13 @@
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
 body {
   background-color: #eceff1 !important;
   font-family: Roboto;
@@ -26,7 +36,6 @@ body {
       }
     }
     .btn {
-      padding: .2rem .5rem;
       color: #ccc;
       &.active {
         color: white;
@@ -39,10 +48,11 @@ body {
         color: black;
       }
     }
-
+    
     &.show {
-
+      
       .dropdown-menu {
+        animation: 0.4s fadeIn;
         .btn {
           color: #37474f;
           &.active {
