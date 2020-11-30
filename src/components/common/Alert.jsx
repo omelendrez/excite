@@ -1,15 +1,10 @@
-import React, { forwardRef } from 'react'
+import React from 'react'
 import Button from '@material-ui/core/Button'
 import Dialog from '@material-ui/core/Dialog'
 import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
-import Slide from '@material-ui/core/Slide'
-
-const Transition = forwardRef((props, ref) => {
-  return <Slide direction="up" ref={ref} {...props} />
-})
 
 export default function AlertDialogSlide({ title, message, color, open, handleClose, handleConfirmation }) {
   let background = ''
@@ -20,11 +15,11 @@ export default function AlertDialogSlide({ title, message, color, open, handleCl
     case 'error':
       background = 'linear-gradient(45deg, #f44336 30%, #f50057 90%)'
       break
+    default:
   }
   return (
     <Dialog
       open={open}
-      TransitionComponent={Transition}
       keepMounted
       onClose={handleClose}
       aria-labelledby="alert-dialog-slide-title"

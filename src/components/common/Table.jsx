@@ -289,10 +289,10 @@ export default function EnhancedTable({ title, model, columns, rows, fieldId, fi
 
   const notifyUpdated = () => {
     setAlert({ message: 'Registro guardado satisfactoriamente', color: 'ok', open: true })
+    setUpdate()
     setTimeout(() => {
-      setUpdate()
       setAlert({ open: false })
-    }, 2000)
+    }, 1000)
   }
 
   const isSelected = (name) => selected.indexOf(name) !== -1
