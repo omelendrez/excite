@@ -26,6 +26,11 @@ export const fields = [
     type: 'text'
   },
   {
+    name: 'CLIINT',
+    label: 'Interior',
+    type: 'text'
+  },
+  {
     name: 'CLITEL',
     label: 'Teléfono',
     type: 'text'
@@ -36,13 +41,33 @@ export const fields = [
     type: 'text'
   },
   {
+    name: 'CLIFAN',
+    label: 'CLIFAN',
+    type: 'text'
+  },
+  {
+    name: 'CLIFP',
+    label: 'CLIFP',
+    type: 'text'
+  },
+  {
     name: 'CLICUIT',
-    label: 'C.U.I.T.',
+    label: 'CUIT',
     type: 'text'
   },
   {
     name: 'IVACOD',
     label: 'Tipo de IVA',
+    type: 'select'
+  },
+  {
+    name: 'TRACOD',
+    label: 'Transporte',
+    type: 'select'
+  },
+  {
+    name: 'PROCOD',
+    label: 'PROCOD',
     type: 'select'
   }
 ]

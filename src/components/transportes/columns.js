@@ -32,13 +32,8 @@ export const columns = [
     numeric: false,
   },
   {
-    id: "TRAPROCOD",
-    label: "Producto",
-    numeric: false,
-  },
-  {
     id: "TRACUIT",
-    label: "Cuit",
+    label: "CUIT",
     numeric: false,
   }
 ]

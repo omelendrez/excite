@@ -34,10 +34,18 @@ export default function ComboBox({ field, record, classes, handleChange }) {
             setOptions(records)
           })
         break
+      case 'PROCOD':
       case 'TIPCOD':
         getRecords('tipos')
           .then(tipos => {
             tipos.map(tipo => records.push({ title: `${tipo['TIPCOD']} - ${tipo['TIPDES']}`, id: tipo['TIPCOD'] }))
+            setOptions(records)
+          })
+        break
+      case 'TRACOD':
+        getRecords('transportes')
+          .then(transportes => {
+            transportes.map(transporte => records.push({ title: `${transporte['TRACOD']} - ${transporte['TRANOM']}`, id: transporte['TRACOD'] }))
             setOptions(records)
           })
         break

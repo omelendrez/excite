@@ -37,7 +37,7 @@ export const fields = [
   },
   {
     name: 'TRACUIT',
-    label: 'cuit',
+    label: 'CUIT',
     type: 'text'
   }
 ]
