@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom"
 const menuOptions = require('./menuOptions.json')
 
 const Header = props => {
-  const [active, setActive] = useState(0)
+  const [active, setActive] = useState('')
   return (
     <nav className="navbar navbar-expand-sm navbar-dark">
       <button
@@ -25,7 +25,7 @@ const Header = props => {
                 {option.label}
               </button>
               :
-              <NavLink type="button" className="nav-link btn" to={option.url} onClick={() => setActive(index)}>
+              <NavLink type="button" className={`nav-link btn ${active === index ? 'active' : ''}`} to={option.url} exact onClick={() => setActive(index)}>
                 {option.label}
               </NavLink>
             }

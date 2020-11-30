@@ -19,10 +19,18 @@ body {
      }
   }
   .btn-group {
+    .nav-item,
+    .nav-link {
+      &.btn:focus {
+        box-shadow: unset;
+      }
+    }
     .btn {
+      padding: .2rem .5rem;
       color: #ccc;
       &.active {
         color: white;
+        border-bottom: 1px solid #ccc;
       }
     }
 
