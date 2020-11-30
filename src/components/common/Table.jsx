@@ -29,6 +29,8 @@ import FilterListIcon from '@material-ui/icons/FilterList'
 
 import { getRecordById, deleteRecord } from '../../services'
 
+import readonlyTables from './readOnlyTables.json'
+
 const ROWS_PER_PAGE = [5, 10, 15, 20, 25]
 
 function descendingComparator(a, b, orderBy) {
@@ -58,7 +60,7 @@ function stableSort(array, comparator) {
 }
 
 function EnhancedTableHead(props) {
-  const { classes, onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort, columns } = props
+  const { classes, onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort, columns, model } = props
   const createSortHandler = (property) => (event) => {
     onRequestSort(event, property)
   }
@@ -66,14 +68,16 @@ function EnhancedTableHead(props) {
   return (
     <TableHead>
       <TableRow>
-        <TableCell padding="checkbox">
-          <Checkbox
-            indeterminate={numSelected > 0 && numSelected < rowCount}
-            checked={rowCount > 0 && numSelected === rowCount}
-            onChange={onSelectAllClick}
-            inputProps={{ 'aria-label': 'select all desserts' }}
-          />
-        </TableCell>
+        {!readonlyTables.includes(model) &&
+          <TableCell padding="checkbox">
+            <Checkbox
+              indeterminate={numSelected > 0 && numSelected < rowCount}
+              checked={rowCount > 0 && numSelected === rowCount}
+              onChange={onSelectAllClick}
+              inputProps={{ 'aria-label': 'select all desserts' }}
+            />
+          </TableCell>
+        }
         {columns.map((headCell) => (
           <TableCell
             key={headCell.id}
@@ -275,7 +279,10 @@ export default function EnhancedTable({ title, model, columns, rows, fieldId, fi
   }
 
   const handleDelete = () => {
-    setAlert({ title: 'Eliminando registros', message: `Está seguro que quiere elimiar ${selected.length} registros?`, color: 'info', handleConfimation: confirmDelete, open: true })
+    if (readonlyTables.includes(model)) {
+      return
+    }
+    setAlert({ title: 'Eliminando registros', message: `Está seguro que quiere eliminar ${selected.length} registros?`, color: 'info', handleConfimation: confirmDelete, open: true })
   }
 
   const confirmDelete = async () => {
@@ -283,6 +290,7 @@ export default function EnhancedTable({ title, model, columns, rows, fieldId, fi
       await deleteRecord(model, id)
     })
     setUpdate()
+    setSelected([])
     closeAlert()
   }
 
@@ -340,6 +348,7 @@ export default function EnhancedTable({ title, model, columns, rows, fieldId, fi
               rowCount={rows.length}
               columns={columns}
               title={title}
+              model={model}
             />
             <TableBody>
               {stableSort(rows, getComparator(order, orderBy))
@@ -357,13 +366,15 @@ export default function EnhancedTable({ title, model, columns, rows, fieldId, fi
                       key={index}
                       selected={isItemSelected}
                     >
-                      <TableCell padding="checkbox">
-                        <Checkbox
-                          checked={isItemSelected}
-                          inputProps={{ 'aria-labelledby': labelId }}
-                          onClick={(event) => handleClick(event, row[fieldId])}
-                        />
-                      </TableCell>
+                      {!readonlyTables.includes(model) &&
+                        <TableCell padding="checkbox">
+                          <Checkbox
+                            checked={isItemSelected}
+                            inputProps={{ 'aria-labelledby': labelId }}
+                            onClick={(event) => handleClick(event, row[fieldId])}
+                          />
+                        </TableCell>
+                      }
                       {columns.map((column) => {
                         const value = row[column.id]
                         return (
@@ -371,7 +382,7 @@ export default function EnhancedTable({ title, model, columns, rows, fieldId, fi
                             key={column.id}
                             align={column.align}
                             style={{ minWidth: column.minWidth }}
-                            onClick={(event) => handleClick(event, row[fieldId])}
+                            onClick={(event) => !readonlyTables.includes(model) ? handleClick(event, row[fieldId]) : {}}
                           >
                             {column.format ? column.format(value) : value}
                           </TableCell>
