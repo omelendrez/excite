@@ -157,13 +157,13 @@ const EnhancedTableToolbar = (props) => {
         <>
           {numSelected === 1 && (
             <Tooltip title="Editar" className={classes.fabButton}>
-              <Fab aria-label="add" color="secondary" onClick={() => setOpenForm(!openForm)}>
+              <Fab aria-label="add" color="secondary" size="small" onClick={() => setOpenForm(!openForm)}>
                 <EditIcon />
               </Fab>
             </Tooltip>
           )}
           <Tooltip title="Eliminar" className={classes.fabButton}>
-            <Fab aria-label="delete" color="secondary">
+            <Fab aria-label="delete" color="secondary" size="small" >
               <DeleteIcon />
             </Fab>
           </Tooltip>
@@ -171,12 +171,12 @@ const EnhancedTableToolbar = (props) => {
       ) : (
           <>
             <Tooltip title="Filtros" className={classes.fabButton}>
-              <Fab aria-label="filter list" color="primary">
+              <Fab aria-label="filter list" color="primary" size="small" >
                 <FilterListIcon />
               </Fab>
             </Tooltip>
             <Tooltip title="Agregar" className={classes.fabButton}>
-              <Fab aria-label="add record" color="primary" onClick={() => handleAdd()}>
+              <Fab aria-label="add record" color="primary" onClick={() => handleAdd()} size="small" >
                 <AddIcon />
               </Fab>
             </Tooltip>
