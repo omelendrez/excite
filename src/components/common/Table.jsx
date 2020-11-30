@@ -196,7 +196,7 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     width: '100%',
-    marginBottom: theme.spacing(2),
+    marginBottom: theme.spacing(1),
   },
   table: {
     minWidth: 750,
@@ -220,8 +220,8 @@ export default function EnhancedTable({ title, model, columns, rows, fieldId, fi
   const [orderBy, setOrderBy] = useState('calories')
   const [selected, setSelected] = useState([])
   const [page, setPage] = useState(0)
-  const [dense, setDense] = useState(false)
-  const [rowsPerPage, setRowsPerPage] = useState(10)
+  const [dense, setDense] = useState(true)
+  const [rowsPerPage, setRowsPerPage] = useState(20)
   const [recordSelected, setRecordSelected] = useState({})
   const [openForm, setOpenForm] = useState(false)
   const [alert, setAlert] = useState({ title: '', message: '', open: false })
