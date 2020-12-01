@@ -27,7 +27,7 @@ export const fields = [
   {
     name: 'PRODSEX',
     label: 'Sexo',
-    type: 'text'
+    type: 'select'
   },
   {
     name: 'PRODSTO',
@@ -42,7 +42,7 @@ export const fields = [
   {
     name: 'PRODEST',
     label: 'Status',
-    type: 'text'
+    type: 'select'
   },
   {
     name: 'PRODCOM',

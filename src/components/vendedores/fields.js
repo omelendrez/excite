@@ -7,47 +7,47 @@ export const fields = [
   },
   {
     name: 'VENNOM',
-    label: 'VENNOM',
+    label: 'Nombre',
     type: 'text'
   },
   {
     name: 'VENDOM',
-    label: 'VENDOM',
+    label: 'Domicilio',
     type: 'text'
   },
   {
     name: 'VENLOC',
-    label: 'VENLOC',
-    type: 'text'
-  },
-  {
-    name: 'VENTEL',
-    label: 'VENTEL',
-    type: 'text'
-  },
-  {
-    name: 'VENCEL',
-    label: 'VENCEL',
-    type: 'text'
-  },
-  {
-    name: 'VENOBS',
-    label: 'VENOBS',
-    type: 'text'
-  },
-  {
-    name: 'VENINT',
-    label: 'VENINT',
+    label: 'Localidad',
     type: 'text'
   },
   {
     name: 'VENCP',
-    label: 'VENCP',
+    label: 'C.P.',
     type: 'text'
   },
   {
     name: 'PROCOD',
-    label: 'PROCOD',
+    label: 'Provincia',
+    type: 'select'
+  },
+  {
+    name: 'VENINT',
+    label: 'Zona',
+    type: 'select'
+  },
+  {
+    name: 'VENTEL',
+    label: 'Teléfono',
+    type: 'text'
+  },
+  {
+    name: 'VENCEL',
+    label: 'Celular',
+    type: 'text'
+  },
+  {
+    name: 'VENOBS',
+    label: 'Observaciones',
     type: 'text'
   }
 ]

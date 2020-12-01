@@ -26,9 +26,14 @@ export const fields = [
     type: 'text'
   },
   {
+    name: 'PROCOD',
+    label: 'Provincia',
+    type: 'select'
+  },
+  {
     name: 'CLIINT',
-    label: 'Interior',
-    type: 'text'
+    label: 'Zona',
+    type: 'select'
   },
   {
     name: 'CLITEL',
@@ -47,7 +52,7 @@ export const fields = [
   },
   {
     name: 'CLIFP',
-    label: 'CLIFP',
+    label: 'Forma de Pago',
     type: 'text'
   },
   {
@@ -63,11 +68,6 @@ export const fields = [
   {
     name: 'TRACOD',
     label: 'Transporte',
-    type: 'select'
-  },
-  {
-    name: 'PROCOD',
-    label: 'PROCOD',
     type: 'select'
   }
 ]

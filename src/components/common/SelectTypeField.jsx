@@ -34,7 +34,6 @@ export default function ComboBox({ field, record, classes, handleChange }) {
             setOptions(records)
           })
         break
-      case 'PROCOD':
       case 'TIPCOD':
         getRecords('tipos')
           .then(tipos => {
@@ -69,6 +68,27 @@ export default function ComboBox({ field, record, classes, handleChange }) {
             vendedores.map(vendedor => records.push({ title: `${vendedor['VENCOD']} - ${vendedor['VENNOM']}`, id: vendedor['VENCOD'] }))
             setOptions(records)
           })
+        break
+      case 'PROCOD':
+      case 'TRAPROCOD':
+        getRecords('provincias')
+          .then(provincias => {
+            provincias.map(provincia => records.push({ title: `${provincia['PROCOD']} - ${provincia['PRONOM']}`, id: provincia['PROCOD'] }))
+            setOptions(records)
+          })
+        break
+      case 'CLIINT':
+      case 'VENINT':
+        const interior = [{ title: 'DEL INTERIOR', id: 'INTERIOR' }, { title: 'BAHIA BLANCA', id: 'BAHIA BLANCA' }]
+        setOptions(interior)
+        break
+      case 'PRODEST':
+        const status = [{ title: 'ACTIVO', id: 'A' }, { title: 'INACTIVO', id: 'I' }]
+        setOptions(status)
+        break
+      case 'PRODSEX':
+        const sex = [{ title: '* SIN SEXO *', id: '' }, { title: 'FEMENINO', id: 'FEMENINO' }, { title: 'MASCULINO', id: 'MASCULINO' }]
+        setOptions(sex)
         break
       default:
     }

@@ -32,8 +32,8 @@ export const fields = [
   },
   {
     name: 'TRAPROCOD',
-    label: 'TRAPROCOD',
-    type: 'text'
+    label: 'Provincia',
+    type: 'select'
   },
   {
     name: 'TRACUIT',
