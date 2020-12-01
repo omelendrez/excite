@@ -51,18 +51,5 @@ export const columns = [
     numeric: true,
     align: "right",
     minWidth: 60
-  },
-  {
-    id: "PRODSINI",
-    label: "Stock inicial",
-    numeric: true,
-    align: "right",
-    minWidth: 60
-  },
-  {
-    id: "PRODEST",
-    label: "Estado",
-    numeric: false,
-    filter: true
   }
 ]
