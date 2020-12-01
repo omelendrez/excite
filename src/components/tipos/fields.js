@@ -2,8 +2,7 @@ export const fields = [
   {
     name: 'TIPCOD',
     label: 'Tipo',
-    type: 'text',
-    readOnly: true
+    type: 'text'
   },
   {
     name: 'TIPDES',
