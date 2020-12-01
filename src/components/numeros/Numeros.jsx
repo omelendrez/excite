@@ -19,7 +19,7 @@ const Numeros = () => {
 
   return (
     <Table
-      title="Numeros"
+      title="Números"
       model="numeros"
       columns={columns}
       fields={fields}
