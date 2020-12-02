@@ -25,11 +25,13 @@ export const fields = [
     label: 'Vendedor',
     type: 'select'
   },
+  /*  
   {
     name: 'REMPED',
     label: 'Nro. de Pedido',
     type: 'number'
   },
+    */
   {
     name: 'REMFACNUM',
     label: 'Nro. de Factura',
@@ -40,11 +42,13 @@ export const fields = [
     label: 'Nro. de Pago',
     type: 'number'
   },
+  /*
   {
     name: 'REMLIQNUM',
     label: 'Nro. de Liq.',
     type: 'number'
   },
+  */
   {
     name: 'REMDES',
     label: 'Desc.',
@@ -58,11 +62,14 @@ export const fields = [
   {
     name: 'REMEMI',
     label: 'Emitido',
-    type: 'text'
-  },
+    type: 'select'
+  }
+  /*
+  ,
   {
     name: 'REMFACPV',
     label: 'REMFACPV',
     type: 'number'
   }
+  */
 ]

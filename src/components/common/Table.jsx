@@ -17,6 +17,7 @@ import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import Paper from '@material-ui/core/Paper'
 import Checkbox from '@material-ui/core/Checkbox'
+import Button from '@material-ui/core/Button'
 //import NavigationIcon from '@material-ui/icons/Navigation'
 import Fab from '@material-ui/core/Fab'
 import Tooltip from '@material-ui/core/Tooltip'
@@ -25,7 +26,9 @@ import Switch from '@material-ui/core/Switch'
 import AddIcon from '@material-ui/icons/Add'
 import DeleteIcon from '@material-ui/icons/Delete'
 import EditIcon from '@material-ui/icons/Edit'
+import Search from '@material-ui/icons/Search'
 import FilterListIcon from '@material-ui/icons/FilterList'
+import TextTypeField from './TextTypeField'
 
 import { getRecordById, deleteRecord } from '../../services'
 
@@ -64,7 +67,6 @@ function EnhancedTableHead(props) {
   const createSortHandler = (property) => (event) => {
     onRequestSort(event, property)
   }
-
   return (
     <TableHead>
       <TableRow>
@@ -137,56 +139,107 @@ const useToolbarStyles = makeStyles((theme) => ({
     '&:focus': {
       outline: 'none'
     }
+  },
+  field: {
+    width: '40ch',
+    marginRight: theme.spacing(1)
+  },
+  searchButtonContainer: {
+    position: 'absolute',
+    left: '50%',
+    marginLeft: '-20ch',
   }
 }))
 
 const EnhancedTableToolbar = (props) => {
   const classes = useToolbarStyles()
-  const { numSelected, title, openForm, setOpenForm, handleAdd, handleDelete } = props
+  const { numSelected, title, openForm, setOpenForm, handleAdd, handleDelete, doSearch } = props
+  const [showSearch, setShowSearch] = useState(false)
+  const [search, setSearch] = useState({ search: '' })
+  const searchField = {
+    name: 'search',
+    label: '',
+    type: 'text'
+  }
+
+  const handleShowSearch = e => {
+    e.preventDefault()
+    setSearch({ search: '' })
+    setShowSearch(!showSearch)
+    doSearch(search)
+  }
+
+  const onSearchChange = e => {
+    e.preventDefault()
+    setSearch({ ...search, [e.target.id]: e.target.value })
+  }
+
+  const handleSearch = e => {
+    e.preventDefault()
+    doSearch(search)
+  }
 
   return (
-    <Toolbar
-      className={clsx(classes.root, { [classes.highlight]: numSelected > 0 })}
-    >
-      {numSelected > 0 ? (
-        <Typography className={classes.title} color="inherit" variant="subtitle1" component="div">
-          {numSelected} registro(s) seleccionado
-        </Typography>
-      ) : (
-          <Typography className={classes.title} variant="h6" id="tableTitle" component="div">
-            {title}
+    <>
+      <Toolbar
+        className={clsx(classes.root, { [classes.highlight]: numSelected > 0 })}
+      >
+        {numSelected > 0 ? (
+          <Typography className={classes.title} color="inherit" variant="subtitle1" component="div">
+            {numSelected} registro(s) seleccionado
           </Typography>
-        )}
-      {numSelected > 0 ? (
-        <>
-          {numSelected === 1 && (
-            <Tooltip title="Editar" className={classes.fabButton}>
-              <Fab aria-label="add" color="secondary" size="small" onClick={() => setOpenForm(!openForm)}>
-                <EditIcon />
-              </Fab>
-            </Tooltip>
+        ) : (
+            <>
+              <Typography className={classes.title} variant="h6" id="tableTitle" component="div">
+                {title}
+              </Typography>
+              {showSearch && (
+                <div className={classes.searchButtonContainer}>
+                  <TextTypeField field={searchField} record={search} classes={classes} handleChange={e => onSearchChange(e)} />
+                  <Button color="primary" variant="contained" onClick={e => handleSearch(e)}>
+                    Buscar
+                  </Button>
+                </div>
+              )}
+            </>
           )}
-          <Tooltip title="Eliminar" className={classes.fabButton}>
-            <Fab aria-label="delete" color="secondary" size="small" onClick={() => handleDelete()} >
-              <DeleteIcon />
-            </Fab>
-          </Tooltip>
-        </>
-      ) : (
+        {numSelected > 0 ? (
           <>
-            <Tooltip title="Filtros" className={classes.fabButton}>
-              <Fab aria-label="filter list" color="primary" size="small" >
-                <FilterListIcon />
-              </Fab>
-            </Tooltip>
-            <Tooltip title="Agregar" className={classes.fabButton}>
-              <Fab aria-label="add record" color="primary" onClick={() => handleAdd()} size="small" >
-                <AddIcon />
+            {numSelected === 1 && (
+              <Tooltip title="Editar" className={classes.fabButton}>
+                <Fab aria-label="add" color="secondary" size="small" onClick={() => setOpenForm(!openForm)}>
+                  <EditIcon />
+                </Fab>
+              </Tooltip>
+            )}
+            <Tooltip title="Eliminar" className={classes.fabButton}>
+              <Fab aria-label="delete" color="secondary" size="small" onClick={() => handleDelete()} >
+                <DeleteIcon />
               </Fab>
             </Tooltip>
           </>
-        )}
-    </Toolbar>
+        ) : (
+            <>
+              <Tooltip title="Buscar" className={classes.fabButton}>
+                <Fab aria-label="search" color="primary" size="small" onClick={e => handleShowSearch(e)}>
+                  <Search />
+                </Fab>
+              </Tooltip>
+              <Tooltip title="Filtros" className={classes.fabButton}>
+                <Fab aria-label="filter list" color="primary" size="small">
+                  <FilterListIcon />
+                </Fab>
+              </Tooltip>
+              <Tooltip title="Agregar" className={classes.fabButton}>
+                <Fab aria-label="add record" color="primary" onClick={() => handleAdd()} size="small" >
+                  <AddIcon />
+                </Fab>
+              </Tooltip>
+            </>
+          )}
+
+      </Toolbar>
+    </>
   )
 }
 
@@ -218,7 +271,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export default function EnhancedTable({ title, model, columns, rows, fieldId, fields, setUpdate }) {
+export default function EnhancedTable({ title, model, columns, rows, fieldId, fields, setUpdate, doSearch }) {
   const classes = useStyles()
   const [order, setOrder] = useState('asc')
   const [orderBy, setOrderBy] = useState('calories')
@@ -334,10 +387,11 @@ export default function EnhancedTable({ title, model, columns, rows, fieldId, fi
 
   return (
     <div className={classes.root}>
+
       <Alert title={alert.title} open={alert.open} color={alert.color} message={alert.message} handleClose={alert.handleClose} handleConfirmation={alert.handleConfimation} />
       <Form open={openForm} setOpen={setOpenForm} title={title} fields={fields} record={recordSelected} model={model} setUpdate={notifyUpdated} />
       <Paper className={classes.paper}>
-        <EnhancedTableToolbar numSelected={selected.length} setOpenForm={setOpenForm} openForm={openForm} title={title} handleAdd={handleAdd} handleDelete={handleDelete} />
+        <EnhancedTableToolbar numSelected={selected.length} setOpenForm={setOpenForm} openForm={openForm} title={title} handleAdd={handleAdd} handleDelete={handleDelete} doSearch={doSearch} />
         <TableContainer>
           <Table
             className={classes.table}

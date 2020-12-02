@@ -4,19 +4,20 @@ export const columns = [
     label: "Código",
     numeric: true,
     align: "right",
-    disablePadding: true
+    disablePadding: true,
+    minWidth: 80
   },
   {
     id: "VENNOM",
     label: "Nombre",
     numeric: false,
-    minWidth: 230
+    minWidth: 320
   },
   {
     id: "VENDOM",
     label: "Domicilio",
     numeric: false,
-    minWidth: 260
+    minWidth: 220
   },
   {
     id: "VENLOC",
@@ -25,24 +26,20 @@ export const columns = [
     minWidth: 200
   },
   {
-    id: "VENCP",
-    label: "C.P.",
-    numeric: false
-  },
-  {
     id: "VENTEL",
     label: "Teléfono",
     numeric: false,
-    minWidth: 200
+    minWidth: 220
   },
   {
     id: "VENCEL",
     label: "Celular",
     numeric: false,
-    minWidth: 200
+    minWidth: 180
   },
   {
     id: "VENOBS",
     label: "Observaciones",
-    numeric: false
+    numeric: false,
+    minWidth: 510
   }]

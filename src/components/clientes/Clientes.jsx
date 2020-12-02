@@ -7,15 +7,20 @@ import { fields } from './fields'
 const Clientes = () => {
   const [clientes, setClientes] = useState([])
   const [update, setUpdate] = useState(false)
+  const [search, setSearch] = useState('')
 
   const updateData = () => {
     setUpdate(!update)
   }
 
+  const handleSearch = search => {
+    setSearch(search.search)
+  }
+
   useEffect(() => {
-    getRecords('clientes')
+    getRecords(`clientes${search ? '?search=' + search : ''}`)
       .then(clientes => setClientes(clientes))
-  }, [update])
+  }, [update, search])
 
   return (
     <Table
@@ -26,6 +31,7 @@ const Clientes = () => {
       rows={clientes}
       fieldId="ID"
       setUpdate={updateData}
+      doSearch={handleSearch}
     />
   )
 }

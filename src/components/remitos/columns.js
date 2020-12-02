@@ -46,6 +46,13 @@ export const columns = [
     format: value => formatDate(value)
   },
   {
+    id: "REMFACNUM",
+    label: "Factura Nro.",
+    numeric: true,
+    align: "right",
+    minWidth: 60
+  },
+  {
     id: "REMPAGNUM",
     label: "Pago Nro.",
     numeric: true,

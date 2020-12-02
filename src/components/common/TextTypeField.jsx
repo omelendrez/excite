@@ -10,6 +10,7 @@ const TextTypeField = ({ field, record, handleChange, classes }) =>
     helperText={field.helperText}
     value={record[field.name]}
     onChange={e => field.readOnly ? {} : handleChange(e)}
+    size="small"
   />
 
 export default TextTypeField

@@ -87,8 +87,12 @@ export default function ComboBox({ field, record, classes, handleChange }) {
         setOptions(status)
         break
       case 'PRODSEX':
-        const sex = [{ title: '* SIN SEXO *', id: '' }, { title: 'FEMENINO', id: 'FEMENINO' }, { title: 'MASCULINO', id: 'MASCULINO' }]
-        setOptions(sex)
+        const sexos = [{ title: '* SIN SEXO *', id: '' }, { title: 'FEMENINO', id: 'FEMENINO' }, { title: 'MASCULINO', id: 'MASCULINO' }]
+        setOptions(sexos)
+        break
+      case 'REMEMI':
+        const emitidos = [{ title: ' ', id: '' }, { title: 'EMITIDO', id: 'E' }]
+        setOptions(emitidos)
         break
       default:
     }
