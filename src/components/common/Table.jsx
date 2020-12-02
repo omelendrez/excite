@@ -220,11 +220,13 @@ const EnhancedTableToolbar = (props) => {
           </>
         ) : (
             <>
-              <Tooltip title="Buscar" className={classes.fabButton}>
-                <Fab aria-label="search" color="primary" size="small" onClick={e => handleShowSearch(e)}>
-                  <Search />
-                </Fab>
-              </Tooltip>
+              {doSearch &&
+                <Tooltip title="Buscar" className={classes.fabButton}>
+                  <Fab aria-label="search" color="primary" size="small" onClick={e => handleShowSearch(e)}>
+                    <Search />
+                  </Fab>
+                </Tooltip>
+              }
               <Tooltip title="Filtros" className={classes.fabButton}>
                 <Fab aria-label="filter list" color="primary" size="small">
                   <FilterListIcon />
