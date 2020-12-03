@@ -18,11 +18,8 @@ import Typography from '@material-ui/core/Typography'
 import Paper from '@material-ui/core/Paper'
 import Checkbox from '@material-ui/core/Checkbox'
 import Button from '@material-ui/core/Button'
-//import NavigationIcon from '@material-ui/icons/Navigation'
 import Fab from '@material-ui/core/Fab'
 import Tooltip from '@material-ui/core/Tooltip'
-import FormControlLabel from '@material-ui/core/FormControlLabel'
-import Switch from '@material-ui/core/Switch'
 import AddIcon from '@material-ui/icons/Add'
 import DeleteIcon from '@material-ui/icons/Delete'
 import EditIcon from '@material-ui/icons/Edit'
@@ -274,13 +271,13 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 export default function EnhancedTable({ title, model, columns, rows, fieldId, fields, setUpdate, doSearch }) {
+  const rowsPerPageStored = localStorage.getItem('rows-per-page') || 15
   const classes = useStyles()
   const [order, setOrder] = useState('asc')
   const [orderBy, setOrderBy] = useState('calories')
   const [selected, setSelected] = useState([])
   const [page, setPage] = useState(0)
-  const [dense, setDense] = useState(true)
-  const [rowsPerPage, setRowsPerPage] = useState(20)
+  const [rowsPerPage, setRowsPerPage] = useState(rowsPerPageStored)
   const [recordSelected, setRecordSelected] = useState({})
   const [openForm, setOpenForm] = useState(false)
   const [alert, setAlert] = useState({ title: '', message: '', open: false })
@@ -361,16 +358,15 @@ export default function EnhancedTable({ title, model, columns, rows, fieldId, fi
   }
 
   const handleChangePage = (event, newPage) => {
+    event.preventDefault()
     setPage(newPage)
   }
 
   const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(parseInt(event.target.value, 10))
+    const rows = parseInt(event.target.value, 10)
+    localStorage.setItem('rows-per-page', rows)
+    setRowsPerPage(rows)
     setPage(0)
-  }
-
-  const handleChangeDense = (event) => {
-    setDense(event.target.checked)
   }
 
   const notifyUpdated = () => {
@@ -398,7 +394,7 @@ export default function EnhancedTable({ title, model, columns, rows, fieldId, fi
           <Table
             className={classes.table}
             aria-labelledby="tableTitle"
-            size={dense ? 'small' : 'medium'}
+            size={'small'}
             aria-label="enhanced table"
           >
             <EnhancedTableHead
@@ -455,7 +451,7 @@ export default function EnhancedTable({ title, model, columns, rows, fieldId, fi
                   )
                 })}
               {emptyRows > 0 && (
-                <TableRow style={{ height: (dense ? 33 : 53) * emptyRows }}>
+                <TableRow style={{ height: 33 * emptyRows }}>
                   <TableCell colSpan={6} />
                 </TableRow>
               )}
@@ -473,10 +469,6 @@ export default function EnhancedTable({ title, model, columns, rows, fieldId, fi
           labelRowsPerPage="Registros por página"
         />
       </Paper>
-      <FormControlLabel
-        control={<Switch checked={dense} onChange={handleChangeDense} />}
-        label="Formato Compacto"
-      />
     </div >
   )
 }
