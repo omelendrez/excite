@@ -11,6 +11,8 @@ const TextTypeField = ({ field, record, handleChange, classes }) =>
     value={record[field.name]}
     onChange={e => field.readOnly ? {} : handleChange(e)}
     size="small"
+    multiline={!!field.rows}
+    rows={field.rows}
   />
 
 export default TextTypeField

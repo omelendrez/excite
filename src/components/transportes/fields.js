@@ -27,8 +27,9 @@ export const fields = [
   },
   {
     name: 'TRAOBS',
-    label: 'Observacion',
-    type: 'text'
+    label: 'Observaciones',
+    type: 'text',
+    rows: 4
   },
   {
     name: 'TRAPROCOD',

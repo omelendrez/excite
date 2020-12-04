@@ -48,6 +48,7 @@ export const fields = [
   {
     name: 'VENOBS',
     label: 'Observaciones',
-    type: 'text'
+    type: 'text',
+    rows: 4
   }
 ]

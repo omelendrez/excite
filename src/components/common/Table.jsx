@@ -271,7 +271,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 export default function EnhancedTable({ title, model, columns, rows, fieldId, fields, setUpdate, doSearch }) {
-  const rowsPerPageStored = localStorage.getItem('rows-per-page') || 15
+  const rowsPerPageStored = parseInt(localStorage.getItem('rows-per-page') || 15)
   const classes = useStyles()
   const [order, setOrder] = useState('asc')
   const [orderBy, setOrderBy] = useState('calories')

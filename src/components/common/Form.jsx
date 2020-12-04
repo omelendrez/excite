@@ -22,18 +22,19 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
   },
   buttons: {
+    width: '60ch',
     margin: theme.spacing(1),
-    width: '80ch',
     display: 'flex',
-    justifyContent: 'space-between'
+    justifyContent: 'space-around'
   },
   button: {
+    width: '22ch',
     '&:focus': {
       outline: 'none'
     }
   },
   field: {
-    width: '80ch',
+    width: '60ch',
     margin: theme.spacing(1)
   },
   appBar: {
@@ -129,7 +130,7 @@ const FullScreenDialog = ({ open, setOpen, title, fields, record, model, setUpda
   }
 
   return (
-    <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
+    <Dialog open={open} onClose={handleClose} TransitionComponent={Transition} disableBackdropClick>
       <Alert title={alert.title} open={alert.open} color={alert.color} message={alert.message} handleClose={handleAlertClose} />
       <AppBar className={classes.appBar}>
         <Toolbar>
@@ -160,19 +161,19 @@ const FullScreenDialog = ({ open, setOpen, title, fields, record, model, setUpda
           }
         })
         }
-        <div className={classes.buttons}>
-          <Button color="primary" variant="contained" disabled={submitDisabled} onClick={handleSubmit} className={classes.button}>
-            Guardar cambios
-            </Button>
-          <Button color="default" variant="contained" disabled={submitDisabled} onClick={handleReset}>
-            Deshacer cambios
-            </Button>
-          <Button color="secondary" variant="outlined" onClick={handleClose}>
-            Cancelar
-            </Button>
-        </div>
       </form>
-    </Dialog >
+      <div className={classes.buttons}>
+        <Button color="primary" variant="contained" disabled={submitDisabled} onClick={handleSubmit} className={classes.button}>
+          Guardar cambios
+            </Button>
+        <Button color="default" variant="contained" disabled={submitDisabled} onClick={handleReset} className={classes.button}>
+          Deshacer cambios
+            </Button>
+        <Button color="secondary" variant="outlined" onClick={handleClose} className={classes.button}>
+          Salir
+            </Button>
+      </div>
+    </Dialog>
   )
 }
 
