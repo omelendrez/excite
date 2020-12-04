@@ -20,6 +20,7 @@ const DateTypeField = ({ field, record, handleDateChange, classes }) =>
       clearLabel="Limpiar"
       showTodayButton
       todayLabel="Hoy"
+      size="small"
     />
   </MuiPickersUtilsProvider>
 

@@ -12,7 +12,7 @@ export const fields = [
   },
   {
     name: 'SUBTIPDES',
-    label: 'Descripcion',
+    label: 'Descripción',
     type: 'text'
   }
 ]

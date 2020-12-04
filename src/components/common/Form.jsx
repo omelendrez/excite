@@ -21,8 +21,19 @@ const useStyles = makeStyles((theme) => ({
     margin: '0 auto',
     marginTop: theme.spacing(2),
   },
+  appBar: {
+    position: 'relative',
+  },
+  title: {
+    marginLeft: theme.spacing(2),
+    flex: 1,
+  },
+  field: {
+    width: '64ch',
+    margin: theme.spacing(1)
+  },
   buttons: {
-    width: '60ch',
+    width: '65ch',
     margin: theme.spacing(1),
     display: 'flex',
     justifyContent: 'space-around'
@@ -32,17 +43,6 @@ const useStyles = makeStyles((theme) => ({
     '&:focus': {
       outline: 'none'
     }
-  },
-  field: {
-    width: '60ch',
-    margin: theme.spacing(1)
-  },
-  appBar: {
-    position: 'relative',
-  },
-  title: {
-    marginLeft: theme.spacing(2),
-    flex: 1,
   },
 }))
 
@@ -157,7 +157,7 @@ const FullScreenDialog = ({ open, setOpen, title, fields, record, model, setUpda
             case 'date':
               return <div key={index}><DateTypeField field={field} record={newRecord} handleDateChange={handleDateChange} classes={classes} /></div>
             default:
-              return <div key={index}>Field <b>{field.name}</b> tiene un tipo de datos incorrecto 🤷‍♂️</div>
+              return <div key={index}><div className={classes.field}>🤷‍♂️ <b style={{ color: 'red' }}>{field.label}</b> ({field.name}) tiene un <i><b>type</b></i> incorrecto. Verificar <code>field.js</code></div></div>
           }
         })
         }

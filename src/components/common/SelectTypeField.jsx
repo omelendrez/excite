@@ -126,11 +126,11 @@ export default function ComboBox({ field, record, classes, handleChange }) {
     onInputChange={(event, newInputValue) => field.readOnly ? {} : onInputChange(newInputValue)}
     options={options}
     getOptionLabel={(option) => option.title || ''}
-    style={{ width: 300 }}
     renderInput={(params) =>
       <TextField {...params}
         label={field.label}
         variant="outlined"
+        size="small"
         className={classes.field}
       />
     }
