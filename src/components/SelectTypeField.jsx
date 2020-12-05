@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import TextField from '@material-ui/core/TextField'
 import Autocomplete from '@material-ui/lab/Autocomplete'
-import { getRecords } from '../../services'
+import { getRecords } from '../services'
 
 export default function ComboBox({ field, record, classes, handleChange }) {
   const [options, setOptions] = useState([])

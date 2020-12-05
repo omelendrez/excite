@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import Table from './Table'
-import { getRecords } from '../../services'
+import { getRecords } from '../services'
 
 const Component = ({ model, title }) => {
-  const { columns } = require(`../../data/${model}/columns`)
-  const { fields } = require(`../../data/${model}/fields`)
+  const { columns } = require(`../data/${model}/columns`)
+  const { fields } = require(`../data/${model}/fields`)
   const [records, setRecords] = useState([])
   const [update, setUpdate] = useState(false)
   const [search, setSearch] = useState('')

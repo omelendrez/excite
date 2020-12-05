@@ -27,7 +27,7 @@ import Search from '@material-ui/icons/Search'
 import FilterListIcon from '@material-ui/icons/FilterList'
 import TextTypeField from './TextTypeField'
 
-import { getRecordById, deleteRecord } from '../../services'
+import { getRecordById, deleteRecord } from '../services'
 
 import readonlyTables from './readOnlyTables.json'
 

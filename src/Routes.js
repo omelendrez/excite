@@ -1,12 +1,12 @@
 import React from 'react'
 import { Route, Switch } from "react-router-dom"
 
-import Header from './components/common/Header'
-import Footer from './components/common/Footer'
-import NotFound from './components/common/NotFound'
-import Component from './components/common/Component'
+import Header from './components/Header'
+import Footer from './components/Footer'
+import NotFound from './components/NotFound'
+import Component from './components/Component'
 
-import Home from './components/common/Home'
+import Home from './components/Home'
 
 const Routes = () => {
 
