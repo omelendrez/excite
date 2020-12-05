@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import Table from '../common/Table'
+import Table from './Table'
 import { getRecords } from '../../services'
-import { columns } from './columns'
-import { fields } from './fields'
 
-const Clientes = () => {
-  const [clientes, setClientes] = useState([])
+const Component = ({ model, title }) => {
+  const { columns } = require(`../../data/${model}/columns`)
+  const { fields } = require(`../../data/${model}/fields`)
+  const [records, setRecords] = useState([])
   const [update, setUpdate] = useState(false)
   const [search, setSearch] = useState('')
 
@@ -18,17 +18,17 @@ const Clientes = () => {
   }
 
   useEffect(() => {
-    getRecords(`clientes${search ? '?search=' + search : ''}`)
-      .then(clientes => setClientes(clientes))
-  }, [update, search])
+    getRecords(`${model}${search ? '?search=' + search : ''}`)
+      .then(clientes => setRecords(clientes))
+  }, [model, update, search])
 
   return (
     <Table
-      title="Clientes"
-      model="clientes"
+      title={title}
+      model={model}
       columns={columns}
       fields={fields}
-      rows={clientes}
+      rows={records}
       fieldId="ID"
       setUpdate={updateData}
       doSearch={handleSearch}
@@ -36,4 +36,4 @@ const Clientes = () => {
   )
 }
 
-export default Clientes
+export default Component
