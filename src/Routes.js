@@ -4,9 +4,9 @@ import { Route, Switch } from "react-router-dom"
 import Header from './components/Header'
 import Footer from './components/Footer'
 import NotFound from './components/NotFound'
-import Component from './components/Component'
 
 import Home from './components/Home'
+import Component from './components/Component'
 
 const Routes = () => {
 
