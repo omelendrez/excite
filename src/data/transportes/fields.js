@@ -8,22 +8,26 @@ export const fields = [
   {
     name: 'TRANOM',
     label: 'Nombre',
-    type: 'text'
+    type: 'text',
+    length: 60
   },
   {
     name: 'TRADOM',
     label: 'Domicilio',
-    type: 'text'
+    type: 'text',
+    length: 60
   },
   {
     name: 'TRALOC',
     label: 'Localidad',
     type: 'text',
+    length: 60
   },
   {
     name: 'TRATEL',
     label: 'Telefono',
-    type: 'text'
+    type: 'text',
+    length: 20
   },
   {
     name: 'TRAOBS',
@@ -39,6 +43,7 @@ export const fields = [
   {
     name: 'TRACUIT',
     label: 'CUIT',
-    type: 'text'
+    type: 'text',
+    length: 20
   }
 ]

@@ -291,7 +291,9 @@ export default function EnhancedTable({ title, model, columns, rows, fieldId, fi
   const [alert, setAlert] = useState({ title: '', message: '', open: false })
 
   const handleAdd = () => {
-    setRecordSelected({})
+    const object = {}
+    fields.map(field => object[field.name] = field.default || '')
+    setRecordSelected(object)
     setOpenForm(!openForm)
   }
 

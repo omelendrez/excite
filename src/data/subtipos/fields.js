@@ -2,17 +2,19 @@ export const fields = [
   {
     name: 'TIPCOD',
     label: 'Tipo',
-    type: 'select'
+    type: 'select',
+    readOnly: true
   },
   {
     name: 'SUBTIPCOD',
     label: 'subtipo',
     type: 'text',
-    readOnly: true
+    length: 6
   },
   {
     name: 'SUBTIPDES',
     label: 'Descripción',
-    type: 'text'
+    type: 'text',
+    length: 60
   }
 ]

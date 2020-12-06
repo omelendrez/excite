@@ -8,16 +8,19 @@ export const fields = [
   {
     name: 'NUMDES',
     label: 'Descripción',
-    type: 'text'
+    type: 'text',
+    length: 60
   },
   {
     name: 'NUMVAL',
     label: 'Valor',
-    type: 'number'
+    type: 'number',
+    default: 0
   },
   {
     name: 'NUMPV',
     label: 'PV',
-    type: 'number'
+    type: 'number',
+    default: 0
   }
 ]

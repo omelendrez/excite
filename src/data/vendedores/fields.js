@@ -8,22 +8,26 @@ export const fields = [
   {
     name: 'VENNOM',
     label: 'Nombre',
-    type: 'text'
+    type: 'text',
+    length: 60
   },
   {
     name: 'VENDOM',
     label: 'Domicilio',
-    type: 'text'
+    type: 'text',
+    length: 60
   },
   {
     name: 'VENLOC',
     label: 'Localidad',
-    type: 'text'
+    type: 'text',
+    length: 60
   },
   {
     name: 'VENCP',
     label: 'C.P.',
-    type: 'text'
+    type: 'text',
+    length: 8
   },
   {
     name: 'PROCOD',
@@ -38,12 +42,14 @@ export const fields = [
   {
     name: 'VENTEL',
     label: 'Teléfono',
-    type: 'text'
+    type: 'text',
+    length: 20
   },
   {
     name: 'VENCEL',
     label: 'Celular',
-    type: 'text'
+    type: 'text',
+    length: 20
   },
   {
     name: 'VENOBS',

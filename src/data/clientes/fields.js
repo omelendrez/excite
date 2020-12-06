@@ -8,22 +8,26 @@ export const fields = [
   {
     name: 'CLINOM',
     label: 'Nombre',
-    type: 'text'
+    type: 'text',
+    length: 60
   },
   {
     name: 'CLIDOM',
     label: 'Domicilio',
-    type: 'text'
+    type: 'text',
+    length: 60
   },
   {
     name: 'CLILOC',
     label: 'Localidad',
-    type: 'text'
+    type: 'text',
+    length: 60
   },
   {
     name: 'CLICP',
     label: 'C.P.',
-    type: 'text'
+    type: 'text',
+    length: 8
   },
   {
     name: 'PROCOD',
@@ -38,27 +42,32 @@ export const fields = [
   {
     name: 'CLITEL',
     label: 'Teléfono',
-    type: 'text'
+    type: 'text',
+    length: 20
   },
   {
     name: 'CLICEL',
     label: 'Celular',
-    type: 'text'
+    type: 'text',
+    length: 20
   },
   {
     name: 'CLIFAN',
     label: 'CLIFAN',
-    type: 'text'
+    type: 'text',
+    length: 60
   },
   {
     name: 'CLIFP',
     label: 'Forma de Pago',
-    type: 'text'
+    type: 'text',
+    length: 60
   },
   {
     name: 'CLICUIT',
     label: 'CUIT',
-    type: 'text'
+    type: 'text',
+    length: 20
   },
   {
     name: 'IVACOD',

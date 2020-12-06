@@ -19,6 +19,7 @@ export const fields = [
     name: 'AJUCAN',
     label: 'Cantidad a ajustar',
     type: 'number',
+    default: 0,
     helperText: 'Puede ingresar valores positivos o negativos para incrementar o disminuir el stock'
   }
 ]

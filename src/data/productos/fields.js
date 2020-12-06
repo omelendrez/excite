@@ -7,12 +7,14 @@ export const fields = [
   {
     name: 'PRODDES',
     label: 'Descripción',
-    type: 'text'
+    type: 'text',
+    length: 60
   },
   {
     name: 'PRODPRE',
     label: 'Precio',
-    type: 'number'
+    type: 'number',
+    default: 0
   },
   {
     name: 'TIPCOD',
@@ -32,12 +34,14 @@ export const fields = [
   {
     name: 'PRODSTO',
     label: 'Stock',
-    type: 'number'
+    type: 'number',
+    default: 0
   },
   {
     name: 'PRODSINI',
     label: 'Stock inicial',
-    type: 'number'
+    type: 'number',
+    default: 0
   },
   {
     name: 'PRODEST',
@@ -47,6 +51,7 @@ export const fields = [
   {
     name: 'PRODCOM',
     label: 'PRODCOM',
-    type: 'text'
+    type: 'text',
+    length: 1
   }
 ]

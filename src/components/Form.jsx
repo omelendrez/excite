@@ -58,17 +58,8 @@ const FullScreenDialog = ({ open, setOpen, title, fields, record, model, setUpda
   const [alert, setAlert] = useState({ title: '', message: '', open: false })
 
   useEffect(() => {
-    const object = { ...record }
-    if (!Object.keys(object).length && fields) {
-      fields.map(field => object[field.name] = '' || field.default)
-    }
-    setNewRecord(object)
-    if (objectChanged(record, object)) {
-      setSubmitDisabled(false)
-    } else {
-      setSubmitDisabled(true)
-    }
-  }, [record, fields])
+    setNewRecord(record)
+  }, [record])
 
   const handleClose = () => {
     setOpen(false)

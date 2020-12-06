@@ -52,12 +52,14 @@ export const fields = [
   {
     name: 'REMDES',
     label: 'Desc.',
-    type: 'number'
+    type: 'number',
+    length: 60
   },
   {
     name: 'REMFACLET',
     label: 'REMFACLET',
-    type: 'text'
+    type: 'text',
+    length: 1
   },
   {
     name: 'REMEMI',

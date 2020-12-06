@@ -14,7 +14,7 @@ export const fields = [
     name: 'CONDES',
     label: 'Descripción del concepto',
     type: 'text',
-    length: 20
+    length: 60
   },
   {
     name: 'CONCLI',

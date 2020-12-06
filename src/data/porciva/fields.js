@@ -7,6 +7,7 @@ export const fields = [
   {
     name: 'IVAPOR',
     label: 'Porcentaje de IVA',
-    type: 'number'
+    type: 'number',
+    default: 0
   }
 ]
