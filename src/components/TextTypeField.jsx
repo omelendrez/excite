@@ -1,6 +1,6 @@
 import TextField from '@material-ui/core/TextField'
 
-const TextTypeField = ({ field, record, handleChange, classes }) =>
+const TextTypeField = ({ field, record, handleChange, handleKeyPress, classes }) =>
   <TextField
     id={field.name}
     label={field.label}
@@ -13,6 +13,7 @@ const TextTypeField = ({ field, record, handleChange, classes }) =>
     size="small"
     multiline={!!field.rows}
     rows={field.rows}
+    onKeyPress={e => handleKeyPress(e)}
   />
 
 export default TextTypeField

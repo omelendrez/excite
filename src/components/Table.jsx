@@ -17,7 +17,6 @@ import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import Paper from '@material-ui/core/Paper'
 import Checkbox from '@material-ui/core/Checkbox'
-import Button from '@material-ui/core/Button'
 import Fab from '@material-ui/core/Fab'
 import Tooltip from '@material-ui/core/Tooltip'
 import AddIcon from '@material-ui/icons/Add'
@@ -111,6 +110,9 @@ EnhancedTableHead.propTypes = {
   order: PropTypes.oneOf(['asc', 'desc']).isRequired,
   orderBy: PropTypes.string.isRequired,
   rowCount: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  model: PropTypes.string.isRequired,
+  columns: PropTypes.array.isRequired
 }
 
 const useToolbarStyles = makeStyles((theme) => ({
@@ -138,7 +140,7 @@ const useToolbarStyles = makeStyles((theme) => ({
     }
   },
   field: {
-    width: '40ch',
+    width: '50ch',
     marginRight: theme.spacing(1)
   },
   searchButtonContainer: {
@@ -171,9 +173,12 @@ const EnhancedTableToolbar = (props) => {
     setSearch({ ...search, [e.target.id]: e.target.value })
   }
 
-  const handleSearch = e => {
-    e.preventDefault()
-    doSearch(search)
+  const onSearchKeypress = e => {
+    if (e.key === 'Enter') {
+      e.preventDefault()
+      doSearch(search)
+    }
+
   }
 
   return (
@@ -192,10 +197,7 @@ const EnhancedTableToolbar = (props) => {
               </Typography>
               {showSearch && (
                 <div className={classes.searchButtonContainer}>
-                  <TextTypeField field={searchField} record={search} classes={classes} handleChange={e => onSearchChange(e)} />
-                  <Button color="primary" variant="contained" onClick={e => handleSearch(e)}>
-                    Buscar
-                  </Button>
+                  <TextTypeField field={searchField} record={search} classes={classes} handleChange={e => onSearchChange(e)} handleKeyPress={e => onSearchKeypress(e)} />
                 </div>
               )}
             </>
@@ -244,6 +246,12 @@ const EnhancedTableToolbar = (props) => {
 
 EnhancedTableToolbar.propTypes = {
   numSelected: PropTypes.number.isRequired,
+  setOpenForm: PropTypes.func.isRequired,
+  openForm: PropTypes.bool.isRequired,
+  title: PropTypes.string.isRequired,
+  handleAdd: PropTypes.func.isRequired,
+  handleDelete: PropTypes.func.isRequired,
+  doSearch: PropTypes.func.isRequired
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -453,9 +461,14 @@ export default function EnhancedTable({ title, model, columns, rows, fieldId, fi
                   )
                 })}
               {emptyRows > 0 && (
-                <TableRow style={{ height: 33 * emptyRows }}>
-                  <TableCell colSpan={6} />
-                </TableRow>
+                <>
+                  {!rows.length && <TableRow>
+                    <TableCell className="text-center" colSpan={6}>No se encontraron registros</TableCell>
+                  </TableRow>}
+                  <TableRow style={{ height: 33 * emptyRows - (rows.length ? -1 : 0) }}>
+                    <TableCell colSpan={6} />
+                  </TableRow>
+                </>
               )}
             </TableBody>
           </Table>
