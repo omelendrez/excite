@@ -76,11 +76,7 @@ const FullScreenDialog = ({ open, setOpen, title, fields, record, model, setUpda
   }
 
   const handleReset = e => {
-    const object = { ...record }
-    if (!Object.keys(object).length) {
-      fields.map(field => object[field.name] = '')
-    }
-    setNewRecord(object)
+    setNewRecord(record)
     setSubmitDisabled(true)
   }
 
