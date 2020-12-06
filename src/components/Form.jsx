@@ -60,7 +60,7 @@ const FullScreenDialog = ({ open, setOpen, title, fields, record, model, setUpda
   useEffect(() => {
     const object = { ...record }
     if (!Object.keys(object).length && fields) {
-      fields.map(field => object[field.name] = '')
+      fields.map(field => object[field.name] = '' || field.default)
     }
     setNewRecord(object)
     if (objectChanged(record, object)) {
