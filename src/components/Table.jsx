@@ -463,7 +463,7 @@ export default function EnhancedTable({ title, model, columns, rows, fieldId, fi
               {emptyRows > 0 && (
                 <>
                   {!rows.length && <TableRow>
-                    <TableCell className="text-center btn-warning" colSpan={fields.length + 1}>No se encontraron registros</TableCell>
+                    <TableCell className="text-center" colSpan={fields.length + 1}>No se encontraron registros</TableCell>
                   </TableRow>}
                   <TableRow style={{ height: 33 * emptyRows - (rows.length ? -1 : 0) }}>
                     <TableCell colSpan={fields.length + 1} />

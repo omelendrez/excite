@@ -1,7 +1,10 @@
 import TextField from '@material-ui/core/TextField'
 
-const TextTypeField = ({ field, record, handleChange, handleKeyPress, classes }) =>
-  <TextField
+const TextTypeField = ({ field, record, handleChange, handleKeyPress, classes }) => {
+  const inputProps = {
+    maxLength: field.length
+  }
+  return (<TextField
     id={field.name}
     label={field.label}
     type={field.type}
@@ -13,7 +16,9 @@ const TextTypeField = ({ field, record, handleChange, handleKeyPress, classes })
     size="small"
     multiline={!!field.rows}
     rows={field.rows}
-    onKeyPress={e => handleKeyPress(e)}
-  />
+    onKeyPress={e => handleKeyPress ? handleKeyPress(e) : null}
+    inputProps={inputProps}
+  />)
+}
 
 export default TextTypeField
