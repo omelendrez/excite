@@ -1,7 +1,10 @@
 const appLocale = 'es-AR'
 
+const dateFields = [
+  'AJUFEC', 'CLISALFEC', 'IVAFEC'
+]
+
 export const handleError = error => {
-  window.navigator.vibrate(200)
   if (error.response && error.response.data && error.response.data.error && error.response.data.error.code === 'ER_DUP_ENTRY') {
     return { message: 'Registro duplicado' }
   }
@@ -17,6 +20,25 @@ export const handleError = error => {
 }
 
 export const formatDate = date => date ? date.substring(8, 10) + date.substring(4, 8) + date.substring(0, 4) : ''
+
+export const formatInputDate = (date) => date ? `${formatDateForSubmit(date)} 03:00` : null
+
+export const formatDateForSubmit = (date) => {
+  if (date) {
+    let [d, m, y] = new Date(date).toLocaleDateString(appLocale).split("/")
+    return `${padLeft(y, 4, '0')}-${padLeft(m, 2, '0')}-${padLeft(d, 2, '0')}`
+  }
+  return null
+}
+
+export const formatDatesForSumit = record => {
+  const keys = Object.keys(record)
+  const formattedRecord = {}
+  for (const key of keys) {
+    formattedRecord[key] = dateFields.includes(key) ? formatDateForSubmit(record[key]) : record[key]
+  }
+  return formattedRecord
+}
 
 export const formatAmount = amount => amount.toLocaleString(appLocale, { style: 'currency', currency: 'ARS', minimumFractionDigits: 2, maximumFractionDigits: 2 })
 
@@ -43,18 +65,3 @@ export const padLeft = (value, size, char) => {
   }
 }
 
-export const inputFormatDate = (date) => {
-  if (date) {
-    let [d, m, y] = new Date(date).toLocaleDateString(appLocale).split("/")
-    return `${padLeft(y, 4, '0')}-${padLeft(m, 2, '0')}-${padLeft(d, 2, '0')} 03:00`
-  }
-  return null
-}
-
-export const submitFormatDate = (date) => {
-  if (date) {
-    let [d, m, y] = new Date(date).toLocaleDateString(appLocale).split("/")
-    return `${padLeft(y, 4, '0')}-${padLeft(m, 2, '0')}-${padLeft(d, 2, '0')}`
-  }
-  return null
-}

@@ -2,9 +2,9 @@ export const columns = [
   {
     id: "CLICOD",
     label: "Código",
-    numeric: false,
-    disablePadding: true,
-    minWidth: 80
+    numeric: true,
+    align: "right",
+    disablePadding: true
   },
   {
     id: "CLINOM",

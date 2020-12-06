@@ -11,7 +11,7 @@ import Toolbar from '@material-ui/core/Toolbar'
 import IconButton from '@material-ui/core/IconButton'
 import Typography from '@material-ui/core/Typography'
 import CloseIcon from '@material-ui/icons/Close'
-import { objectChanged, inputFormatDate } from '../helpers'
+import { objectChanged, formatInputDate, formatDatesForSumit } from '../helpers'
 import { addRecord, updateRecord } from '../services'
 
 import Slide from '@material-ui/core/Slide'
@@ -94,7 +94,7 @@ const FullScreenDialog = ({ open, setOpen, title, fields, record, model, setUpda
   }
 
   const handleDateChange = (fieldName, date) => {
-    const newDate = inputFormatDate(date)
+    const newDate = formatInputDate(date)
     const updatedRecord = { ...newRecord, [fieldName]: newDate }
     setNewRecord(updatedRecord)
     if (objectChanged(record, updatedRecord)) {
@@ -104,8 +104,9 @@ const FullScreenDialog = ({ open, setOpen, title, fields, record, model, setUpda
   }
 
   const handleSubmit = () => {
+    const record = formatDatesForSumit(newRecord)
     if (!newRecord.ID) {
-      addRecord(model, newRecord)
+      addRecord(model, record)
         .then(() => {
           setUpdate()
           handleClose()
@@ -114,7 +115,7 @@ const FullScreenDialog = ({ open, setOpen, title, fields, record, model, setUpda
           setAlert({ title: 'Error de servidor', message: err.message, color: 'error', open: true })
         })
     } else {
-      updateRecord(model, newRecord)
+      updateRecord(model, record)
         .then(() => {
           setUpdate()
           handleClose()

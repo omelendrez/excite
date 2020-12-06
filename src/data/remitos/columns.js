@@ -42,8 +42,7 @@ export const columns = [
   {
     id: "CLINOM",
     label: "Cliente",
-    numeric: false,
-    format: value => formatDate(value)
+    numeric: false
   },
   {
     id: "REMFACNUM",

@@ -374,8 +374,10 @@ export default function EnhancedTable({ title, model, columns, rows, fieldId, fi
     setUpdate()
     setTimeout(() => {
       setAlert({ open: false })
-      getRecordById(model, selected[0])
-        .then(record => setRecordSelected(record))
+      if (selected.length) {
+        getRecordById(model, selected[0])
+          .then(record => setRecordSelected(record))
+      }
     }, 1000)
   }
 
