@@ -29,11 +29,11 @@ const useStyles = makeStyles((theme) => ({
     flex: 1,
   },
   field: {
-    width: '64ch',
-    margin: theme.spacing(1)
+    width: '61ch',
+    margin: theme.spacing(2)
   },
   buttons: {
-    width: '65ch',
+    width: '62ch',
     margin: theme.spacing(1),
     display: 'flex',
     justifyContent: 'space-around'
@@ -117,6 +117,21 @@ const FullScreenDialog = ({ open, setOpen, title, fields, record, model, setUpda
     setAlert({ open: false })
   }
 
+  const InputField = ({ field }) => {
+    switch (field.type) {
+      case 'text':
+        return <div><TextTypeField field={field} record={newRecord} handleChange={handleChange} classes={classes} /></div>
+      case 'number':
+        return <div><TextTypeField field={field} record={newRecord} handleChange={handleChange} classes={classes} /></div>
+      case 'select':
+        return <div><SelectTypeField field={field} record={newRecord} handleChange={handleChange} classes={classes} /></div>
+      case 'date':
+        return <div><DateTypeField field={field} record={newRecord} handleDateChange={handleDateChange} classes={classes} /></div>
+      default:
+        return <div><div className={classes.field}>🤷‍♂️ <b style={{ color: 'red' }}>{field.label}</b> ({field.name}) tiene un <i><b>type</b></i> incorrecto. Verificar <code>field.js</code></div></div>
+    }
+  }
+
   return (
     <Dialog open={open} onClose={handleClose} TransitionComponent={Transition} disableBackdropClick>
       <Alert title={alert.title} open={alert.open} color={alert.color} message={alert.message} handleClose={handleAlertClose} />
@@ -131,24 +146,7 @@ const FullScreenDialog = ({ open, setOpen, title, fields, record, model, setUpda
         </Toolbar>
       </AppBar>
       <form className={classes.root} noValidate autoComplete="off">
-        {fields && fields.map((field, index) => {
-          if (field.readOnly && !newRecord[field.name]) {
-            return null
-          }
-          switch (field.type) {
-            case 'text':
-              return <div key={index}><TextTypeField field={field} record={newRecord} handleChange={handleChange} classes={classes} /></div>
-            case 'number':
-              return <div key={index}><TextTypeField field={field} record={newRecord} handleChange={handleChange} classes={classes} /></div>
-            case 'select':
-              return <div key={index}><SelectTypeField field={field} record={newRecord} handleChange={handleChange} classes={classes} /></div>
-            case 'date':
-              return <div key={index}><DateTypeField field={field} record={newRecord} handleDateChange={handleDateChange} classes={classes} /></div>
-            default:
-              return <div key={index}><div className={classes.field}>🤷‍♂️ <b style={{ color: 'red' }}>{field.label}</b> ({field.name}) tiene un <i><b>type</b></i> incorrecto. Verificar <code>field.js</code></div></div>
-          }
-        })
-        }
+        {fields && fields.map((field, index) => !(field.readOnly && !newRecord[field.name]) && <InputField key={index} field={field} />)}
       </form>
       <div className={classes.buttons}>
         <Button color="primary" variant="contained" disabled={submitDisabled} onClick={handleSubmit} className={classes.button}>
