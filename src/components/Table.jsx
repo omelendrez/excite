@@ -30,7 +30,7 @@ import { getRecordById, deleteRecord } from '../services'
 
 import readonlyTables from './readOnlyTables.json'
 
-const ROWS_PER_PAGE = [5, 10, 15, 20, 25]
+const ROWS_PER_PAGE = [5, 10, 15, 20, 25, 50, 100]
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -276,6 +276,9 @@ const useStyles = makeStyles((theme) => ({
     top: 20,
     width: 1,
   },
+  tablePagination: {
+    marginBottom: theme.spacing(5),
+  }
 }))
 
 export default function EnhancedTable({ title, model, columns, rows, fieldId, fields, setUpdate, doSearch }) {
@@ -484,6 +487,7 @@ export default function EnhancedTable({ title, model, columns, rows, fieldId, fi
           onChangePage={handleChangePage}
           onChangeRowsPerPage={handleChangeRowsPerPage}
           labelRowsPerPage="Registros por página"
+          className={classes.tablePagination}
         />
       </Paper>
     </div >

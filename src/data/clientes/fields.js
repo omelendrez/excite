@@ -15,8 +15,7 @@ export const fields = [
     name: 'CLIDOM',
     label: 'Domicilio',
     type: 'text',
-    length: 60,
-    default: 'Su casa'
+    length: 60
   },
   {
     name: 'CLILOC',
