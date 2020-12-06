@@ -29,14 +29,15 @@ const useStyles = makeStyles((theme) => ({
     flex: 1,
   },
   field: {
-    width: '61ch',
+    width: '60ch',
     margin: theme.spacing(2)
   },
   buttons: {
-    width: '62ch',
-    margin: theme.spacing(1),
+    width: '60ch',
+    margin: theme.spacing(2),
     display: 'flex',
-    justifyContent: 'space-around'
+    justifyContent: 'space-around',
+    marginBottom: theme.spacing(2)
   },
   button: {
     width: '22ch',
@@ -120,15 +121,15 @@ const FullScreenDialog = ({ open, setOpen, title, fields, record, model, setUpda
   const InputField = ({ field }) => {
     switch (field.type) {
       case 'text':
-        return <div><TextTypeField field={field} record={newRecord} handleChange={handleChange} classes={classes} /></div>
+        return <TextTypeField field={field} record={newRecord} handleChange={handleChange} classes={classes} />
       case 'number':
-        return <div><TextTypeField field={field} record={newRecord} handleChange={handleChange} classes={classes} /></div>
+        return <TextTypeField field={field} record={newRecord} handleChange={handleChange} classes={classes} />
       case 'select':
-        return <div><SelectTypeField field={field} record={newRecord} handleChange={handleChange} classes={classes} /></div>
+        return <SelectTypeField field={field} record={newRecord} handleChange={handleChange} classes={classes} />
       case 'date':
-        return <div><DateTypeField field={field} record={newRecord} handleDateChange={handleDateChange} classes={classes} /></div>
+        return <DateTypeField field={field} record={newRecord} handleDateChange={handleDateChange} classes={classes} />
       default:
-        return <div><div className={classes.field}>🤷‍♂️ <b style={{ color: 'red' }}>{field.label}</b> ({field.name}) tiene un <i><b>type</b></i> incorrecto. Verificar <code>field.js</code></div></div>
+        return <div className={classes.field}>🤷‍♂️ <b style={{ color: 'red' }}>{field.label}</b> ({field.name}) tiene un <i><b>type</b></i> incorrecto. Verificar <code>field.js</code></div>
     }
   }
 
@@ -151,13 +152,13 @@ const FullScreenDialog = ({ open, setOpen, title, fields, record, model, setUpda
       <div className={classes.buttons}>
         <Button color="primary" variant="contained" disabled={submitDisabled} onClick={handleSubmit} className={classes.button}>
           Guardar cambios
-            </Button>
+        </Button>
         <Button color="default" variant="contained" disabled={submitDisabled} onClick={handleReset} className={classes.button}>
           Deshacer cambios
-            </Button>
+        </Button>
         <Button color="secondary" variant="outlined" onClick={handleClose} className={classes.button}>
           Salir
-            </Button>
+        </Button>
       </div>
     </Dialog>
   )
