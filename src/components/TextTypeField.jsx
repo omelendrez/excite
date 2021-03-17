@@ -13,6 +13,7 @@ const TextTypeField = ({ field, record, handleChange, handleKeyPress, classes })
     size="small"
     multiline={!!field.rows}
     rows={field.rows}
+    fullWidth={!!field.rows}
     onKeyPress={e => handleKeyPress ? handleKeyPress(e) : null}
     inputProps={{
       maxLength: field.length

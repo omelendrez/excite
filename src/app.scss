@@ -15,6 +15,9 @@ body {
     width: auto;
     margin: 0 auto;
   }
+  .MuiInputBase-root {
+    background-color: white;
+  }
 }
 .navbar,
 .fixed-bottom {
@@ -50,7 +53,6 @@ body {
     }
     
     &.show {
-      
       .dropdown-menu {
         animation: 0.4s fadeIn;
         .btn {
