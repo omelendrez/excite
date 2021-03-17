@@ -119,6 +119,7 @@ const useToolbarStyles = makeStyles((theme) => ({
   root: {
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(1),
+    backgroundColor: '#EAEDED'
   },
   highlight:
     theme.palette.type === 'light'
@@ -191,17 +192,17 @@ const EnhancedTableToolbar = (props) => {
             {numSelected} registro(s) seleccionado
           </Typography>
         ) : (
-            <>
-              <Typography className={classes.title} variant="h6" id="tableTitle" component="div">
-                {title}
-              </Typography>
-              {showSearch && (
-                <div className={classes.searchButtonContainer}>
-                  <TextTypeField field={searchField} record={search} classes={classes} handleChange={e => onSearchChange(e)} handleKeyPress={e => onSearchKeypress(e)} />
-                </div>
-              )}
-            </>
-          )}
+          <>
+            <Typography className={classes.title} variant="h6" id="tableTitle" component="div">
+              {title}
+            </Typography>
+            {showSearch && (
+              <div className={classes.searchButtonContainer}>
+                <TextTypeField field={searchField} record={search} classes={classes} handleChange={e => onSearchChange(e)} handleKeyPress={e => onSearchKeypress(e)} />
+              </div>
+            )}
+          </>
+        )}
         {numSelected > 0 ? (
           <>
             {numSelected === 1 && (
@@ -218,26 +219,26 @@ const EnhancedTableToolbar = (props) => {
             </Tooltip>
           </>
         ) : (
-            <>
-              {doSearch &&
-                <Tooltip title="Buscar" className={classes.fabButton}>
-                  <Fab aria-label="search" color="primary" size="small" onClick={e => handleShowSearch(e)}>
-                    <Search />
-                  </Fab>
-                </Tooltip>
-              }
-              <Tooltip title="Filtros" className={classes.fabButton}>
-                <Fab aria-label="filter list" color="primary" size="small">
-                  <FilterListIcon />
+          <>
+            {doSearch &&
+              <Tooltip title="Buscar" className={classes.fabButton}>
+                <Fab aria-label="search" color="primary" size="small" onClick={e => handleShowSearch(e)}>
+                  <Search />
                 </Fab>
               </Tooltip>
-              <Tooltip title="Agregar" className={classes.fabButton}>
-                <Fab aria-label="add record" color="primary" onClick={() => handleAdd()} size="small" >
-                  <AddIcon />
-                </Fab>
-              </Tooltip>
-            </>
-          )}
+            }
+            <Tooltip title="Filtros" className={classes.fabButton}>
+              <Fab aria-label="filter list" color="primary" size="small">
+                <FilterListIcon />
+              </Fab>
+            </Tooltip>
+            <Tooltip title="Agregar" className={classes.fabButton}>
+              <Fab aria-label="add record" color="primary" onClick={() => handleAdd()} size="small" >
+                <AddIcon />
+              </Fab>
+            </Tooltip>
+          </>
+        )}
 
       </Toolbar>
     </>
@@ -254,7 +255,7 @@ EnhancedTableToolbar.propTypes = {
   doSearch: PropTypes.func.isRequired
 }
 
-const useStyles = makeStyles((theme) => ({
+const tableStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
   },
@@ -283,7 +284,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function EnhancedTable({ title, model, columns, rows, fieldId, fields, setUpdate, doSearch }) {
   const rowsPerPageStored = parseInt(localStorage.getItem('rows-per-page') || 15)
-  const classes = useStyles()
+  const classes = tableStyles()
   const [order, setOrder] = useState('asc')
   const [orderBy, setOrderBy] = useState('calories')
   const [selected, setSelected] = useState([])
