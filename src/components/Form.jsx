@@ -51,6 +51,20 @@ const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />
 })
 
+const InputField = ({ field, newRecord, handleChange, handleDateChange, classes }) => {
+  switch (field.type) {
+    case 'text':
+      return <TextTypeField field={field} record={newRecord} handleChange={handleChange} classes={classes} />
+    case 'number':
+      return <TextTypeField field={field} record={newRecord} handleChange={handleChange} classes={classes} />
+    case 'select':
+      return <SelectTypeField field={field} record={newRecord} handleChange={handleChange} classes={classes} />
+    case 'date':
+      return <DateTypeField field={field} record={newRecord} handleDateChange={handleDateChange} classes={classes} />
+    default:
+      return <div className={classes.field}>🤷‍♂️ <b style={{ color: 'red' }}>{field.label}</b> ({field.name}) tiene un <i><b>type</b></i> incorrecto. Verificar <code>field.js</code></div>
+  }
+}
 
 const FullScreenDialog = ({ open, setOpen, title, fields, record, model, setUpdate }) => {
   const classes = useStyles()
@@ -118,21 +132,6 @@ const FullScreenDialog = ({ open, setOpen, title, fields, record, model, setUpda
     setAlert({ open: false })
   }
 
-  const InputField = ({ field }) => {
-    switch (field.type) {
-      case 'text':
-        return <TextTypeField field={field} record={newRecord} handleChange={handleChange} classes={classes} />
-      case 'number':
-        return <TextTypeField field={field} record={newRecord} handleChange={handleChange} classes={classes} />
-      case 'select':
-        return <SelectTypeField field={field} record={newRecord} handleChange={handleChange} classes={classes} />
-      case 'date':
-        return <DateTypeField field={field} record={newRecord} handleDateChange={handleDateChange} classes={classes} />
-      default:
-        return <div className={classes.field}>🤷‍♂️ <b style={{ color: 'red' }}>{field.label}</b> ({field.name}) tiene un <i><b>type</b></i> incorrecto. Verificar <code>field.js</code></div>
-    }
-  }
-
   return (
     <Dialog open={open} onClose={handleClose} TransitionComponent={Transition} disableBackdropClick>
       <Alert title={alert.title} open={alert.open} color={alert.color} message={alert.message} handleClose={handleAlertClose} />
@@ -147,7 +146,7 @@ const FullScreenDialog = ({ open, setOpen, title, fields, record, model, setUpda
         </Toolbar>
       </AppBar>
       <form className={classes.root} noValidate autoComplete="off">
-        {fields && fields.map((field, index) => !(field.readOnly && !newRecord[field.name]) && <InputField key={index} field={field} />)}
+        {fields && fields.map((field, index) => !(field.readOnly && !newRecord[field.name]) && <InputField key={index} field={field} newRecord={newRecord} handleChange={handleChange} handleDateChange={handleDateChange} classes={classes} />)}
       </form>
       <div className={classes.buttons}>
         <Button color="primary" variant="contained" disabled={submitDisabled} onClick={handleSubmit} className={classes.button}>
@@ -164,4 +163,4 @@ const FullScreenDialog = ({ open, setOpen, title, fields, record, model, setUpda
   )
 }
 
-export default FullScreenDialog 
+export default FullScreenDialog
