@@ -1,0 +1,91 @@
+[
+  {
+    "label": "Home",
+    "url": "/"
+  },
+  {
+    "label": "Transportes",
+    "options": [
+      {
+        "label": "ABM Transportes",
+        "url": "/transportes"
+      }
+    ]
+  },
+  {
+    "label": "Clientes",
+    "options": [
+      {
+        "label": "ABM Clientes",
+        "url": "/clientes"
+      },
+      {
+        "label": "Condición IVA",
+        "url": "/iva"
+      },
+      {
+        "label": "Porcentaje IVA",
+        "url": "/porciva"
+      },
+      {
+        "label": "Pagos de Facturas",
+        "url": "/pagos"
+      }
+    ]
+  },
+  {
+    "label": "Vendedores",
+    "options": [
+      {
+        "label": "ABM Vendedores",
+        "url": "/vendedores"
+      }
+    ]
+  },
+  {
+    "label": "Productos",
+    "options": [
+      {
+        "label": "ABM Tipos",
+        "url": "/tipos"
+      },
+      {
+        "label": "ABM Subtipos",
+        "url": "/subtipos"
+      },
+      {
+        "divider": true
+      },
+      {
+        "label": "ABM Productos",
+        "url": "/productos"
+      },
+      {
+        "label": "Ajustes de Stock",
+        "url": "/ajustes"
+      }
+    ]
+  },
+  {
+    "label": "Documentos",
+    "options": [
+      {
+        "label": "Presupuestos y Facturas",
+        "url": "/remitos"
+      },
+      {
+        "label": "Conceptos",
+        "url": "/conceptos"
+      }
+    ]
+  },
+  {
+    "label": "Mantenimiento",
+    "options": [
+      {
+        "label": "Últimos Números",
+        "url": "/numeros"
+      }
+    ]
+  }
+]

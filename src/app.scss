@@ -1,0 +1,76 @@
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+body {
+  background-color: #eceff1 !important;
+  font-family: Roboto;
+  .MuiTable-root {
+    width: auto;
+    margin: 0 auto;
+  }
+  .MuiInputBase-root {
+    background-color: white;
+  }
+}
+.navbar,
+.fixed-bottom {
+  background-color: #37474f !important;
+  color: #eceff1 !important;
+}
+
+.navbar {
+  .navbar-menu {
+    @media (max-width: 640px) { 
+      display: none;
+     }
+  }
+  .btn-group {
+    .nav-item,
+    .nav-link {
+      &.btn:focus {
+        box-shadow: unset;
+      }
+    }
+    .btn {
+      color: #ccc;
+      &.active {
+        color: white;
+        border-bottom: 1px solid #ccc;
+      }
+    }
+
+    .dropdown-menu {
+      .btn {
+        color: black;
+      }
+    }
+    
+    &.show {
+      .dropdown-menu {
+        animation: 0.4s fadeIn;
+        .btn {
+          color: #37474f;
+          &.active {
+            background-color: #37474f;
+            color: #eceff1;
+          }
+        }
+        .dropdown-item:active  {
+          background-color: #37474f;
+          color: #eceff1;
+        }
+  
+      }
+      
+   
+    }
+  }
+
+}
