@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import LinearProgress from '@material-ui/core/LinearProgress'
 import Table from './Table'
 import { getRecords } from '../services'
 
@@ -8,6 +9,7 @@ const Component = ({ model, title }) => {
   const [records, setRecords] = useState([])
   const [update, setUpdate] = useState(false)
   const [search, setSearch] = useState('')
+  const [loading, setLoading] = useState(false)
 
   const updateData = () => {
     setUpdate(!update)
@@ -18,10 +20,15 @@ const Component = ({ model, title }) => {
   }
 
   useEffect(() => {
+    setLoading(true)
     getRecords(`${model}${search ? '?search=' + search : ''}`)
-      .then(clientes => setRecords(clientes))
+      .then(clientes => {
+        setRecords(clientes)
+        setLoading(false)
+      })
   }, [model, update, search])
 
+  if (loading) return <LinearProgress disableShrink />
   return (
     <Table
       title={title}
