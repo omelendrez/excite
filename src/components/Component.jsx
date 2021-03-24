@@ -28,18 +28,21 @@ const Component = ({ model, title }) => {
       })
   }, [model, update, search])
 
-  if (loading) return <LinearProgress disableShrink />
+
   return (
-    <Table
-      title={title}
-      model={model}
-      columns={columns}
-      fields={fields}
-      rows={records}
-      fieldId="ID"
-      setUpdate={updateData}
-      doSearch={handleSearch}
-    />
+    <React.Fragment>
+      {loading && <LinearProgress disableShrink />}
+      <Table
+        title={title}
+        model={model}
+        columns={columns}
+        fields={fields}
+        rows={records}
+        fieldId="ID"
+        setUpdate={updateData}
+        doSearch={handleSearch}
+      />
+    </React.Fragment>
   )
 }
 
