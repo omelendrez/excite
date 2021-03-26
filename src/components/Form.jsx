@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     margin: '0 auto',
     marginTop: theme.spacing(2),
-    padding: theme.spacing(1)
+    paddingLeft: theme.spacing(2)
   },
   appBar: {
     position: 'relative',
@@ -31,8 +31,8 @@ const useStyles = makeStyles((theme) => ({
   },
   field: {
     margin: theme.spacing(1),
-    maxWidth: '62ch',
-    minWidth: '30ch'
+    maxWidth: '60ch',
+    minWidth: '29ch'
   },
   buttons: {
     margin: theme.spacing(1),
