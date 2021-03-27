@@ -1,68 +1,68 @@
-import React, { useState } from 'react'
-import PropTypes from 'prop-types'
-import Form from './Form'
-import Alert from './Alert'
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import Form from './Form';
+import Alert from './Alert';
 
-import clsx from 'clsx'
-import { lighten, makeStyles } from '@material-ui/core/styles'
-import Table from '@material-ui/core/Table'
-import TableBody from '@material-ui/core/TableBody'
-import TableCell from '@material-ui/core/TableCell'
-import TableContainer from '@material-ui/core/TableContainer'
-import TableHead from '@material-ui/core/TableHead'
-import TablePagination from '@material-ui/core/TablePagination'
-import TableRow from '@material-ui/core/TableRow'
-import TableSortLabel from '@material-ui/core/TableSortLabel'
-import Toolbar from '@material-ui/core/Toolbar'
-import Typography from '@material-ui/core/Typography'
-import Paper from '@material-ui/core/Paper'
-import Checkbox from '@material-ui/core/Checkbox'
-import Fab from '@material-ui/core/Fab'
-import Tooltip from '@material-ui/core/Tooltip'
-import AddIcon from '@material-ui/icons/Add'
-import DeleteIcon from '@material-ui/icons/Delete'
-import EditIcon from '@material-ui/icons/Edit'
-import Search from '@material-ui/icons/Search'
-import FilterListIcon from '@material-ui/icons/FilterList'
-import TextTypeField from './TextTypeField'
+import clsx from 'clsx';
+import { lighten, makeStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TablePagination from '@material-ui/core/TablePagination';
+import TableRow from '@material-ui/core/TableRow';
+import TableSortLabel from '@material-ui/core/TableSortLabel';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Paper from '@material-ui/core/Paper';
+import Checkbox from '@material-ui/core/Checkbox';
+import Fab from '@material-ui/core/Fab';
+import Tooltip from '@material-ui/core/Tooltip';
+import AddIcon from '@material-ui/icons/Add';
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
+import Search from '@material-ui/icons/Search';
+import FilterListIcon from '@material-ui/icons/FilterList';
+import TextTypeField from './TextTypeField';
 
-import { getRecordById, deleteRecord } from '../services'
+import { getRecordById, deleteRecord } from '../services';
 
-import readonlyTables from './readOnlyTables.json'
+import readonlyTables from './readOnlyTables.json';
 
-const ROWS_PER_PAGE = [5, 10, 15, 20, 25, 50, 100]
+const ROWS_PER_PAGE = [5, 10, 15, 20, 25, 50, 100];
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
-    return -1
+    return -1;
   }
   if (b[orderBy] > a[orderBy]) {
-    return 1
+    return 1;
   }
-  return 0
+  return 0;
 }
 
 function getComparator(order, orderBy) {
   return order === 'desc'
     ? (a, b) => descendingComparator(a, b, orderBy)
-    : (a, b) => -descendingComparator(a, b, orderBy)
+    : (a, b) => -descendingComparator(a, b, orderBy);
 }
 
 function stableSort(array, comparator) {
-  const stabilizedThis = array.map((el, index) => [el, index])
+  const stabilizedThis = array.map((el, index) => [el, index]);
   stabilizedThis.sort((a, b) => {
-    const order = comparator(a[0], b[0])
-    if (order !== 0) return order
-    return a[1] - b[1]
-  })
-  return stabilizedThis.map((el) => el[0])
+    const order = comparator(a[0], b[0]);
+    if (order !== 0) return order;
+    return a[1] - b[1];
+  });
+  return stabilizedThis.map((el) => el[0]);
 }
 
 function EnhancedTableHead(props) {
-  const { classes, onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort, columns, model } = props
+  const { classes, onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort, columns, model } = props;
   const createSortHandler = (property) => (event) => {
-    onRequestSort(event, property)
-  }
+    onRequestSort(event, property);
+  };
   return (
     <TableHead>
       <TableRow>
@@ -99,7 +99,7 @@ function EnhancedTableHead(props) {
         ))}
       </TableRow>
     </TableHead>
-  )
+  );
 }
 
 EnhancedTableHead.propTypes = {
@@ -113,7 +113,7 @@ EnhancedTableHead.propTypes = {
   title: PropTypes.string.isRequired,
   model: PropTypes.string.isRequired,
   columns: PropTypes.array.isRequired
-}
+};
 
 const useToolbarStyles = makeStyles((theme) => ({
   root: {
@@ -124,8 +124,8 @@ const useToolbarStyles = makeStyles((theme) => ({
   highlight:
     theme.palette.type === 'light'
       ? {
-        color: theme.palette.info.main,
-        backgroundColor: lighten(theme.palette.info.light, 0.85),
+        color: theme.palette.primary.main,
+        backgroundColor: lighten(theme.palette.info.light, 0.9),
       }
       : {
         color: theme.palette.text.info,
@@ -149,38 +149,38 @@ const useToolbarStyles = makeStyles((theme) => ({
     left: '50%',
     marginLeft: '-20ch',
   }
-}))
+}));
 
 const EnhancedTableToolbar = (props) => {
-  const classes = useToolbarStyles()
-  const { numSelected, title, openForm, setOpenForm, handleAdd, handleDelete, doSearch } = props
-  const [showSearch, setShowSearch] = useState(false)
-  const [search, setSearch] = useState({ search: '' })
+  const classes = useToolbarStyles();
+  const { numSelected, title, openForm, setOpenForm, handleAdd, handleDelete, doSearch } = props;
+  const [showSearch, setShowSearch] = useState(false);
+  const [search, setSearch] = useState({ search: '' });
   const searchField = {
     name: 'search',
     label: '',
     type: 'text'
-  }
+  };
 
   const handleShowSearch = e => {
-    e.preventDefault()
-    setSearch({ search: '' })
-    setShowSearch(!showSearch)
-    doSearch(search)
-  }
+    e.preventDefault();
+    setSearch({ search: '' });
+    setShowSearch(!showSearch);
+    doSearch(search);
+  };
 
   const onSearchChange = e => {
-    e.preventDefault()
-    setSearch({ ...search, [e.target.id]: e.target.value })
-  }
+    e.preventDefault();
+    setSearch({ ...search, [e.target.id]: e.target.value });
+  };
 
   const onSearchKeypress = e => {
     if (e.key === 'Enter') {
-      e.preventDefault()
-      doSearch(search)
+      e.preventDefault();
+      doSearch(search);
     }
 
-  }
+  };
 
   return (
     <>
@@ -189,7 +189,7 @@ const EnhancedTableToolbar = (props) => {
       >
         {numSelected > 0 ? (
           <Typography className={classes.title} color="inherit" variant="subtitle1" component="div">
-            {numSelected} registro(s) seleccionado
+            {numSelected} registro{numSelected > 1 ? 's' : ''} seleccionado{numSelected > 1 ? 's' : ''}
           </Typography>
         ) : (
           <>
@@ -242,8 +242,8 @@ const EnhancedTableToolbar = (props) => {
 
       </Toolbar>
     </>
-  )
-}
+  );
+};
 
 EnhancedTableToolbar.propTypes = {
   numSelected: PropTypes.number.isRequired,
@@ -253,7 +253,7 @@ EnhancedTableToolbar.propTypes = {
   handleAdd: PropTypes.func.isRequired,
   handleDelete: PropTypes.func.isRequired,
   doSearch: PropTypes.func.isRequired
-}
+};
 
 const tableStyles = makeStyles((theme) => ({
   root: {
@@ -280,73 +280,73 @@ const tableStyles = makeStyles((theme) => ({
   tablePagination: {
     marginBottom: theme.spacing(5),
   }
-}))
+}));
 
 export default function EnhancedTable({ title, model, columns, rows, fieldId, fields, setUpdate, doSearch }) {
-  const rowsPerPageStored = parseInt(localStorage.getItem('rows-per-page') || 15)
-  const classes = tableStyles()
-  const [order, setOrder] = useState('asc')
-  const [orderBy, setOrderBy] = useState('calories')
-  const [selected, setSelected] = useState([])
-  const [page, setPage] = useState(0)
-  const [rowsPerPage, setRowsPerPage] = useState(rowsPerPageStored)
-  const [recordSelected, setRecordSelected] = useState({})
-  const [openForm, setOpenForm] = useState(false)
-  const [alert, setAlert] = useState({ title: '', message: '', open: false })
+  const rowsPerPageStored = parseInt(localStorage.getItem('rows-per-page') || 15);
+  const classes = tableStyles();
+  const [order, setOrder] = useState('asc');
+  const [orderBy, setOrderBy] = useState('calories');
+  const [selected, setSelected] = useState([]);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(rowsPerPageStored);
+  const [recordSelected, setRecordSelected] = useState({});
+  const [openForm, setOpenForm] = useState(false);
+  const [alert, setAlert] = useState({ title: '', message: '', open: false });
 
   const handleAdd = () => {
-    const object = {}
-    fields.map(field => object[field.name] = field.default || '')
-    setRecordSelected(object)
-    setOpenForm(!openForm)
-  }
+    const object = {};
+    fields.map(field => object[field.name] = field.default || '');
+    setRecordSelected(object);
+    setOpenForm(!openForm);
+  };
 
   const handleRequestSort = (event, property) => {
-    const isAsc = orderBy === property && order === 'asc'
-    setOrder(isAsc ? 'desc' : 'asc')
-    setOrderBy(property)
-  }
+    const isAsc = orderBy === property && order === 'asc';
+    setOrder(isAsc ? 'desc' : 'asc');
+    setOrderBy(property);
+  };
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelecteds = rows.map((n) => n[fieldId])
-      setSelected(newSelecteds)
-      return
+      const newSelecteds = rows.map((n) => n[fieldId]);
+      setSelected(newSelecteds);
+      return;
     }
-    setSelected([])
-  }
+    setSelected([]);
+  };
 
   const handleClick = (event, name) => {
-    const selectedIndex = selected.indexOf(name)
-    let newSelected = []
-    let recordId = null
+    const selectedIndex = selected.indexOf(name);
+    let newSelected = [];
+    let recordId = null;
 
     if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, name)
+      newSelected = newSelected.concat(selected, name);
     } else if (selectedIndex === 0) {
-      newSelected = newSelected.concat(selected.slice(1))
+      newSelected = newSelected.concat(selected.slice(1));
     } else if (selectedIndex === selected.length - 1) {
-      newSelected = newSelected.concat(selected.slice(0, -1))
+      newSelected = newSelected.concat(selected.slice(0, -1));
     } else if (selectedIndex > 0) {
       newSelected = newSelected.concat(
         selected.slice(0, selectedIndex),
         selected.slice(selectedIndex + 1),
-      )
+      );
     }
     if (newSelected.length === 1) {
-      recordId = newSelected[0]
+      recordId = newSelected[0];
     }
     if (recordId) {
       getRecordById(model, recordId)
-        .then(record => setRecordSelected(record))
+        .then(record => setRecordSelected(record));
     }
 
-    setSelected(newSelected)
-  }
+    setSelected(newSelected);
+  };
 
   const handleDelete = () => {
     if (readonlyTables.includes(model)) {
-      return
+      return;
     }
     setAlert({
       title: 'Eliminando registros',
@@ -355,49 +355,49 @@ export default function EnhancedTable({ title, model, columns, rows, fieldId, fi
       handleClose: closeAlert,
       handleConfimation: confirmDelete,
       open: true
-    })
-  }
+    });
+  };
 
   const confirmDelete = async () => {
     await selected.map(async id => {
-      await deleteRecord(model, id)
-    })
-    setUpdate()
-    setSelected([])
-    closeAlert()
-  }
+      await deleteRecord(model, id);
+    });
+    setUpdate();
+    setSelected([]);
+    closeAlert();
+  };
 
   const closeAlert = () => {
-    setAlert({})
-  }
+    setAlert({});
+  };
 
   const handleChangePage = (event, newPage) => {
-    event.preventDefault()
-    setPage(newPage)
-  }
+    event.preventDefault();
+    setPage(newPage);
+  };
 
   const handleChangeRowsPerPage = (event) => {
-    const rows = parseInt(event.target.value, 10)
-    localStorage.setItem('rows-per-page', rows)
-    setRowsPerPage(rows)
-    setPage(0)
-  }
+    const rows = parseInt(event.target.value, 10);
+    localStorage.setItem('rows-per-page', rows);
+    setRowsPerPage(rows);
+    setPage(0);
+  };
 
   const notifyUpdated = () => {
-    setAlert({ message: 'Registro guardado satisfactoriamente', color: 'ok', open: true })
-    setUpdate()
+    setAlert({ message: 'Registro guardado satisfactoriamente', color: 'ok', open: true });
+    setUpdate();
     setTimeout(() => {
-      setAlert({ open: false })
+      setAlert({ open: false });
       if (selected.length) {
         getRecordById(model, selected[0])
-          .then(record => setRecordSelected(record))
+          .then(record => setRecordSelected(record));
       }
-    }, 1000)
-  }
+    }, 1000);
+  };
 
-  const isSelected = (name) => selected.indexOf(name) !== -1
+  const isSelected = (name) => selected.indexOf(name) !== -1;
 
-  const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage)
+  const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
   return (
     <div className={classes.root}>
@@ -429,8 +429,8 @@ export default function EnhancedTable({ title, model, columns, rows, fieldId, fi
               {stableSort(rows, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
-                  const isItemSelected = isSelected(row[fieldId])
-                  const labelId = `enhanced-table-checkbox-${index}`
+                  const isItemSelected = isSelected(row[fieldId]);
+                  const labelId = `enhanced-table-checkbox-${index}`;
 
                   return (
                     <TableRow
@@ -451,7 +451,7 @@ export default function EnhancedTable({ title, model, columns, rows, fieldId, fi
                         </TableCell>
                       }
                       {columns.map((column) => {
-                        const value = row[column.id]
+                        const value = row[column.id];
                         return (
                           <TableCell
                             key={column.id}
@@ -461,10 +461,10 @@ export default function EnhancedTable({ title, model, columns, rows, fieldId, fi
                           >
                             {column.format ? column.format(value) : value}
                           </TableCell>
-                        )
+                        );
                       })}
                     </TableRow>
-                  )
+                  );
                 })}
               {emptyRows > 0 && (
                 <>
@@ -492,5 +492,5 @@ export default function EnhancedTable({ title, model, columns, rows, fieldId, fi
         />
       </Paper>
     </div >
-  )
+  );
 }
