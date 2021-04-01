@@ -249,7 +249,7 @@ EnhancedTableToolbar.propTypes = {
   numSelected: PropTypes.number.isRequired,
   setOpenForm: PropTypes.func.isRequired,
   openForm: PropTypes.bool.isRequired,
-  title: PropTypes.string.isRequired,
+  title?: PropTypes.string.isRequired,
   handleAdd: PropTypes.func.isRequired,
   handleDelete: PropTypes.func.isRequired,
   doSearch: PropTypes.func.isRequired
